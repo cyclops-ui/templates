@@ -1,18 +1,25 @@
 {
   "properties": {
-    "image": {
-      "description": "Container Image",
-      "type": "string"
-    },
     "name": {
       "description": "Service name",
       "type": "string"
     },
-    "port": {
-      "description": "Port",
+    "namespace": {
+      "description": "Service namespace",
+      "type": "string"
+    },
+    "replicas": {
+      "description": "Service replicas",
       "type": "integer"
     },
-
+    "image": {
+      "description": "Container Image",
+      "type": "string"
+    },
+    "port": {
+      "description": "Version",
+      "type": "string"
+    }
   },
   "required": [
     "name",
