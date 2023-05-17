@@ -16,6 +16,10 @@
       "description": "Container Image",
       "type": "string"
     },
+    "version": {
+      "description": "Container image version",
+      "type": "string"
+    },
     "port": {
       "description": "Version",
       "type": "string"
