@@ -1,15 +1,15 @@
 {
   "properties": {
     "name": {
-      "description": "Service name",
+      "description": "Application name",
       "type": "string"
     },
     "namespace": {
-      "description": "Service namespace",
+      "description": "Application namespace",
       "type": "string"
     },
     "replicas": {
-      "description": "Service replicas",
+      "description": "Application replicas",
       "type": "integer"
     },
     "image": {
@@ -19,6 +19,10 @@
     "port": {
       "description": "Version",
       "type": "string"
+    },
+    "service": {
+      "description": "Does your application require a service",
+      "type": "boolean"
     }
   },
   "required": [
