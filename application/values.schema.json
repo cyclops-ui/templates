@@ -20,18 +20,19 @@
       "description": "Container image version",
       "type": "string"
     },
-    "port": {
-      "description": "Version",
-      "type": "string"
-    },
     "service": {
       "description": "Does your application require a service",
       "type": "boolean"
     },
-    "juraj": {
-      "type": "boolean"
-    }
   },
+  "order": [
+    "name",
+    "namespace",
+    "replicas",
+    "image",
+    "version",
+    "service"
+  ],
   "required": [
     "name",
     "namespace",
