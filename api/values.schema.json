@@ -23,7 +23,7 @@
     "service": {
       "description": "Does your application require a service",
       "type": "boolean"
-    },
+    }
   },
   "order": [
     "name",
@@ -34,7 +34,7 @@
     "service"
   ],
   "required": [
-    "juraj/",
+    "juraj",
     "mojapi",
     "replicas",
     "image",
