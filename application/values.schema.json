@@ -23,7 +23,7 @@
     "service": {
       "description": "Does your application require a service",
       "type": "boolean"
-    },
+    }
   },
   "order": [
     "name",
