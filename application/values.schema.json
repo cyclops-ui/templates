@@ -27,6 +27,9 @@
     "service": {
       "description": "Does your application require a service",
       "type": "boolean"
+    },
+    "juraj": {
+      "type": "boolean"
     }
   },
   "required": [
