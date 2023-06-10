@@ -4,10 +4,6 @@
       "description": "Application name",
       "type": "string"
     },
-    "namespace": {
-      "description": "Application namespace",
-      "type": "string"
-    },
     "replicas": {
       "description": "Application replicas",
       "type": "integer"
@@ -27,7 +23,6 @@
   },
   "order": [
     "name",
-    "namespace",
     "replicas",
     "image",
     "version",
@@ -35,7 +30,6 @@
   ],
   "required": [
     "name",
-    "namespace",
     "replicas",
     "image",
     "version"
