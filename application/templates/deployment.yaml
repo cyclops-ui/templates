@@ -4,7 +4,6 @@ metadata:
   labels:
     app: {{ .Values.name }}
   name: {{ .Values.name }}
-  namespace: {{ .Values.namespace }}
 spec:
   replicas: {{ .Values.replicas }}
   selector:
