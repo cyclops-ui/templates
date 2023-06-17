@@ -1,10 +1,10 @@
 {
   "properties": {
-    "juraj": {
+    "name": {
       "description": "Application name",
       "type": "string"
     },
-    "mojapi": {
+    "namespace": {
       "description": "Application namespace",
       "type": "string"
     },
@@ -34,8 +34,8 @@
     "service"
   ],
   "required": [
-    "juraj",
-    "mojapi",
+    "name",
+    "namespace",
     "replicas",
     "image",
     "version"
