@@ -6,12 +6,11 @@ metadata:
   labels:
     app: {{ .Values.name }}
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   ports:
     - port: 80
       targetPort: 80
       protocol: TCP
-      name: http
   selector:
-    sb.app: {{ .Values.name }}
+    app: {{ .Values.name }}
 {{- end }}
