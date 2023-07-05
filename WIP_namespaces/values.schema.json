@@ -1,0 +1,44 @@
+{
+  "properties": {
+    "name": {
+      "description": "Application name",
+      "type": "string"
+    },
+    "namespace": {
+      "description": "Application namespace",
+      "type": "string"
+    },
+    "replicas": {
+      "description": "Application replicas",
+      "type": "integer"
+    },
+    "image": {
+      "description": "Container Image",
+      "type": "string"
+    },
+    "version": {
+      "description": "Container image version",
+      "type": "string"
+    },
+    "service": {
+      "description": "Does your application require a service",
+      "type": "boolean"
+    }
+  },
+  "order": [
+    "name",
+    "namespace",
+    "replicas",
+    "image",
+    "version",
+    "service"
+  ],
+  "required": [
+    "name",
+    "replicas",
+    "image",
+    "version"
+  ],
+  "title": "Values",
+  "type": "object"
+}
