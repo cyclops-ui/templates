@@ -4,8 +4,12 @@
       "description": "Application name",
       "type": "string"
     },
-    "namespace": {
-      "description": "Application namespace",
+    "deployment_namespace": {
+      "description": "Deployment namespace",
+      "type": "string"
+    },
+    "service_namespace": {
+      "description": "Service namespace",
       "type": "string"
     },
     "replicas": {
@@ -27,11 +31,12 @@
   },
   "order": [
     "name",
-    "namespace",
+    "deployment_namespace",
     "replicas",
     "image",
     "version",
-    "service"
+    "service",
+    "service_namespace"
   ],
   "required": [
     "name",
