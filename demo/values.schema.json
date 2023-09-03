@@ -5,7 +5,7 @@
       "type": "string"
     },
     "replicas": {
-      "description": "Application replicas",
+      "description": "Application replicas https://cyclops-ui.com/",
       "type": "integer"
     },
     "image": {
