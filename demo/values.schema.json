@@ -28,6 +28,7 @@
   "order": [
     "name",
     "replicas",
+    "script",
     "image",
     "version",
     "service"
