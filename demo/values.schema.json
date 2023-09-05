@@ -12,6 +12,10 @@
       "type": "string",
       "fileExtension": "sh"
     },
+    "yaml": {
+      "type": "string",
+      "fileExtension": "yaml"
+    },
     "image": {
       "description": "Container Image",
       "type": "string"
@@ -29,6 +33,7 @@
     "name",
     "replicas",
     "script",
+    "yaml",
     "image",
     "version",
     "service"
