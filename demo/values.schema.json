@@ -12,9 +12,9 @@
       "type": "string",
       "fileExtension": "sh"
     },
-    "yaml": {
+    "json": {
       "type": "string",
-      "fileExtension": "yaml"
+      "fileExtension": "json"
     },
     "image": {
       "description": "Container Image",
@@ -33,7 +33,7 @@
     "name",
     "replicas",
     "script",
-    "yaml",
+    "json",
     "image",
     "version",
     "service"
