@@ -8,14 +8,6 @@
       "description": "Application replicas https://cyclops-ui.com/",
       "type": "integer"
     },
-    "script": {
-      "type": "string",
-      "fileExtension": "sh"
-    },
-    "json": {
-      "type": "string",
-      "fileExtension": "json"
-    },
     "image": {
       "description": "Container Image",
       "type": "string"
