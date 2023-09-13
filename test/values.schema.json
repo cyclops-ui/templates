@@ -57,13 +57,14 @@
   "order": [
     "name",
     "replicas",
+    "service"
+    "image",
+    "nested",
     "script",
     "json",
     "invalid",
     "yaml",
-    "image",
-    "version",
-    "service"
+    "version"
   ],
   "required": [
     "name",
