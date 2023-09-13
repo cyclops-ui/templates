@@ -1,0 +1,4 @@
+image: nginx
+nested:
+  version: 1.14.2
+  service: true
