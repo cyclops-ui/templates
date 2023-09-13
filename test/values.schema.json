@@ -1,0 +1,59 @@
+{
+  "properties": {
+    "name": {
+      "description": "Application name",
+      "type": "string"
+    },
+    "replicas": {
+      "description": "Application replicas https://cyclops-ui.com/",
+      "type": "integer"
+    },
+    "script": {
+      "type": "string",
+      "fileExtension": "sh"
+    },
+    "json": {
+      "type": "string",
+      "fileExtension": "json"
+    },
+    "invalid": {
+      "type": "string",
+      "fileExtension": "invalid"
+    },
+    "yaml": {
+      "type": "string",
+      "fileExtension": "yaml"
+    },
+    "image": {
+      "description": "Container Image",
+      "type": "string"
+    },
+    "version": {
+      "description": "Container image version",
+      "type": "string"
+    },
+    "service": {
+      "description": "Does your application require a service",
+      "type": "boolean"
+    }
+  },
+  "order": [
+    "name",
+    "replicas",
+    "script",
+    "json",
+    "invalid",
+    "yaml",
+    "image",
+    "version",
+    "service"
+  ],
+  "required": [
+    "name",
+    "replicas",
+    "image",
+    "version"
+  ],
+  "title": "Values",
+  "type": "object"
+}
