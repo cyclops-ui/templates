@@ -57,7 +57,7 @@
   "order": [
     "name",
     "replicas",
-    "service"
+    "service",
     "image",
     "nested",
     "script",
