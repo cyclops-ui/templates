@@ -8,39 +8,6 @@
       "description": "Application replicas https://cyclops-ui.com/",
       "type": "integer"
     },
-    "nested": {
-      "type": "object",
-      "properties": {
-        "image": {
-          "description": "Container Image",
-          "type": "string"
-        },
-        "version": {
-          "description": "Container image version",
-          "type": "string"
-        },
-        "service": {
-          "description": "Does your application require a service",
-          "type": "boolean"
-        }
-      }
-    },
-    "script": {
-      "type": "string",
-      "fileExtension": "sh"
-    },
-    "json": {
-      "type": "string",
-      "fileExtension": "json"
-    },
-    "invalid": {
-      "type": "string",
-      "fileExtension": "invalid"
-    },
-    "yaml": {
-      "type": "string",
-      "fileExtension": "yaml"
-    },
     "image": {
       "description": "Container Image",
       "type": "string"
@@ -57,13 +24,8 @@
   "order": [
     "name",
     "replicas",
-    "service",
     "image",
-    "nested",
-    "script",
-    "json",
-    "invalid",
-    "yaml",
+    "service",
     "version"
   ],
   "required": [
