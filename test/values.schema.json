@@ -1,7 +1,6 @@
 {
   "properties": {
     "Application": {
-      "description": "Application name",
       "type": "object",
       "properties": {
         "Name": {
@@ -30,6 +29,28 @@
         "Name",
         "Replicas",
         "Image"
+      ]
+    },
+    "Ingress": {
+      "type": "object",
+      "properties": {
+        "Host": {
+          "description": "Application host",
+          "type": "string"
+        },
+        "Path": {
+          "description": "Application replicas",
+          "type": "integer"
+        },
+        "Timeout": {
+          "description": "Container Image",
+          "type": "integer"
+        }
+      },
+      "order": [
+        "Host",
+        "Path",
+        "Timeout"
       ]
     },
     "name": {
