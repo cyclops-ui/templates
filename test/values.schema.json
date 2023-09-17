@@ -40,7 +40,7 @@
         },
         "Path": {
           "description": "Application replicas",
-          "type": "integer"
+          "type": "string"
         },
         "Timeout": {
           "description": "Container Image",
