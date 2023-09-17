@@ -1,5 +1,33 @@
 {
   "properties": {
+    "application": {
+      "description": "Application name",
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "Application name",
+          "type": "string"
+        },
+        "replicas": {
+          "description": "Application replicas",
+          "type": "integer"
+        },
+        "image": {
+          "description": "Container Image",
+          "type": "string"
+        }
+      },
+      "order": [
+        "name",
+        "replicas",
+        "image"
+      ],
+      "required": [
+        "name",
+        "replicas",
+        "image"
+      ],
+    },
     "name": {
       "description": "Application name",
       "type": "string"
