@@ -21,10 +21,10 @@
         }
       },
       "order": [
-        "name",
-        "replicas",
-        "image",
-        "environment"
+        "Name",
+        "Replicas",
+        "Image",
+        "Environment"
       ],
       "required": [
         "Name",
