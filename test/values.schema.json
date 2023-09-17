@@ -26,7 +26,7 @@
         "name",
         "replicas",
         "image"
-      ],
+      ]
     },
     "name": {
       "description": "Application name",
