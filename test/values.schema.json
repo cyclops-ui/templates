@@ -45,6 +45,9 @@
         "Timeout": {
           "description": "Container Image",
           "type": "integer"
+        },
+        "TLS": {
+          "type": "boolean"
         }
       },
       "order": [
@@ -52,26 +55,6 @@
         "Path",
         "Timeout"
       ]
-    },
-    "name": {
-      "description": "Application name",
-      "type": "string"
-    },
-    "replicas": {
-      "description": "Application replicas https://cyclops-ui.com/",
-      "type": "integer"
-    },
-    "image": {
-      "description": "Container Image",
-      "type": "string"
-    },
-    "version": {
-      "description": "Container image version",
-      "type": "string"
-    },
-    "service": {
-      "description": "Does your application require a service",
-      "type": "boolean"
     }
   },
   "order": [
