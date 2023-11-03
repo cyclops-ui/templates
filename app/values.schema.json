@@ -1,0 +1,112 @@
+{
+  "properties": {
+    "application": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "Application name",
+          "type": "string"
+        },
+        "namespace": {
+          "description": "Application namesace",
+          "type": "string"
+        },
+        "image": {
+          "description": "Container Image",
+          "type": "string"
+        },
+        "replicas": {
+          "description": "Number of replicas",
+          "type": "integer"
+        },
+        "version": {
+          "description": "Container image version",
+          "type": "string"
+        }
+      },
+      "order": [
+        "name",
+        "namespace",
+        "image",
+        "replicas",
+        "version"
+      ]
+    },
+    "environment": {
+      "type": "object"
+    },
+    "secrets": {
+      "type": "object"
+    },
+    "resources": {
+      "type": "object",
+      "properties": {
+        "cpu": {
+          "type": "object",
+          "properties": {
+            "limit": {
+              "type": "string"
+            },
+            "request": {
+              "type": "string"
+            }
+          },
+          "order": [
+            "limit",
+            "request"
+          ]
+        },
+        "memory": {
+          "type": "object",
+          "properties": {
+            "limit": {
+              "type": "string"
+            },
+            "request": {
+              "type": "string"
+            }
+          },
+          "order": [
+            "limit",
+            "request"
+          ]
+        }
+      },
+      "order": [
+        "cpu",
+        "memory"
+      ]
+    },
+    "extensions": {
+      "type": "object",
+      "properties": {
+        "metrics": {
+          "type": "boolean"
+        },
+        "podTopologySpread": {
+          "type": "boolean"
+        }
+      },
+      "order": [
+        "metrics",
+        "podTopologySpread"
+      ]
+    }
+  },
+  "order": [
+    "application",
+    "environment",
+    "secrets",
+    "resources",
+    "extensions",
+    "settings"
+  ],
+  "required": [
+    "name",
+    "replicas",
+    "image",
+    "version"
+  ],
+  "title": "Values",
+  "type": "object"
+}
