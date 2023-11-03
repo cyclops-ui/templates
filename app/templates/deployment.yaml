@@ -1,0 +1,171 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: {{ .Values.application.name }}
+  name: {{ .Values.application.name }}
+  namespace: {{ .Values.application.namespace }}
+spec:
+  replicas: {{ .Values.application.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.application.name }}
+  template:
+    metadata:
+      {{- if (.Values.extensions).metrics }}
+      annotations:
+        prometheus.io/port: "9102"
+        prometheus.io/scrape: "true"
+      {{- end }}
+      labels:
+        app: {{ .Values.application.name }}
+    spec:
+      {{- if .Values.affinity }}
+        {{- if .Values.affinity.node }}
+        tolerations:
+          - key: node-role.kubernetes.io
+            value: {{ .Values.affinity.node }}
+            operator: Equal
+            effect: NoSchedule
+        {{- end }}
+        affinity:
+          {{- if .Values.affinity.node }}
+          nodeAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+              nodeSelectorTerms:
+                - matchExpressions:
+                    - key: node-role.kubernetes.io
+                      operator: In
+                      values:
+                        - {{ .Values.affinity.node }}
+          {{- end }}
+          {{- if .Values.affinity.podAntiAffinity }}
+          podAntiAffinity:
+            preferredDuringSchedulingIgnoredDuringExecution:
+              - podAffinityTerm:
+                  labelSelector:
+                    matchLabels:
+                      app: {{ .Values.application.name }}
+                  topologyKey: "kubernetes.io/hostname"
+                weight: 50
+          {{- end }}
+        {{- end }}
+        {{- if (.Values.extensions).podTopologySpread }}
+        topologySpreadConstraints:
+          - maxSkew: 1
+            topologyKey: kubernetes.io/hostname
+            whenUnsatisfiable: DoNotSchedule
+            labelSelector:
+              matchLabels:
+                app: {{ .Values.application.name }}
+        {{- end }}
+        {{- if .Values.serviceAccountName }}
+        serviceAccountName: {{ .Values.serviceAccountName }}
+        {{- end }}
+        containers:
+          - image: {{ .Values.application.image }}:{{ .Values.application.version }}
+            name: {{ .Values.application.name }}
+            ports:
+              - containerPort: 8080
+                name: http
+              {{- if (.Values.extensions).metrics }}
+              - containerPort: 9102
+                name: metrics
+              {{- end }}
+            {{- if .Values.readiness }}
+            readinessProbe:
+              httpGet:
+                path: {{ .Values.readiness.path | default "/ready" | quote }}
+                port: 8080
+              initialDelaySeconds: {{ .Values.readiness.initialDelaySeconds | default 5 }}
+              periodSeconds: {{ .Values.readiness.periodSeconds | default 5 }}
+              failureThreshold: {{ .Values.readiness.failureThreshold | default 5 }}
+              {{- if hasKey .Values.readiness "timeoutSeconds" }}
+              timeoutSeconds: {{ .Values.readiness.timeoutSeconds }}
+              {{- end }}
+              {{- if hasKey .Values.readiness "successThreshold" }}
+              successThreshold: {{ .Values.readiness.successThreshold }}
+              {{- end }}
+            {{- end }}
+            {{- if .Values.liveness }}
+            livenessProbe:
+              httpGet:
+                path: {{ .Values.liveness.path | default "/alive" | quote }}
+                port: 8080
+              initialDelaySeconds: {{ .Values.liveness.initialDelaySeconds | default 30 }}
+              {{- if hasKey .Values.liveness "periodSeconds" }}
+              periodSeconds: {{ .Values.liveness.periodSeconds }}
+              {{- end }}
+              {{- if hasKey .Values.liveness "timeoutSeconds" }}
+              timeoutSeconds: {{ .Values.liveness.timeoutSeconds }}
+              {{- end }}
+              {{- if hasKey .Values.liveness "successThreshold" }}
+              successThreshold: {{ .Values.liveness.successThreshold }}
+              {{- end }}
+              {{- if hasKey .Values.liveness "failureThreshold" }}
+              failureThreshold: {{ .Values.liveness.failureThreshold }}
+              {{- end }}
+              {{- end }}
+            env:
+              - name: APP_ENVIRONMENT
+                value: {{ .Values.deployment.environment }}
+              - name: APP_NAME
+                value: {{ .Values.application.name }}
+              - name: APP_NAMESPACE
+                value: {{ .Values.application.namespace }}
+              - name: SERVER_PORT
+                value: "8080"
+              {{- if (.Values.extensions).metrics }}
+              - name: PROMETHEUS_PORT
+                value: "9102"
+              {{- end }}
+              {{- if .Values.ingress }}
+              - name: HTTP_SERVER_ROOT_PATH
+                {{- if hasKey .Values.ingress "path" }}
+                value: {{ .Values.ingress.path | replace "{release}" .Values.release.name | default "/" }}
+                {{- else }}
+                value: "/"
+                {{- end }}
+              {{- end }}
+              {{- range $key, $value := .Values.environment }}
+              - name: {{ $key }}
+                value: {{ $value | quote }}
+              {{- end }}
+              {{- range $key, $value := .Values.configs }}
+              - name: {{ $key }}
+                valueFrom:
+                  configMapKeyRef:
+                    key: {{ $value.key }}
+                    name: {{ $value.name }}
+              {{- end }}
+              {{- range $key, $value := .Values.secrets }}
+              - name: {{ $key }}
+                valueFrom:
+                  secretKeyRef:
+                    key: {{ $value }}
+                    name: {{ $.Values.settings.secretsKey }}
+              {{- end }}
+              {{- range $key, $value := .Values.fields }}
+              - name: {{ $key }}
+                valueFrom:
+                  fieldRef:
+                    fieldPath: {{ $value }}
+              {{- end }}
+            {{- if .Values.application.configMap }}
+            envFrom:
+              - configMapRef:
+                  name: {{ .Values.application.configMap }}
+            {{- end }}
+            resources:
+              {{- if not .Values.resources.unlimited }}
+              limits:
+                {{- if .Values.resources.cpu.limit }}
+                cpu: {{ .Values.resources.cpu.limit }}
+                {{- end }}
+                memory: {{ .Values.resources.ram.limit }}Gi
+                {{- end }}
+              requests:
+                cpu: {{  .Values.resources.cpu.request }}
+                memory: {{ .Values.resources.ram.request }}Gi
+        imagePullSecrets:
+            - name: {{ .Values.settings.imagePullSecretsKey }}
