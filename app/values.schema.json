@@ -89,6 +89,9 @@
     "extensions": {
       "type": "object",
       "properties": {
+        "service": {
+          "type": "boolean"
+        },
         "metrics": {
           "type": "boolean"
         },
@@ -97,6 +100,7 @@
         }
       },
       "order": [
+        "service",
         "metrics",
         "podTopologySpread"
       ]

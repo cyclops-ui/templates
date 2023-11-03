@@ -155,13 +155,11 @@ spec:
                   name: {{ .Values.application.configMap }}
             {{- end }}
             resources:
-              {{- if not .Values.resources.unlimited }}
               limits:
                 {{- if .Values.resources.cpu.limit }}
                 cpu: {{ .Values.resources.cpu.limit }}
                 {{- end }}
                 memory: {{ .Values.resources.ram.limit }}Gi
-                {{- end }}
               requests:
                 cpu: {{  .Values.resources.cpu.request }}
                 memory: {{ .Values.resources.ram.request }}Gi
