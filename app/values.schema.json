@@ -91,6 +91,21 @@
         "metrics",
         "podTopologySpread"
       ]
+    },
+    "settings": {
+      "type": "object",
+      "properties": {
+        "secretsKey": {
+          "type": "string"
+        },
+        "imagePullSecretsKey": {
+          "type": "string"
+        }
+      },
+      "order": [
+        "metrics",
+        "podTopologySpread"
+      ]
     }
   },
   "order": [
