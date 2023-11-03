@@ -33,10 +33,19 @@
       ]
     },
     "environment": {
-      "type": "object"
-    },
-    "secrets": {
-      "type": "object"
+      "type": "object",
+      "properties": {
+        "environment": {
+          "type": "object"
+        },
+        "secrets": {
+          "type": "object"
+        }
+      },
+      "order": [
+        "environment",
+        "secrets"
+      ]
     },
     "resources": {
       "type": "object",

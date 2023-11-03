@@ -125,7 +125,7 @@ spec:
                 value: "/"
                 {{- end }}
               {{- end }}
-              {{- range $key, $value := .Values.environment }}
+              {{- range $key, $value := .Values.environment.environment }}
               - name: {{ $key }}
                 value: {{ $value | quote }}
               {{- end }}
@@ -136,7 +136,7 @@ spec:
                     key: {{ $value.key }}
                     name: {{ $value.name }}
               {{- end }}
-              {{- range $key, $value := .Values.secrets }}
+              {{- range $key, $value := .Values.environment.secrets }}
               - name: {{ $key }}
                 valueFrom:
                   secretKeyRef:
