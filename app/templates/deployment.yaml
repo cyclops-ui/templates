@@ -107,8 +107,6 @@ spec:
               {{- end }}
               {{- end }}
             env:
-              - name: APP_ENVIRONMENT
-                value: {{ .Values.deployment.environment }}
               - name: APP_NAME
                 value: {{ .Values.application.name }}
               - name: APP_NAMESPACE
