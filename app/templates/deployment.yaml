@@ -159,9 +159,9 @@ spec:
                 {{- if .Values.resources.cpu.limit }}
                 cpu: {{ .Values.resources.cpu.limit }}
                 {{- end }}
-                memory: {{ .Values.resources.ram.limit }}Gi
+                memory: {{ .Values.resources.memory.limit }}Gi
               requests:
-                cpu: {{  .Values.resources.cpu.request }}
+                cpu: {{  .Values.resources.memory.request }}
                 memory: {{ .Values.resources.ram.request }}Gi
         imagePullSecrets:
             - name: {{ .Values.settings.imagePullSecretsKey }}
