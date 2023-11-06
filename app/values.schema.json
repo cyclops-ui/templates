@@ -188,9 +188,6 @@
         "serviceAccountName": {
           "type": "string"
         },
-        "imagePullSecretsKey": {
-          "type": "string"
-        }
       },
       "order": [
         "metrics",

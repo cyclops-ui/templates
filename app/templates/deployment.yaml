@@ -146,5 +146,3 @@ spec:
                 cpu: {{  $value.resources.cpu.request | quote }}
                 memory: {{ $value.resources.memory.request }}
         {{- end }}
-        imagePullSecrets:
-            - name: {{ .Values.settings.imagePullSecretsKey }}
