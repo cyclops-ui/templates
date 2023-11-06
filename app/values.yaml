@@ -19,19 +19,19 @@ application:
           limit: '1'
           request: '1'
         memory:
-          limit: 2Gi
-          request: 2Gi
-      probes:
-        liveness:
-          path: "/healthz"
-          initialDelaySeconds: 5
-          periodSeconds: 5
-          timeoutSeconds: 5
-        readiness:
-          path: "/readyz"
-          initialDelaySeconds: 5
-          periodSeconds: 5
-          timeoutSeconds: 5
+          limit: 1Gi
+          request: 1Gi
+#      probes:
+#        liveness:
+#          path: "/healthz"
+#          initialDelaySeconds: 5
+#          periodSeconds: 5
+#          timeoutSeconds: 5
+#        readiness:
+#          path: "/readyz"
+#          initialDelaySeconds: 5
+#          periodSeconds: 5
+#          timeoutSeconds: 5
 
 #    - name: second
 #      image: my-container-registry/my-first-image
