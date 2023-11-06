@@ -1,0 +1,18 @@
+{{ if gt (len (.Values.application).containers) 0 }}
+{{- range $key, $value := (.Values.application).containers }}
+{{ if ($value.environment).environment }}
+{{ if gt (len ($value.environment).environment) 0 }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ printf "%s-%s" $.Values.application.name $value.name }}
+  namespace: {{ $.Values.application.namespace }}
+data:
+  {{- range $env_key, $env_value := $value.environment.environment }}
+  {{ $env_key }}: {{ $env_value | quote }}
+  {{- end }}
+---
+{{- end }}
+{{- end }}
+{{- end }}
+{{- end }}

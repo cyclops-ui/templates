@@ -1,0 +1,57 @@
+application:
+  #  name: my-app
+  #  namespace: my-namespace
+  #  replicas: 3
+
+  containers:
+    #    - name: first
+    #      image: my-container-registry/my-first-image
+    #      version: v1.2.3
+    #      environment:
+    #        environment:
+    #          DB_HOST: https://my.db.com
+    #        secrets:
+    #          DB_USER: username
+    #          DB_PASS: password
+
+    - resources:
+        cpu:
+          limit: '0.2'
+          request: '0.2'
+        memory:
+          limit: 0.2Gi
+          request: 0.2Gi
+#      probes:
+#        liveness:
+#          path: "/healthz"
+#          initialDelaySeconds: 5
+#          periodSeconds: 5
+#          timeoutSeconds: 5
+#        readiness:
+#          path: "/readyz"
+#          initialDelaySeconds: 5
+#          periodSeconds: 5
+#          timeoutSeconds: 5
+
+#    - name: second
+#      image: my-container-registry/my-first-image
+#      version: v1.2.3
+#      environment:
+#        environment:
+#          REGION: europe-east
+#      resources:
+#        cpu:
+#          limit: '1'
+#          request: '1'
+#        memory:
+#          limit: 2Gi
+#          request: 2Gi
+
+#extensions:
+#  service: true
+#  metrics: true
+#  podTopologySpread: true
+
+#settings:
+#  secretsKey: my-secret
+#  imagePullSecretsKey: image-pull-secret
