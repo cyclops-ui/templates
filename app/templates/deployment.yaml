@@ -138,11 +138,11 @@ spec:
             {{- end }}
             resources:
               limits:
-                {{- if $value.resources.cpu.limit }}
-                cpu: {{ $value.resources.cpu.limit | quote }}
+                {{- if ((($value.resources).cpu).limit) }}
+                cpu: {{ ((($value.resources).cpu).limit) | quote }}
                 {{- end }}
-                memory: {{ $value.resources.memory.limit }}
+                memory: {{ ((($value.resources).memory).limit) }}
               requests:
-                cpu: {{  $value.resources.cpu.request | quote }}
-                memory: {{ $value.resources.memory.request }}
+                cpu: {{  ((($value.resources).cpu).request) | quote }}
+                memory: {{ ((($value.resources).memory).request) }}
         {{- end }}
