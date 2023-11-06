@@ -101,13 +101,7 @@
                       "periodSeconds": {
                         "type": "integer"
                       },
-                      "failureThreshold": {
-                        "type": "integer"
-                      },
                       "timeoutSeconds": {
-                        "type": "integer"
-                      },
-                      "successThreshold": {
                         "type": "integer"
                       }
                     },
@@ -115,9 +109,7 @@
                       "path",
                       "initialDelaySeconds",
                       "periodSeconds",
-                      "failureThreshold",
-                      "timeoutSeconds",
-                      "successThreshold"
+                      "timeoutSeconds"
                     ]
                   },
                   "readiness": {
@@ -132,13 +124,7 @@
                       "periodSeconds": {
                         "type": "integer"
                       },
-                      "failureThreshold": {
-                        "type": "integer"
-                      },
                       "timeoutSeconds": {
-                        "type": "integer"
-                      },
-                      "successThreshold": {
                         "type": "integer"
                       }
                     },
@@ -146,9 +132,7 @@
                       "path",
                       "initialDelaySeconds",
                       "periodSeconds",
-                      "failureThreshold",
-                      "timeoutSeconds",
-                      "successThreshold"
+                      "timeoutSeconds"
                     ]
                   }
                 },

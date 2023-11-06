@@ -81,12 +81,8 @@ spec:
                 port: 8080
               initialDelaySeconds: {{ $value.probes.readiness.initialDelaySeconds | default 5 }}
               periodSeconds: {{ $value.probes.readiness.periodSeconds | default 5 }}
-              failureThreshold: {{ $value.probes.readiness.failureThreshold | default 5 }}
               {{- if hasKey $value.probes.readiness "timeoutSeconds" }}
               timeoutSeconds: {{ $value.probes.readiness.timeoutSeconds }}
-              {{- end }}
-              {{- if hasKey $value.probes.readiness "successThreshold" }}
-              successThreshold: {{ $value.probes.readiness.successThreshold }}
               {{- end }}
             {{- end }}
             {{- if $value.probes.liveness }}
@@ -100,12 +96,6 @@ spec:
               {{- end }}
               {{- if hasKey $value.probes.liveness "timeoutSeconds" }}
               timeoutSeconds: {{ $value.probes.liveness.timeoutSeconds }}
-              {{- end }}
-              {{- if hasKey $value.probes.liveness "successThreshold" }}
-              successThreshold: {{ $value.probes.liveness.successThreshold }}
-              {{- end }}
-              {{- if hasKey $value.probes.liveness "failureThreshold" }}
-              failureThreshold: {{ $value.probes.liveness.failureThreshold }}
               {{- end }}
             {{- end }}
             {{- end }}
