@@ -24,17 +24,13 @@ application:
       probes:
         liveness:
           path: "/healthz"
-          failureThreshold: 5
           initialDelaySeconds: 5
           periodSeconds: 5
-          successThreshold: 5
           timeoutSeconds: 5
         readiness:
           path: "/readyz"
-          failureThreshold: 5
           initialDelaySeconds: 5
           periodSeconds: 5
-          successThreshold: 5
           timeoutSeconds: 5
 
 #    - name: second
