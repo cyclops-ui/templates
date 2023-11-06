@@ -1,4 +1,4 @@
-{{- if or (.Values.extensions).service (.Values.extensions).probe (.Values.application).stateful }}
+{{- if or (.Values.extensions).service (.Values.extensions).probe }}
 apiVersion: v1
 kind: Service
 metadata:

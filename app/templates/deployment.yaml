@@ -63,105 +63,98 @@ spec:
         serviceAccountName: {{ .Values.serviceAccountName }}
         {{- end }}
         containers:
-          - image: {{ .Values.application.image }}:{{ .Values.application.version }}
-            name: {{ .Values.application.name }}
+        {{- range $key, $value := (.Values.application).containers }}
+          - image: {{ $value.image }}:{{ $value.version }}
+            name: {{ $value.name }}
             ports:
               - containerPort: 8080
                 name: http
-              {{- if (.Values.extensions).metrics }}
+              {{- if ($.Values.extensions).metrics }}
               - containerPort: 9102
                 name: metrics
               {{- end }}
-            {{- if .Values.readiness }}
+            {{- if $value.probes }}
+            {{- if $value.probes.readiness }}
             readinessProbe:
               httpGet:
-                path: {{ .Values.readiness.path | default "/ready" | quote }}
+                path: {{ $value.probes.readiness.path | default "/ready" | quote }}
                 port: 8080
-              initialDelaySeconds: {{ .Values.readiness.initialDelaySeconds | default 5 }}
-              periodSeconds: {{ .Values.readiness.periodSeconds | default 5 }}
-              failureThreshold: {{ .Values.readiness.failureThreshold | default 5 }}
-              {{- if hasKey .Values.readiness "timeoutSeconds" }}
-              timeoutSeconds: {{ .Values.readiness.timeoutSeconds }}
+              initialDelaySeconds: {{ $value.probes.readiness.initialDelaySeconds | default 5 }}
+              periodSeconds: {{ $value.probes.readiness.periodSeconds | default 5 }}
+              failureThreshold: {{ $value.probes.readiness.failureThreshold | default 5 }}
+              {{- if hasKey $value.probes.readiness "timeoutSeconds" }}
+              timeoutSeconds: {{ $value.probes.readiness.timeoutSeconds }}
               {{- end }}
-              {{- if hasKey .Values.readiness "successThreshold" }}
-              successThreshold: {{ .Values.readiness.successThreshold }}
+              {{- if hasKey $value.probes.readiness "successThreshold" }}
+              successThreshold: {{ $value.probes.readiness.successThreshold }}
               {{- end }}
             {{- end }}
-            {{- if .Values.liveness }}
+            {{- if $value.probes.liveness }}
             livenessProbe:
               httpGet:
-                path: {{ .Values.liveness.path | default "/alive" | quote }}
+                path: {{ $value.probes.liveness.path | default "/alive" | quote }}
                 port: 8080
-              initialDelaySeconds: {{ .Values.liveness.initialDelaySeconds | default 30 }}
-              {{- if hasKey .Values.liveness "periodSeconds" }}
-              periodSeconds: {{ .Values.liveness.periodSeconds }}
+              initialDelaySeconds: {{ $value.probes.liveness.initialDelaySeconds | default 30 }}
+              {{- if hasKey $value.probes.liveness "periodSeconds" }}
+              periodSeconds: {{ $value.probes.liveness.periodSeconds }}
               {{- end }}
-              {{- if hasKey .Values.liveness "timeoutSeconds" }}
-              timeoutSeconds: {{ .Values.liveness.timeoutSeconds }}
+              {{- if hasKey $value.probes.liveness "timeoutSeconds" }}
+              timeoutSeconds: {{ $value.probes.liveness.timeoutSeconds }}
               {{- end }}
-              {{- if hasKey .Values.liveness "successThreshold" }}
-              successThreshold: {{ .Values.liveness.successThreshold }}
+              {{- if hasKey $value.probes.liveness "successThreshold" }}
+              successThreshold: {{ $value.probes.liveness.successThreshold }}
               {{- end }}
-              {{- if hasKey .Values.liveness "failureThreshold" }}
-              failureThreshold: {{ .Values.liveness.failureThreshold }}
+              {{- if hasKey $value.probes.liveness "failureThreshold" }}
+              failureThreshold: {{ $value.probes.liveness.failureThreshold }}
               {{- end }}
-              {{- end }}
+            {{- end }}
+            {{- end }}
             env:
               - name: APP_NAME
-                value: {{ .Values.application.name }}
-              - name: APP_NAMESPACE
-                value: {{ .Values.application.namespace }}
+                value: {{ $value.name }}
               - name: SERVER_PORT
                 value: "8080"
-              {{- if (.Values.extensions).metrics }}
+              {{- if ($.Values.extensions).metrics }}
               - name: PROMETHEUS_PORT
                 value: "9102"
               {{- end }}
-              {{- if .Values.ingress }}
+              {{- if $.Values.ingress }}
               - name: HTTP_SERVER_ROOT_PATH
                 {{- if hasKey .Values.ingress "path" }}
-                value: {{ .Values.ingress.path | replace "{release}" .Values.release.name | default "/" }}
+                value: {{ .Values.ingress.path }}
                 {{- else }}
                 value: "/"
                 {{- end }}
               {{- end }}
-              {{- range $key, $value := .Values.environment.environment }}
-              - name: {{ $key }}
-                value: {{ $value | quote }}
-              {{- end }}
-              {{- range $key, $value := .Values.configs }}
+              {{- range $key, $value := $.Values.configs }}
               - name: {{ $key }}
                 valueFrom:
                   configMapKeyRef:
                     key: {{ $value.key }}
                     name: {{ $value.name }}
               {{- end }}
-              {{- range $key, $value := .Values.environment.secrets }}
-              - name: {{ $key }}
-                valueFrom:
-                  secretKeyRef:
-                    key: {{ $value }}
-                    name: {{ $.Values.settings.secretsKey }}
-              {{- end }}
-              {{- range $key, $value := .Values.fields }}
+              {{- range $key, $value := $.Values.fields }}
               - name: {{ $key }}
                 valueFrom:
                   fieldRef:
                     fieldPath: {{ $value }}
               {{- end }}
-            {{- if .Values.application.configMap }}
+            {{- if ($value.environment).environment }}
+            {{- if gt (len ($value.environment).environment) 0 }}
             envFrom:
               - configMapRef:
-                  name: {{ .Values.application.configMap }}
+                  name: {{ printf "%s-%s" $.Values.application.name $value.name }}
+            {{- end }}
             {{- end }}
             resources:
               limits:
-                {{- if .Values.resources.cpu.limit }}
-                cpu: {{ .Values.resources.cpu.limit }}
+                {{- if $value.resources.cpu.limit }}
+                cpu: {{ $value.resources.cpu.limit | quote }}
                 {{- end }}
-                memory: {{ .Values.resources.memory.limit }}Gi
+                memory: {{ $value.resources.memory.limit }}
               requests:
-                cpu: {{  .Values.resources.cpu.request }}
-                memory: {{ .Values.resources.memory.request }}Gi
+                cpu: {{  $value.resources.cpu.request | quote }}
+                memory: {{ $value.resources.memory.request }}
+        {{- end }}
         imagePullSecrets:
             - name: {{ .Values.settings.imagePullSecretsKey }}

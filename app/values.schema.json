@@ -11,79 +11,169 @@
           "description": "Application namesace",
           "type": "string"
         },
-        "image": {
-          "description": "Container Image",
-          "type": "string"
-        },
         "replicas": {
           "description": "Number of replicas",
           "type": "integer"
         },
-        "version": {
-          "description": "Container image version",
-          "type": "string"
+        "containers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "description": "Container name",
+                "type": "string"
+              },
+              "image": {
+                "description": "Container image",
+                "type": "string"
+              },
+              "version": {
+                "description": "Container image",
+                "type": "string"
+              },
+              "environment": {
+                "type": "object",
+                "properties": {
+                  "environment": {
+                    "type": "object"
+                  },
+                  "secrets": {
+                    "type": "object"
+                  }
+                },
+                "order": [
+                  "environment",
+                  "secrets"
+                ]
+              },
+              "resources": {
+                "type": "object",
+                "properties": {
+                  "cpu": {
+                    "type": "object",
+                    "properties": {
+                      "limit": {
+                        "type": "string"
+                      },
+                      "request": {
+                        "type": "string"
+                      }
+                    },
+                    "order": [
+                      "limit",
+                      "request"
+                    ]
+                  },
+                  "memory": {
+                    "type": "object",
+                    "properties": {
+                      "limit": {
+                        "type": "string"
+                      },
+                      "request": {
+                        "type": "string"
+                      }
+                    },
+                    "order": [
+                      "limit",
+                      "request"
+                    ]
+                  }
+                },
+                "order": [
+                  "cpu",
+                  "memory"
+                ]
+              },
+              "probes": {
+                "type": "object",
+                "properties": {
+                  "liveness": {
+                    "type": "object",
+                    "properties": {
+                      "path": {
+                        "type": "string"
+                      },
+                      "initialDelaySeconds": {
+                        "type": "integer"
+                      },
+                      "periodSeconds": {
+                        "type": "integer"
+                      },
+                      "failureThreshold": {
+                        "type": "integer"
+                      },
+                      "timeoutSeconds": {
+                        "type": "integer"
+                      },
+                      "successThreshold": {
+                        "type": "integer"
+                      }
+                    },
+                    "order": [
+                      "path",
+                      "initialDelaySeconds",
+                      "periodSeconds",
+                      "failureThreshold",
+                      "timeoutSeconds",
+                      "successThreshold"
+                    ]
+                  },
+                  "readiness": {
+                    "type": "object",
+                    "properties": {
+                      "path": {
+                        "type": "string"
+                      },
+                      "initialDelaySeconds": {
+                        "type": "integer"
+                      },
+                      "periodSeconds": {
+                        "type": "integer"
+                      },
+                      "failureThreshold": {
+                        "type": "integer"
+                      },
+                      "timeoutSeconds": {
+                        "type": "integer"
+                      },
+                      "successThreshold": {
+                        "type": "integer"
+                      }
+                    },
+                    "order": [
+                      "path",
+                      "initialDelaySeconds",
+                      "periodSeconds",
+                      "failureThreshold",
+                      "timeoutSeconds",
+                      "successThreshold"
+                    ]
+                  }
+                },
+                "order": [
+                  "liveness",
+                  "readiness"
+                ]
+              }
+            },
+            "order": [
+              "name",
+              "image",
+              "version",
+              "environment",
+              "resources",
+              "probes"
+            ]
+          }
         }
       },
       "order": [
         "name",
         "namespace",
-        "image",
         "replicas",
-        "version"
-      ]
-    },
-    "environment": {
-      "type": "object",
-      "properties": {
-        "environment": {
-          "type": "object"
-        },
-        "secrets": {
-          "type": "object"
-        }
-      },
-      "order": [
-        "environment",
-        "secrets"
-      ]
-    },
-    "resources": {
-      "type": "object",
-      "properties": {
-        "cpu": {
-          "type": "object",
-          "properties": {
-            "limit": {
-              "type": "string"
-            },
-            "request": {
-              "type": "string"
-            }
-          },
-          "order": [
-            "limit",
-            "request"
-          ]
-        },
-        "memory": {
-          "type": "object",
-          "properties": {
-            "limit": {
-              "type": "string"
-            },
-            "request": {
-              "type": "string"
-            }
-          },
-          "order": [
-            "limit",
-            "request"
-          ]
-        }
-      },
-      "order": [
-        "cpu",
-        "memory"
+        "containers"
       ]
     },
     "extensions": {
@@ -111,6 +201,9 @@
         "secretsKey": {
           "type": "string"
         },
+        "serviceAccountName": {
+          "type": "string"
+        },
         "imagePullSecretsKey": {
           "type": "string"
         }
@@ -123,17 +216,8 @@
   },
   "order": [
     "application",
-    "environment",
-    "secrets",
-    "resources",
     "extensions",
     "settings"
-  ],
-  "required": [
-    "name",
-    "replicas",
-    "image",
-    "version"
   ],
   "title": "Values",
   "type": "object"
