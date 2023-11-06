@@ -16,11 +16,11 @@ application:
 
     - resources:
         cpu:
-          limit: '1'
-          request: '1'
+          limit: '0.2'
+          request: '0.2'
         memory:
-          limit: 1Gi
-          request: 1Gi
+          limit: 0.2Gi
+          request: 0.2Gi
 #      probes:
 #        liveness:
 #          path: "/healthz"
