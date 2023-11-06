@@ -37,14 +37,10 @@
                 "properties": {
                   "environment": {
                     "type": "object"
-                  },
-                  "secrets": {
-                    "type": "object"
                   }
                 },
                 "order": [
-                  "environment",
-                  "secrets"
+                  "environment"
                 ]
               },
               "resources": {
