@@ -1,0 +1,4 @@
+name: my-app
+version: v1.0.2
+replicas: 3
+production: true

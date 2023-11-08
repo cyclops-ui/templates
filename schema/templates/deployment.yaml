@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: {{ .Values.name }}
+  name: {{ .Values.name }}
+spec:
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.name }}
+    spec:
+      containers:
+      - image: {{ .Values.name -}}:{{ .Values.version }}
+        name: {{ .Values.name }}
+        {{- if .Values.production }}
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "1000m"
+        {{- end }}
+        ports:
+        - containerPort: 80
+          name: http

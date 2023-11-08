@@ -1,0 +1,31 @@
+{
+  "properties": {
+    "name": {
+      "description": "Application name",
+      "type": "string"
+    },
+    "replicas": {
+      "description": "Number of replicas",
+      "type": "integer"
+    },
+    "version": {
+      "description": "Version of your application",
+      "type": "string"
+    },
+    "production": {
+      "description": "Does your application require a service",
+      "type": "boolean"
+    }
+  },
+  "order": [
+    "name",
+    "version",
+    "replicas",
+    "production"
+  ],
+  "required": [
+    "name",
+    "version",
+    "production"
+  ]
+}
