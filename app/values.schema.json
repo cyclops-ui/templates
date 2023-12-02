@@ -34,6 +34,7 @@
               },
               "environment": {
                 "type": "object",
+                "description": "define environment variables",
                 "properties": {
                   "environment": {
                     "type": "object"
