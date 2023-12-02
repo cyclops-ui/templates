@@ -47,6 +47,7 @@
           "type": "integer"
         },
         "TLS": {
+          "description": "Container Image",
           "type": "boolean"
         }
       },
