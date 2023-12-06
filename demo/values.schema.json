@@ -16,7 +16,7 @@
       "description": "Container image version",
       "type": "string"
     },
-    "Service": {
+    "service": {
       "description": "Expose your application",
       "type": "boolean"
     }
