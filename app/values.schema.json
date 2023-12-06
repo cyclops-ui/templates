@@ -8,7 +8,7 @@
           "type": "string"
         },
         "namespace": {
-          "description": "Application namesace",
+          "description": "Application namespace",
           "type": "string"
         },
         "replicas": {
@@ -29,7 +29,7 @@
                 "type": "string"
               },
               "version": {
-                "description": "Container image",
+                "description": "Image version",
                 "type": "string"
               },
               "environment": {
@@ -37,7 +37,7 @@
                 "properties": {
                   "environment": {
                     "type": "object",
-                    "description": "define environment variables"
+                    "description": "Define environment variables"
                   }
                 },
                 "order": [
@@ -146,11 +146,22 @@
               "environment",
               "resources",
               "probes"
+            ],
+            "required": [
+              "name",
+              "image",
+              "version"
             ]
           }
         }
       },
       "order": [
+        "name",
+        "namespace",
+        "replicas",
+        "containers"
+      ],
+      "required": [
         "name",
         "namespace",
         "replicas",
