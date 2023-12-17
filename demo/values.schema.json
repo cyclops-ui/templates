@@ -7,7 +7,7 @@
     "replicas": {
       "description": "Number of replicas",
       "type": "integer",
-      "minimum": 0,
+      "minimum": 0
     },
     "useless": {
       "description": "Number of replicas",
