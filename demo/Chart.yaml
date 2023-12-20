@@ -2,7 +2,6 @@ apiVersion: v1
 name: application
 version: 0.0.0
 dependencies:
-  - name: mysql
-    version: "9.3.4"
-    repository: "https://charts.bitnami.com/bitnami"
-    condition: mysql.enabled
+  - name: application
+    version: "0.0.0"
+    repository: "https://petar-cvit.github.io"
