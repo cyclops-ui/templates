@@ -28,12 +28,10 @@
     },
     "image": {
       "description": "Container Image",
-      "minLength": 5,
       "type": "string"
     },
     "version": {
       "description": "Container image version",
-      "maxLength": 5,
       "type": "string"
     },
     "service": {
