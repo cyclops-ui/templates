@@ -3,5 +3,5 @@ name: application
 version: 0.0.0
 dependencies:
   - name: application
-    version: "0.0.0"
+    version: "0.1.0"
     repository: "https://petar-cvit.github.io"
