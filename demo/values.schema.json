@@ -11,21 +11,6 @@
       "type": "integer",
       "minimum": 0
     },
-    "useless": {
-      "description": "Number of replicas",
-      "maximum": 5,
-      "type": "integer"
-    },
-    "multiple": {
-      "description": "Number of replicas",
-      "multipleOf": 5,
-      "type": "integer"
-    },
-    "multiple2": {
-      "description": "Number of replicas",
-      "multipleOf": 0.1,
-      "type": "integer"
-    },
     "image": {
       "description": "Container Image",
       "type": "string"
@@ -42,11 +27,6 @@
   "order": [
     "name",
     "replicas",
-    "useless",
-    "multiple",
-    "multiple2",
-    "script",
-    "json",
     "image",
     "version",
     "service"
