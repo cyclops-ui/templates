@@ -6,8 +6,8 @@ metadata:
 spec:
   template:
     git:
-      commit: gh-pages
-      path: demo
+      commit: main
+      path: test
       repo: https://github.com/cyclops-ui/templates
     name: ""
     version: ""
