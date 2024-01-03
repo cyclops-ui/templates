@@ -1,0 +1,19 @@
+apiVersion: cyclops-ui.com/v1alpha1
+kind: Module
+metadata:
+  name: from-argo
+  namespace: cyclops
+spec:
+  template:
+    git:
+      commit: gh-pages
+      path: demo
+      repo: https://github.com/cyclops-ui/templates
+    name: ""
+    version: ""
+  values:
+    image: nginx
+    name: nginx-from-argo-cyclops
+    replicas: 1
+    service: true
+    version: 1.14.2
