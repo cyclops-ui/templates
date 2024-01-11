@@ -1,0 +1,5 @@
+name: demo
+image: nginx
+replicas: 1
+service: true
+version: 1.14.2
