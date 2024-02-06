@@ -2,4 +2,4 @@ image: nginx
 name: demoooo
 replicas: 1
 service: true
-version: 1.14.1
+version: 1.14.1313
