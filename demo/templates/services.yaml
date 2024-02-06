@@ -15,3 +15,8 @@ spec:
   selector:
     app: {{ .Values.name }}
 {{- end }}
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: build-robot
