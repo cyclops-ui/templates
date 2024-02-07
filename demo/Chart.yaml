@@ -11,4 +11,3 @@ dependencies:
   - name: mysql
     version: "9.3.4"
     repository: "https://charts.bitnami.com/bitnami"
-
