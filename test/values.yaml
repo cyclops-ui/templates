@@ -1,4 +1,5 @@
 Application:
   Replicas: 3
+  Image: ""
 Ingress:
   TLS: true
