@@ -6,11 +6,15 @@
     },
     "replicas": {
       "description": "Number of replicas",
-      "type": "integer"
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 5
     },
     "image": {
       "description": "Container Image",
-      "type": "string"
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 10
     },
     "version": {
       "description": "Container image version",
