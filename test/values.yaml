@@ -1,0 +1,4 @@
+Application:
+  Replicas: 3
+Ingress:
+  TLS: true
