@@ -17,13 +17,17 @@
         },
         "Environment": {
           "type": "object"
+        },
+        "nesto": {
+          "type": "string"
         }
       },
       "order": [
         "Name",
         "Replicas",
         "Image",
-        "Environment"
+        "Environment",
+        "nesto"
       ],
       "required": [
         "Name",
