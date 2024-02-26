@@ -1,4 +1,5 @@
 Application:
+  nesto: nesto
   Replicas: 3
   Image: ""
 Ingress:
