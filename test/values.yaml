@@ -2,6 +2,6 @@ Application:
   nesto: nesto
   Replicas: 3
   Image: ""
-  nesto-int: 9
+  nesto-int: 4
 Ingress:
   TLS: true
