@@ -22,9 +22,9 @@
           "type": "string"
         },
         "nesto-int": {
-          "type": "string",
-          "min": 2,
-          "min": 5,
+          "type": "integer",
+          "minimum": 2,
+          "maximum": 5,
           "multipleOf": 2
         }
       },
