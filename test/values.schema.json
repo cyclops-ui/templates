@@ -20,6 +20,12 @@
         },
         "nesto": {
           "type": "string"
+        },
+        "nesto-int": {
+          "type": "string",
+          "min": 2,
+          "min": 5,
+          "multipleOf": 2
         }
       },
       "order": [
