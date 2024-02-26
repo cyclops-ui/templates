@@ -33,7 +33,8 @@
         "Replicas",
         "Image",
         "Environment",
-        "nesto"
+        "nesto",
+        "nesto-int"
       ],
       "required": [
         "Name",
