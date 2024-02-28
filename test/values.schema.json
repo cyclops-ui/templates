@@ -4,7 +4,7 @@
       "type": "object",
       "properties": {
         "Name": {
-          "description": "Application name",
+          "description": "Application name test",
           "type": "string"
         },
         "Replicas": {
