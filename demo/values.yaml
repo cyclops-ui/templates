@@ -1,5 +1,5 @@
 image: nginx
-name: demoooo
+name: demo-app
 replicas: 1
 service: true
 version: 1.14.2
