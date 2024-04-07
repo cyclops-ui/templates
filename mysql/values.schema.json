@@ -19,7 +19,7 @@
     "persistentVolumeSize": {
       "description": "Database storage size",
       "type": "integer",
-      "minimum": 5,
+      "minimum": 1,
       "maximum": 20
     }
   },
