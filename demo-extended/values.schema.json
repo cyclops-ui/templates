@@ -5,6 +5,8 @@
       "type": "string"
     },
     "general": {
+      "type": "object",
+      "title": "General",
       "properties": {
         "image": {
           "title": "App image",
@@ -35,6 +37,7 @@
     },
     "scaling": {
       "type": "object",
+      "title": "Scaling",
       "properties": {
         "replicas": {
           "title": "Replicas",
@@ -73,6 +76,7 @@
     },
     "networking": {
       "type": "object",
+      "title": "Networking",
       "properties": {
         "expose": {
           "title": "Expose",
@@ -87,33 +91,13 @@
         "expose",
         "port"
       ]
-    },
-
-    "replicas": {
-      "description": "Number of replicas",
-      "type": "integer"
-    },
-    "image": {
-      "description": "Container Image",
-      "type": "string"
-    },
-    "version": {
-      "description": "Container image version",
-      "type": "string"
-    },
-    "service": {
-      "description": "Expose your application",
-      "type": "boolean"
     }
   },
   "order": [
     "name",
-    "replicas",
-    "script",
-    "json",
-    "image",
-    "version",
-    "service"
+    "general",
+    "scaling",
+    "networking"
   ],
   "title": "Values",
   "type": "object"
