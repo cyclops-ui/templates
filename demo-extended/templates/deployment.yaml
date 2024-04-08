@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.name }}
+  {{- if ((.Values.general).labels) }}
+  labels:
+  {{- range $key, $value := (.Values.general).labels }}
+    {{ $key }}: {{ $value | quote }}
+  {{- end }}
+  {{- end }}
+spec:
+  replicas: {{ (.Values.scaling).replicas | default 1 }}
+  selector:
+    matchLabels:
+      app: {{ .Values.name }}
+  template:
+    metadata:
+      {{- if ((.Values.general).labels) }}
+      labels:
+        {{- range $key, $value := (.Values.general).labels }}
+        {{ $key }}: {{ $value | quote }}
+        {{- end }}
+      {{- end }}
+    spec:
+      containers:
+        - name: {{ .Values.name }}
+          image: "{{ .Values.general.image }}:{{ .Values.general.version }}"
+          {{- if ((.Values.networking).expose) }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.networking.port | default 80 }}
+              protocol: TCP
+          {{- end }}
+          env:
+          {{- if ((.Values.general).environment) }}
+          {{- range $key, $value := (.Values.general).environment }}
+            - name: {{ $key }}
+              value: {{ $value | quote }}
+          {{- end }}
+          {{- end }}
+          {{- if or ((.Values.scaling).resources).memory ((.Values.scaling).resources).cpu }}
+          resources:
+            {{- if ((.Values.scaling).resources).memory }}
+            limits:
+              memory: {{ ((.Values.scaling).resources).memory }}
+            {{- end }}
+            {{- if or ((.Values.scaling).resources).memory ((.Values.scaling).resources).cpu }}
+            requests:
+              {{- if ((.Values.scaling).resources).cpu }}
+              cpu: {{ ((.Values.scaling).resources).cpu }}
+              {{- end }}
+              {{- if ((.Values.scaling).resources).memory }}
+              memory: {{ ((.Values.scaling).resources).memory }}
+              {{- end }}
+            {{- end }}
+          {{- end }}

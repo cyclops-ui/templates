@@ -1,0 +1,120 @@
+{
+  "properties": {
+    "name": {
+      "title": "Name",
+      "type": "string"
+    },
+    "general": {
+      "properties": {
+        "image": {
+          "title": "App image",
+          "type": "string"
+        },
+        "version": {
+          "title": "Image version",
+          "type": "string"
+        },
+        "environment": {
+          "title": "Environment variables",
+          "type": "object"
+        },
+        "labels": {
+          "title": "App labels",
+          "type": "object"
+        }
+      },
+      "required": [
+        "image"
+      ],
+      "order": [
+        "image",
+        "version",
+        "environment",
+        "labels"
+      ]
+    },
+    "scaling": {
+      "type": "object",
+      "properties": {
+        "replicas": {
+          "title": "Replicas",
+          "type": "integer",
+          "minimum": 0
+        },
+        "resources": {
+          "properties": {
+            "cpu": {
+              "title": "CPUs",
+              "type": "integer"
+            },
+            "memory": {
+              "title": "Memory",
+              "description": "Measured in Gi",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "cpu",
+            "memory"
+          ],
+          "order": [
+            "cpu",
+            "memory"
+          ]
+        }
+      },
+      "required": [
+        "replicas"
+      ],
+      "order": [
+        "replicas",
+        "resources"
+      ]
+    },
+    "networking": {
+      "type": "object",
+      "properties": {
+        "expose": {
+          "title": "Expose",
+          "type": "boolean"
+        },
+        "port": {
+          "title": "Port",
+          "type": "integer"
+        }
+      },
+      "order": [
+        "expose",
+        "port"
+      ]
+    },
+
+    "replicas": {
+      "description": "Number of replicas",
+      "type": "integer"
+    },
+    "image": {
+      "description": "Container Image",
+      "type": "string"
+    },
+    "version": {
+      "description": "Container image version",
+      "type": "string"
+    },
+    "service": {
+      "description": "Expose your application",
+      "type": "boolean"
+    }
+  },
+  "order": [
+    "name",
+    "replicas",
+    "script",
+    "json",
+    "image",
+    "version",
+    "service"
+  ],
+  "title": "Values",
+  "type": "object"
+}

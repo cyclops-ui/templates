@@ -1,0 +1,21 @@
+{{- if ((.Values.networking).expose) }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.name }}
+  {{- if ((.Values.general).labels) }}
+  labels:
+  {{- range $key, $value := (.Values.general).labels }}
+    {{ $key }}: {{ $value | quote }}
+  {{- end }}
+  {{- end }}
+spec:
+  type: ClusterIP
+  ports:
+    - port: {{ (.Values.networking).port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app: {{ .Values.name }}
+  {{- end }}

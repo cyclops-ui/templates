@@ -1,0 +1,19 @@
+name: my-app
+
+general:
+  image: nginx
+  version: 1.14.2
+  environment:
+    ENVIRONMENT: production
+  labels:
+    app: my-app
+    team: my-team
+    project: northstar
+
+scaling:
+  replicas: 3
+  resources:
+
+networking:
+  expose: true
+  port: 8080
