@@ -12,7 +12,6 @@ general:
 
 scaling:
   replicas: 3
-  resources:
 
 networking:
   expose: true

@@ -1,8 +1,9 @@
 {
   "properties": {
     "name": {
+      "type": "string",
       "title": "Name",
-      "type": "string"
+      "description": "Application name"
     },
     "general": {
       "type": "object",
@@ -91,6 +92,9 @@
       ]
     }
   },
+  "required": [
+    "name",
+  ],
   "order": [
     "name",
     "general",
