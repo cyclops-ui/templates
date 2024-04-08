@@ -8,7 +8,6 @@ general:
   labels:
     app: my-app
     team: my-team
-    project: northstar
 
 scaling:
   replicas: 3
