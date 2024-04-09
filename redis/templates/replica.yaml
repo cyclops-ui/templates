@@ -1,9 +1,10 @@
+{{- if (.Values.replication).enabled }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .Values.name }}-redis-replica
 spec:
-  replicas: 2
+  replicas: {{- (.Values.replication).replicas }}
   selector:
     matchLabels:
       app: redis
@@ -38,3 +39,4 @@ spec:
     - protocol: TCP
       port: 6379
       targetPort: 6379
+{{- end }}

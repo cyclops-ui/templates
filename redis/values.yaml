@@ -6,5 +6,4 @@ replication:
   replicas: 2
 
 authentication:
-  require: true
-  password: lala
+  require: false
