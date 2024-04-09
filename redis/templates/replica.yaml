@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: redis
-          image: redis:latest
+          image: "redis:{{- .Values.version }}"
           command: ["redis-server", "--slaveof", "{{ .Values.name }}-redis", "6379"]
           ports:
             - containerPort: 6379
