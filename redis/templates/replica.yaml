@@ -21,16 +21,6 @@ spec:
           ports:
             - containerPort: 6379
               name: redis
-          volumeMounts:
-            - name: redis-conf
-              mountPath: /usr/local/etc/redis
-      volumes:
-        - name: redis-conf
-          configMap:
-            name: redis-config
-            items:
-              - key: redis.conf
-                path: redis.conf
 ---
 apiVersion: v1
 kind: Service
