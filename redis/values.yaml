@@ -6,4 +6,4 @@ replication:
   replicas: 2
 
 authentication:
-  require: true
+  require: false
