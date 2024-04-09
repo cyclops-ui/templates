@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.name }}-redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis
+      role: primary
+  template:
+    metadata:
+      labels:
+        app: redis
+        role: primary
+    spec:
+      containers:
+        - name: redis
+          image: "redis:{{- .Values.name }}"
+          ports:
+            - containerPort: 6379
+              name: redis
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.name }}-redis
+spec:
+  selector:
+    app: redis
+    role: primary
+  ports:
+    - protocol: TCP
+      port: 6379
+      targetPort: 6379

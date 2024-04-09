@@ -1,0 +1,26 @@
+{
+  "properties": {
+    "name": {
+      "description": "Database name",
+      "type": "string"
+    },
+    "version": {
+      "description": "Container image version",
+      "type": "string",
+      "enum": [
+        "6.0",
+        "5.0"
+      ]
+    }
+  },
+  "order": [
+    "name",
+    "version"
+  ],
+  "required": [
+    "name",
+    "version"
+  ],
+  "title": "Values",
+  "type": "object"
+}
