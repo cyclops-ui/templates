@@ -42,7 +42,7 @@ spec:
           resources:
             {{- if ((.Values.scaling).resources).memory }}
             limits:
-              memory: {{ ((.Values.scaling).resources).memory }}
+              memory: {{ ((.Values.scaling).resources).memory }}Gi
             {{- end }}
             {{- if or ((.Values.scaling).resources).memory ((.Values.scaling).resources).cpu }}
             requests:
@@ -50,7 +50,7 @@ spec:
               cpu: {{ ((.Values.scaling).resources).cpu }}
               {{- end }}
               {{- if ((.Values.scaling).resources).memory }}
-              memory: {{ ((.Values.scaling).resources).memory }}
+              memory: {{ ((.Values.scaling).resources).memory }}Gi
               {{- end }}
             {{- end }}
           {{- end }}
