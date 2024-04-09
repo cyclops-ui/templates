@@ -4,4 +4,4 @@ metadata:
   name: redis-config
 data:
   redis.conf: |-
-    requirepass testtest123
+    dbfilename ciletaur.rdb
