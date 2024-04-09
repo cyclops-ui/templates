@@ -1,21 +1,67 @@
 {
   "properties": {
     "name": {
+      "title": "Name",
       "description": "Database name",
       "type": "string"
     },
     "version": {
+      "title": "Specify Redis version",
       "description": "Container image version",
       "type": "string",
       "enum": [
         "6.0",
         "5.0"
       ]
+    },
+    "authentication": {
+      "title": "Authentication",
+      "type": "object",
+      "properties": {
+        "require": {
+          "title": "Require password",
+          "description": "Enable authentication",
+          "type": "boolean"
+        },
+        "password": {
+          "title": "Password",
+          "description": "Database password",
+          "type": "string"
+        }
+      },
+      "order": [
+        "require",
+        "password"
+      ]
+    },
+    "replication": {
+      "title": "Replication",
+      "type": "object",
+      "properties": {
+        "enable": {
+          "title": "Enable replication",
+          "description": "Enable multiple replicas for single primary instance",
+          "type": "boolean"
+        },
+        "replicas": {
+          "title": "Replicas",
+          "description": "Number of replicas for the primary instance",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 5
+        }
+      },
+      "order": [
+        "require",
+        "password"
+      ]
     }
   },
   "order": [
     "name",
-    "version"
+    "version",
+    "authentication",
+    "replication"
   ],
   "required": [
     "name",
