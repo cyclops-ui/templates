@@ -2,12 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .Values.name }}
-  {{- if ((.Values.general).labels) }}
   labels:
-  {{- range $key, $value := (.Values.general).labels }}
-    {{ $key }}: {{ $value | quote }}
-  {{- end }}
-  {{- end }}
+    app: {{ .Values.name }}
 spec:
   replicas: {{ (.Values.scaling).replicas | default 1 }}
   selector:
@@ -15,12 +11,8 @@ spec:
       app: {{ .Values.name }}
   template:
     metadata:
-      {{- if ((.Values.general).labels) }}
       labels:
-        {{- range $key, $value := (.Values.general).labels }}
-        {{ $key }}: {{ $value | quote }}
-        {{- end }}
-      {{- end }}
+        app: {{ .Values.name }}
     spec:
       containers:
         - name: {{ .Values.name }}

@@ -5,9 +5,6 @@ general:
   version: 1.14.2
   environment:
     ENVIRONMENT: production
-  labels:
-    app: my-app
-    team: my-team
 
 scaling:
   replicas: 3

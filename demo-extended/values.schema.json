@@ -23,11 +23,6 @@
           "title": "Environment variables",
           "type": "object",
           "description": "Set environment variables"
-        },
-        "labels": {
-          "title": "App labels",
-          "type": "object",
-          "description": "Tag your application for easier discovery"
         }
       },
       "required": [
@@ -37,8 +32,7 @@
       "order": [
         "image",
         "version",
-        "environment",
-        "labels"
+        "environment"
       ]
     },
     "scaling": {
