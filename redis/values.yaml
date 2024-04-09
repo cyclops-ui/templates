@@ -1,4 +1,4 @@
-name: my-database
+name: my-cache
 version: "6.0"
 
 replication:
