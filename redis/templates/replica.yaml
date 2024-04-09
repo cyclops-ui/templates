@@ -4,7 +4,7 @@ kind: Deployment
 metadata:
   name: {{ .Values.name }}-redis-replica
 spec:
-  replicas: {{- (.Values.replication).replicas }}
+  replicas: {{ (.Values.replication).replicas }}
   selector:
     matchLabels:
       app: redis
