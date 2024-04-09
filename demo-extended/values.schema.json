@@ -11,23 +11,28 @@
       "properties": {
         "image": {
           "title": "App image",
-          "type": "string"
+          "type": "string",
+          "description": "Application image"
         },
         "version": {
           "title": "Image version",
-          "type": "string"
+          "type": "string",
+          "description": "Image tag you want to deploy"
         },
         "environment": {
           "title": "Environment variables",
-          "type": "object"
+          "type": "object",
+          "description": "Set environment variables"
         },
         "labels": {
           "title": "App labels",
-          "type": "object"
+          "type": "object",
+          "description": "Tag your application for easier discovery"
         }
       },
       "required": [
-        "image"
+        "image",
+        "version"
       ],
       "order": [
         "image",
@@ -43,6 +48,7 @@
         "replicas": {
           "title": "Replicas",
           "type": "integer",
+          "description": "Number of instances you want to deploy",
           "minimum": 0
         },
         "resources": {
@@ -51,7 +57,8 @@
           "properties": {
             "cpu": {
               "title": "CPUs",
-              "type": "integer"
+              "type": "integer",
+              "description": "Number of CPUs your applications needs"
             },
             "memory": {
               "title": "Memory",
@@ -79,11 +86,13 @@
       "properties": {
         "expose": {
           "title": "Expose",
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Create a Service for your application"
         },
         "port": {
           "title": "Port",
-          "type": "integer"
+          "type": "integer",
+          "description": "Port to expose for your application"
         }
       },
       "order": [
