@@ -2,7 +2,7 @@ name: my-database
 version: "6.0"
 
 replication:
-  enabled: true
+  enable: true
   replicas: 2
 
 authentication:
