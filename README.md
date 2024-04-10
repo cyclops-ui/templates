@@ -18,7 +18,7 @@ Welcome to the official templates repository of [Cyclops](https://github.com/cyc
 - comes bundled with every Cyclops instance ✅
 - creates a `Deployment` and `Service` resource
 
-### /redis-demo
+### /redis
 
 - comes bundled with every Cyclops instance ✅
 - deploys redis instance with a single primary and up to five replicas
