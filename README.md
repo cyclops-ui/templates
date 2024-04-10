@@ -9,23 +9,23 @@ Welcome to the official templates repository of Cyclops. Here you can find our d
 
 ### /demo
 
-- comes bundled with every Cyclops instance :white_checkmark:
+- comes bundled with every Cyclops instance ✅
 - used in our [quickstart guide]()
 - creates a `Deployment` and `Service` resource
 
 ### /demo-extended
 
-- comes bundled with every Cyclops instance :white_checkmark:
+- comes bundled with every Cyclops instance ✅
 - creates a `Deployment` and `Service` resource
 
 ### /redis-demo
 
-- comes bundled with every Cyclops instance :white_checkmark:
+- comes bundled with every Cyclops instance ✅
 - deploys redis instance with a single primary and up to five replicas
 - primary/replica architecture comes configured out of the box
 
 ### /dependencies-demo
 
-- does not come bundled with every Cyclops instance :white_xmark:
+- does not come bundled with every Cyclops instance ❎
 - used in our [dependencies guide]()
 - [link](https://petar-cvit.github.io/index.yaml) to dependency
