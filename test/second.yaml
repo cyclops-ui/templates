@@ -1,5 +1,0 @@
-service: true
-nested:
-  service: false
-  image: not-nginx
-  version: latest

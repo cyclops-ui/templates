@@ -1,3 +1,0 @@
-image: nginx
-version: 1.14.2
-service: true
