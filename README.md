@@ -3,14 +3,14 @@
 <p/>
 <h1 align="center" >Template Repository</h1>
 
-Welcome to the official templates repository of Cyclops. Here you can find our demo templates, feel free to use and abuse them! You do not have to utilize these templates when using Cyclops, they are here just as a showcase and to help guide you on creating your own! More information on creating your own templates can be found on our [web](https://cyclops-ui.com/docs/templates/).
+Welcome to the official templates repository of [Cyclops](https://github.com/cyclops-ui/cyclops). Here you can find our demo templates, feel free to use and abuse them! You do not have to utilize these templates when using Cyclops, they are here just as a showcase and to help guide you on creating your own! More information on creating your own templates can be found on our [web](https://cyclops-ui.com/docs/templates/).
 
-## Overview
+## Overview 📜
 
 ### /demo
 
 - comes bundled with every Cyclops instance ✅
-- used in our [quickstart guide]()
+- used in our [quickstart guide](https://cyclops-ui.com/docs/installation/demo/new_module)
 - creates a `Deployment` and `Service` resource
 
 ### /demo-extended
@@ -27,5 +27,5 @@ Welcome to the official templates repository of Cyclops. Here you can find our d
 ### /dependencies-demo
 
 - does not come bundled with every Cyclops instance ❎
-- used in our [dependencies guide]()
+- used in our [dependencies guide](https://cyclops-ui.com/docs/templates/dependencies)
 - [link](https://petar-cvit.github.io/index.yaml) to dependency
