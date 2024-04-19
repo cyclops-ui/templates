@@ -7,11 +7,13 @@ spec:
   replicas: {{ (.Values.replication).replicas }}
   selector:
     matchLabels:
+      instance: {{ .Values.name }}
       app: redis
       role: replica
   template:
     metadata:
       labels:
+        instance: {{ .Values.name }}
         app: redis
         role: replica
     spec:
@@ -33,6 +35,7 @@ metadata:
   name: {{ .Values.name }}-redis-replica
 spec:
   selector:
+    instance: {{ .Values.name }}
     app: redis
     role: replica
   ports:
