@@ -1,0 +1,4 @@
+name: my-database
+namespace: my-app
+version: 8.3.0
+persistentVolumeSize: 10
