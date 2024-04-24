@@ -8,7 +8,7 @@ metadata:
 spec:
   storageClassName: manual
   capacity:
-    storage: {{ .Values.persistentVolumeSize }}Gi
+    storage: 20Gi
   accessModes:
     - ReadWriteOnce
   hostPath:
