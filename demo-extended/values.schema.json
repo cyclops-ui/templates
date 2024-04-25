@@ -9,7 +9,7 @@
       "type": "string",
       "title": "Namespace",
       "description": "Namespace for Application"
-    },  
+    },
     "general": {
       "type": "object",
       "title": "General",
@@ -79,6 +79,79 @@
         "resources"
       ]
     },
+    "probes": {
+      "type": "object",
+      "title": "Probes",
+      "properties": {
+        "startup": {
+          "title": "Startup Probe",
+          "type": "object",
+          "properties": {
+            "path": {
+              "title": "Path for probe",
+              "type": "string"
+            },
+            "initialDelaySeconds": {
+              "title": "Initial Delay Seconds",
+              "type": "integer"
+            },
+            "periodSeconds": {
+              "title": "Period Seconds",
+              "type": "integer"
+            },
+            "failureThreshold": {
+              "title": "Failure Threshold",
+              "type": "integer"
+            }
+          }
+        },
+        "liveness": {
+          "title": "Liveness Probe",
+          "type": "object",
+          "properties": {
+            "path": {
+              "title": "Path for probe",
+              "type": "string"
+            },
+            "initialDelaySeconds": {
+              "title": "Initial Delay Seconds",
+              "type": "integer"
+            },
+            "periodSeconds": {
+              "title": "Period Seconds",
+              "type": "integer"
+            }
+          }
+        },
+        "readiness": {
+          "title": "Readiness Probe",
+          "type": "object",
+          "properties": {
+            "path": {
+              "title": "Path for probe",
+              "type": "string"
+            },
+            "initialDelaySeconds": {
+              "title": "Initial Delay Seconds",
+              "type": "integer"
+            },
+            "periodSeconds": {
+              "title": "Period Seconds",
+              "type": "integer"
+            },
+            "failureThreshold": {
+              "title": "Failure Threshold",
+              "type": "integer"
+            }
+          }
+        }
+      },
+      "order": [
+        "startup",
+        "liveness",
+        "readiness"
+      ]
+    },
     "networking": {
       "type": "object",
       "title": "Networking",
@@ -105,8 +178,10 @@
   ],
   "order": [
     "name",
+    "namespace",
     "general",
     "scaling",
+    "probes",
     "networking"
   ],
   "title": "Values",
