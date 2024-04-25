@@ -1,5 +1,5 @@
-apiVersion: v2
-name: extended-demo
+apiVersion: v1
+name: custom-template
 description: Demo chart with more properties to chose from
 
 type: application
