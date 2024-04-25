@@ -1,5 +1,5 @@
 name: my-app
-
+namespace: default
 general:
   image: nginx
   version: 1.14.2

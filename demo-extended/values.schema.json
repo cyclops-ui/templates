@@ -5,6 +5,11 @@
       "title": "Name",
       "description": "Application name"
     },
+    "namespace": {
+      "type": "string",
+      "title": "Namespace",
+      "description": "Namespace for Application"
+    },  
     "general": {
       "type": "object",
       "title": "General",
