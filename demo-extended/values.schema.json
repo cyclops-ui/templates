@@ -93,6 +93,46 @@
         "expose",
         "port"
       ]
+    },
+    "probes": {
+      "type": "object",
+      "title": "Probes",
+      "properties": {
+        "expose": {
+          "title": "Expose",
+          "type": "boolean",
+          "description": "Create a Service for your application"
+        },
+        "port": {
+          "title": "Port",
+          "type": "integer",
+          "description": "Port to expose for your application"
+        }
+      },
+      "order": [
+        "expose",
+        "port"
+      ]
+    },
+    "owner": {
+      "type": "object",
+      "title": "Owner",
+      "properties": {
+        "expose": {
+          "title": "Expose",
+          "type": "boolean",
+          "description": "Create a Service for your application"
+        },
+        "port": {
+          "title": "Port",
+          "type": "integer",
+          "description": "Port to expose for your application"
+        }
+      },
+      "order": [
+        "expose",
+        "port"
+      ]
     }
   },
   "required": [
@@ -102,7 +142,6 @@
     "name",
     "general",
     "scaling",
-    "networking"
   ],
   "title": "Values",
   "type": "object"
