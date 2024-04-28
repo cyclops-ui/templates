@@ -141,7 +141,7 @@
   "order": [
     "name",
     "general",
-    "scaling",
+    "scaling"
   ],
   "title": "Values",
   "type": "object"
