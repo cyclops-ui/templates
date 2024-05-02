@@ -18,16 +18,19 @@ probes:
     initialDelaySeconds: 5
     periodSeconds: 10
     failureThreshold: 3
+    enabled: false
   liveness:
     path: "/"
     initialDelaySeconds: 10
     periodSeconds: 20
     failureThreshold: 3
+    enabled: true
   readiness:
     path: "/"
     initialDelaySeconds: 5
     periodSeconds: 10
     failureThreshold: 3
+    enabled: true
 
 networking:
   expose: true
