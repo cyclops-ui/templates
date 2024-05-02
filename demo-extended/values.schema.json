@@ -120,6 +120,10 @@
             "periodSeconds": {
               "title": "Period Seconds",
               "type": "integer"
+            },
+            "failureThreshold": {
+              "title": "Failure Threshold",
+              "type": "integer"
             }
           }
         },
