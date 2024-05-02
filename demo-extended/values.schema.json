@@ -84,6 +84,12 @@
       "title": "Probes",
       "description": "Configuration for container probes",
       "properties": {
+        "enabled": {
+          "title": "Enabled",
+          "type": "boolean",
+          "default": true,
+          "description": "Toggle to enable or disable all probes"
+        },
         "startup": {
           "title": "Startup Probe",
           "type": "object",
@@ -108,12 +114,6 @@
               "title": "Failure Threshold",
               "type": "integer",
               "description": "The number of consecutive failures required to consider the probe as failed"
-            },
-            "enabled": {
-              "title": "Enabled",
-              "type": "boolean",
-              "default": true,
-              "description": "Toggle to enable or disable the startup probe"
             }
           }
         },
@@ -141,12 +141,6 @@
               "title": "Failure Threshold",
               "type": "integer",
               "description": "The number of consecutive failures required to consider the probe as failed"
-            },
-            "enabled": {
-              "title": "Enabled",
-              "type": "boolean",
-              "default": true,
-              "description": "Toggle to enable or disable the liveness probe"
             }
           }
         },
@@ -174,17 +168,12 @@
               "title": "Failure Threshold",
               "type": "integer",
               "description": "The number of consecutive failures required to consider the probe as failed"
-            },
-            "enabled": {
-              "title": "Enabled",
-              "type": "boolean",
-              "default": true,
-              "description": "Toggle to enable or disable the readiness probe"
             }
           }
         }
       },
       "order": [
+        "enabled",
         "startup",
         "liveness",
         "readiness"
