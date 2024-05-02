@@ -41,6 +41,7 @@ spec:
               cpu: "{{ .Values.scaling.resources.cpu }}"
             {{- end }}
 
+          {{- if .Values.probes.enabled }}
           readinessProbe:
             httpGet:
               path: {{ .Values.probes.readiness.path }}
@@ -63,3 +64,4 @@ spec:
             initialDelaySeconds: {{ .Values.probes.startup.initialDelaySeconds }}
             periodSeconds: {{ .Values.probes.startup.periodSeconds }}
             failureThreshold: {{ .Values.probes.startup.failureThreshold }}
+          {{- end }}
