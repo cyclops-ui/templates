@@ -82,70 +82,86 @@
     "probes": {
       "type": "object",
       "title": "Probes",
+      "description": "Configuration for container probes",
       "properties": {
         "startup": {
           "title": "Startup Probe",
           "type": "object",
+          "description": "Configuration for the startup probe",
           "properties": {
             "path": {
               "title": "Path for probe",
-              "type": "string"
+              "type": "string",
+              "description": "The endpoint to probe for startup readiness"
             },
             "initialDelaySeconds": {
               "title": "Initial Delay Seconds",
-              "type": "integer"
+              "type": "integer",
+              "description": "The number of seconds to wait before performing the first probe"
             },
             "periodSeconds": {
               "title": "Period Seconds",
-              "type": "integer"
+              "type": "integer",
+              "description": "The number of seconds between each probe"
             },
             "failureThreshold": {
               "title": "Failure Threshold",
-              "type": "integer"
+              "type": "integer",
+              "description": "The number of consecutive failures required to consider the probe as failed"
             }
           }
         },
         "liveness": {
           "title": "Liveness Probe",
           "type": "object",
+          "description": "Configuration for the liveness probe",
           "properties": {
             "path": {
               "title": "Path for probe",
-              "type": "string"
+              "type": "string",
+              "description": "The endpoint to probe for liveness"
             },
             "initialDelaySeconds": {
               "title": "Initial Delay Seconds",
-              "type": "integer"
+              "type": "integer",
+              "description": "The number of seconds to wait before performing the first probe"
             },
             "periodSeconds": {
               "title": "Period Seconds",
-              "type": "integer"
+              "type": "integer",
+              "description": "The number of seconds between each probe"
             },
             "failureThreshold": {
               "title": "Failure Threshold",
-              "type": "integer"
+              "type": "integer",
+              "description": "The number of consecutive failures required to consider the probe as failed"
             }
           }
         },
         "readiness": {
           "title": "Readiness Probe",
           "type": "object",
+          "description": "Configuration for the readiness probe",
           "properties": {
             "path": {
               "title": "Path for probe",
-              "type": "string"
+              "type": "string",
+              "description": "The endpoint to probe for readiness"
             },
             "initialDelaySeconds": {
               "title": "Initial Delay Seconds",
-              "type": "integer"
+              "type": "integer",
+              "description": "The number of seconds to wait before performing the first probe"
             },
             "periodSeconds": {
               "title": "Period Seconds",
-              "type": "integer"
+              "type": "integer",
+              "description": "The number of seconds between each probe"
             },
             "failureThreshold": {
               "title": "Failure Threshold",
-              "type": "integer"
+              "type": "integer",
+              "description": "The number of consecutive failures required to consider the probe as failed"
             }
           }
         }
