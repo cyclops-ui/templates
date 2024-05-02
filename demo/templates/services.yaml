@@ -12,6 +12,10 @@ spec:
       targetPort: 80
       protocol: TCP
       name: http
+    - port: 9090
+      targetPort: 80
+      protocol: TCP
+      name: metrics
   selector:
     app: {{ .Values.name }}
 {{- end }}
