@@ -115,7 +115,13 @@
               "type": "integer",
               "description": "The number of consecutive failures required to consider the probe as failed"
             }
-          }
+          },
+          "order": [
+            "path",
+            "initialDelaySeconds",
+            "periodSeconds",
+            "failureThreshold"
+          ]
         },
         "liveness": {
           "title": "Liveness Probe",
@@ -142,7 +148,13 @@
               "type": "integer",
               "description": "The number of consecutive failures required to consider the probe as failed"
             }
-          }
+          },
+          "order": [
+            "path",
+            "initialDelaySeconds",
+            "periodSeconds",
+            "failureThreshold"
+          ]
         },
         "readiness": {
           "title": "Readiness Probe",
@@ -169,7 +181,13 @@
               "type": "integer",
               "description": "The number of consecutive failures required to consider the probe as failed"
             }
-          }
+          },
+          "order": [
+            "path",
+            "initialDelaySeconds",
+            "periodSeconds",
+            "failureThreshold"
+          ]
         }
       },
       "order": [
