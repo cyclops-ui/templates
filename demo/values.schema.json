@@ -19,6 +19,10 @@
     "service": {
       "description": "Expose your application",
       "type": "boolean"
+    },
+    "new-field": {
+      "description": "Expose your application",
+      "type": "boolean"
     }
   },
   "order": [
@@ -28,7 +32,8 @@
     "json",
     "image",
     "version",
-    "service"
+    "service",
+    "new-field"
   ],
   "required": [
     "name",
