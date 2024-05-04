@@ -23,6 +23,10 @@
     "new-field": {
       "description": "Expose your application",
       "type": "boolean"
+    },
+    "another": {
+      "description": "Container image version",
+      "type": "string"
     }
   },
   "order": [
@@ -33,7 +37,8 @@
     "image",
     "version",
     "service",
-    "new-field"
+    "new-field",
+    "another"
   ],
   "required": [
     "name",
