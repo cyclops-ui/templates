@@ -19,10 +19,6 @@
     "service": {
       "description": "Expose your application",
       "type": "boolean"
-    },
-    "new-field": {
-      "description": "Expose your application",
-      "type": "boolean"
     }
   },
   "order": [
