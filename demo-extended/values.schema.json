@@ -230,7 +230,5 @@
     "scaling",
     "probes",
     "networking"
-  ],
-  "title": "Values",
-  "type": "object"
+  ]
 }
