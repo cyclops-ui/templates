@@ -13,7 +13,7 @@ scaling:
     memory: 512
 
 probes:
-  enabled: true
+  enabled: false
   startup:
     path: "/"
     initialDelaySeconds: 5
