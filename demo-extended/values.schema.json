@@ -87,7 +87,7 @@
         "enabled": {
           "title": "Enabled",
           "type": "boolean",
-          "default": true,
+          "default": false,
           "description": "Toggle to enable or disable all probes"
         },
         "startup": {
