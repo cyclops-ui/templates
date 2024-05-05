@@ -1,4 +1,6 @@
 {
+  "title": "Values",
+  "type": "object",
   "properties": {
     "name": {
       "type": "string",
@@ -61,8 +63,8 @@
             },
             "memory": {
               "title": "Memory",
-              "description": "Measured in Gi",
-              "type": "integer"
+              "type": "integer",
+              "description": "Measured in Gi"
             }
           },
           "order": [
@@ -228,7 +230,5 @@
     "scaling",
     "probes",
     "networking"
-  ],
-  "title": "Values",
-  "type": "object"
+  ]
 }
