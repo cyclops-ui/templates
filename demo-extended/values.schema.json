@@ -1,6 +1,4 @@
 {
-  "title": "Values",
-  "type": "object",
   "properties": {
     "name": {
       "type": "string",
@@ -63,8 +61,8 @@
             },
             "memory": {
               "title": "Memory",
-              "type": "integer",
-              "description": "Measured in Gi"
+              "description": "Measured in Gi",
+              "type": "integer"
             }
           },
           "order": [
@@ -89,7 +87,7 @@
         "enabled": {
           "title": "Enabled",
           "type": "boolean",
-          "default": false,
+          "default": true,
           "description": "Toggle to enable or disable all probes"
         },
         "startup": {
@@ -117,13 +115,7 @@
               "type": "integer",
               "description": "The number of consecutive failures required to consider the probe as failed"
             }
-          },
-          "order": [
-            "path",
-            "initialDelaySeconds",
-            "periodSeconds",
-            "failureThreshold"
-          ]
+          }
         },
         "liveness": {
           "title": "Liveness Probe",
@@ -150,13 +142,7 @@
               "type": "integer",
               "description": "The number of consecutive failures required to consider the probe as failed"
             }
-          },
-          "order": [
-            "path",
-            "initialDelaySeconds",
-            "periodSeconds",
-            "failureThreshold"
-          ]
+          }
         },
         "readiness": {
           "title": "Readiness Probe",
@@ -183,13 +169,7 @@
               "type": "integer",
               "description": "The number of consecutive failures required to consider the probe as failed"
             }
-          },
-          "order": [
-            "path",
-            "initialDelaySeconds",
-            "periodSeconds",
-            "failureThreshold"
-          ]
+          }
         }
       },
       "order": [
@@ -230,5 +210,7 @@
     "scaling",
     "probes",
     "networking"
-  ]
+  ],
+  "title": "Values",
+  "type": "object"
 }
