@@ -27,9 +27,13 @@ spec:
           {{- end }}
           
           env:
-          {{- if .Values.general.environment }}
-          {{- toYaml .Values.general.environment | indent 12 }}
+          {{- if ((.Values.general).environment) }}
+          {{- range $key, $value := (.Values.general).environment }}
+            - name: {{ $key }}
+              value: {{ $value | quote }}
           {{- end }}
+          {{- end }}
+          {{- if or ((.Values.scaling).resources).memory ((.Values.scaling).resources).cpu }}
 
           resources:
             {{- if .Values.scaling.resources.memory }}
