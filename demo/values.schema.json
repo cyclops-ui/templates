@@ -1,5 +1,9 @@
 {
   "properties": {
+    "my-new-field": {
+      "description": "Application name",
+      "type": "string"
+    },
     "name": {
       "description": "Application name",
       "type": "string"
@@ -22,6 +26,7 @@
     }
   },
   "order": [
+    "my-new-field",
     "name",
     "replicas",
     "script",
