@@ -19,14 +19,6 @@
     "service": {
       "description": "Expose your application",
       "type": "boolean"
-    },
-    "new-field": {
-      "description": "Expose your application",
-      "type": "boolean"
-    },
-    "another": {
-      "description": "Container image version",
-      "type": "string"
     }
   },
   "order": [
@@ -36,9 +28,7 @@
     "json",
     "image",
     "version",
-    "service",
-    "new-field",
-    "another"
+    "service"
   ],
   "required": [
     "name",
