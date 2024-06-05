@@ -4,6 +4,9 @@
       "description": "Application name",
       "type": "string"
     },
+    "condition": {
+      "$ref": "#/$defs/image"
+    },
     "replicas": {
       "description": "Number of replicas",
       "type": "integer"
@@ -21,8 +24,37 @@
       "type": "boolean"
     }
   },
+  "$defs": {
+    "image": {
+      "type": "object",
+      "properties": {
+        "registry": {
+          "type": "string",
+          "description": "The host of the registry",
+          "examples": [
+            "docker.io"
+          ]
+        },
+        "repository": {
+          "type": "string",
+          "description": "The image path in the registry",
+          "examples": [
+            "bitnami/kubectl"
+          ]
+        },
+        "tag": {
+          "type": "string"
+        },
+        "digest": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
   "order": [
     "name",
+    "condition",
     "replicas",
     "script",
     "json",
