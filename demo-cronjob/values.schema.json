@@ -1,0 +1,16 @@
+{
+  "properties": {
+    "name": {
+      "description": "Application name",
+      "type": "string"
+    },
+    "image": {
+      "description": "Container Image",
+      "type": "string"
+    }
+  },
+  "order": ["name", "image"],
+  "required": ["name", "image"],
+  "title": "Values",
+  "type": "object"
+}
