@@ -1,5 +1,5 @@
 <p align="center" width="100%">
-    <img width="60%" src="./cyclops-simplistic.png">
+    <img width="75%" src="./cyclops-simplistic.png">
 <p/>
 <h1 align="center" >Template Repository</h1>
 
