@@ -4,7 +4,7 @@ metadata:
   name: {{ .Release.Name }}-metabase-service
 spec:
   selector:
-    app: metabase
+    app: {{ .Release.Name }}-metabase
   ports:
     - protocol: TCP
       port: 80
