@@ -1,4 +1,3 @@
-{{- if .Values.service }}
 apiVersion: v1
 kind: Service
 metadata:
@@ -14,4 +13,3 @@ spec:
       name: http
   selector:
     app: {{ .Values.name }}
-{{- end }}

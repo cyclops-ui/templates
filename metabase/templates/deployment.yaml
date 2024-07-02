@@ -1,15 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Chart.Name }}-metabase
+  name: {{ .Release.Name }}-metabase
 spec:
   selector:
     matchLabels:
-      app: {{ .Chart.Name }}-metabase
+      app: {{ .Release.Name }}-metabase
   template:
     metadata:
       labels:
-        app: {{ .Chart.Name }}-metabase
+        app: {{ .Release.Name }}-metabase
     spec:
       containers:
         - name: metabase
