@@ -1,40 +1,61 @@
 {
   "properties": {
-    "name": {
-      "description": "Application name",
-      "type": "string"
-    },
     "replicas": {
-      "description": "Number of replicas",
+      "description": "Number of metabase replicas",
       "type": "integer"
     },
-    "image": {
-      "description": "Container Image",
-      "type": "string"
+    "storageSize": {
+      "description": "Size of metabase storage",
+      "type": "string",
+      "enum": [
+        "1Gi",
+        "2Gi",
+        "4Gi"
+      ]
     },
-    "version": {
-      "description": "Container image version",
-      "type": "string"
-    },
-    "service": {
-      "description": "Expose your application",
-      "type": "boolean"
+    "database": {
+      "title": "Database",
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "title": "Type"
+        },
+        "dbname": {
+          "type": "string",
+          "title": "Name"
+        },
+        "port":  {
+          "type": "integer",
+          "title": "Port"
+        },
+        "user": {
+          "type": "string",
+          "title": "Username"
+        },
+        "pass": {
+          "type": "string",
+          "title": "Username"
+        },
+        "host": {
+          "type": "string",
+          "title": "Host"
+        }
+      },
+      "order": [
+        "type",
+        "dbname",
+        "port",
+        "user",
+        "pass",
+        "host"
+      ]
     }
   },
   "order": [
-    "name",
     "replicas",
-    "script",
-    "json",
-    "image",
-    "version",
-    "service"
-  ],
-  "required": [
-    "name",
-    "replicas",
-    "image",
-    "version"
+    "storageSize",
+    "database"
   ],
   "title": "Values",
   "type": "object"

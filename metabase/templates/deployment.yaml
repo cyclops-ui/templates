@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: {{ .Release.Name }}-metabase
 spec:
+  replicas: {{ .Values.replicas | default 1 }}
   selector:
     matchLabels:
       app: {{ .Release.Name }}-metabase
@@ -22,4 +23,4 @@ spec:
       volumes:
         - name: metabase-data
           persistentVolumeClaim:
-            claimName: metabase-pvc
+            claimName: {{ .Release.Name }}-metabase-pvc

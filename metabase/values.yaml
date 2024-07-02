@@ -1,5 +1,10 @@
-image: nginx
-name: demo-app
 replicas: 1
-service: true
-version: 1.14.2
+storageSize: 1Gi
+
+database:
+  type: postgres
+  dbname: metabase
+  port: 5432
+  user: user
+  pass: pass
+  host: metabase-db
