@@ -5,6 +5,11 @@
       "title": "Name",
       "description": "Application name"
     },
+    "namespace": {
+      "type": "string",
+      "title": "Namespace",
+      "description": "Namespace for Application"
+    },
     "general": {
       "type": "object",
       "title": "General",
@@ -74,6 +79,106 @@
         "resources"
       ]
     },
+    "probes": {
+      "type": "object",
+      "title": "Probes",
+      "description": "Configuration for container probes",
+      "properties": {
+        "enabled": {
+          "title": "Enabled",
+          "type": "boolean",
+          "default": true,
+          "description": "Toggle to enable or disable all probes"
+        },
+        "startup": {
+          "title": "Startup Probe",
+          "type": "object",
+          "description": "Configuration for the startup probe",
+          "properties": {
+            "path": {
+              "title": "Path for probe",
+              "type": "string",
+              "description": "The endpoint to probe for startup readiness"
+            },
+            "initialDelaySeconds": {
+              "title": "Initial Delay Seconds",
+              "type": "integer",
+              "description": "The number of seconds to wait before performing the first probe"
+            },
+            "periodSeconds": {
+              "title": "Period Seconds",
+              "type": "integer",
+              "description": "The number of seconds between each probe"
+            },
+            "failureThreshold": {
+              "title": "Failure Threshold",
+              "type": "integer",
+              "description": "The number of consecutive failures required to consider the probe as failed"
+            }
+          }
+        },
+        "liveness": {
+          "title": "Liveness Probe",
+          "type": "object",
+          "description": "Configuration for the liveness probe",
+          "properties": {
+            "path": {
+              "title": "Path for probe",
+              "type": "string",
+              "description": "The endpoint to probe for liveness"
+            },
+            "initialDelaySeconds": {
+              "title": "Initial Delay Seconds",
+              "type": "integer",
+              "description": "The number of seconds to wait before performing the first probe"
+            },
+            "periodSeconds": {
+              "title": "Period Seconds",
+              "type": "integer",
+              "description": "The number of seconds between each probe"
+            },
+            "failureThreshold": {
+              "title": "Failure Threshold",
+              "type": "integer",
+              "description": "The number of consecutive failures required to consider the probe as failed"
+            }
+          }
+        },
+        "readiness": {
+          "title": "Readiness Probe",
+          "type": "object",
+          "description": "Configuration for the readiness probe",
+          "properties": {
+            "path": {
+              "title": "Path for probe",
+              "type": "string",
+              "description": "The endpoint to probe for readiness"
+            },
+            "initialDelaySeconds": {
+              "title": "Initial Delay Seconds",
+              "type": "integer",
+              "description": "The number of seconds to wait before performing the first probe"
+            },
+            "periodSeconds": {
+              "title": "Period Seconds",
+              "type": "integer",
+              "description": "The number of seconds between each probe"
+            },
+            "failureThreshold": {
+              "title": "Failure Threshold",
+              "type": "integer",
+              "description": "The number of consecutive failures required to consider the probe as failed"
+            }
+          }
+        }
+      },
+      "order": [
+        "enabled",
+        "startup",
+        "liveness",
+        "readiness"
+      ]
+    },
     "networking": {
       "type": "object",
       "title": "Networking",
@@ -100,8 +205,10 @@
   ],
   "order": [
     "name",
+    "namespace",
     "general",
     "scaling",
+    "probes",
     "networking"
   ],
   "title": "Values",

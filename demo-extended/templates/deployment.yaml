@@ -2,10 +2,11 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .Values.name }}
+  namespace: {{ .Values.namespace }}
   labels:
     app: {{ .Values.name }}
 spec:
-  replicas: {{ (.Values.scaling).replicas | default 1 }}
+  replicas: {{ .Values.scaling.replicas }}
   selector:
     matchLabels:
       app: {{ .Values.name }}
@@ -17,12 +18,14 @@ spec:
       containers:
         - name: {{ .Values.name }}
           image: "{{ .Values.general.image }}:{{ .Values.general.version }}"
-          {{- if ((.Values.networking).expose) }}
+          
+          {{- if .Values.networking.expose }}
           ports:
             - name: http
-              containerPort: {{ .Values.networking.port | default 80 }}
+              containerPort: {{ .Values.networking.port }}
               protocol: TCP
           {{- end }}
+          
           env:
           {{- if ((.Values.general).environment) }}
           {{- range $key, $value := (.Values.general).environment }}
@@ -31,18 +34,38 @@ spec:
           {{- end }}
           {{- end }}
           {{- if or ((.Values.scaling).resources).memory ((.Values.scaling).resources).cpu }}
+
           resources:
-            {{- if ((.Values.scaling).resources).memory }}
+            {{- if .Values.scaling.resources.memory }}
             limits:
-              memory: {{ ((.Values.scaling).resources).memory }}Gi
+              memory: "{{ .Values.scaling.resources.memory }}Gi"
             {{- end }}
-            {{- if or ((.Values.scaling).resources).memory ((.Values.scaling).resources).cpu }}
+            {{- if .Values.scaling.resources.cpu }}
             requests:
-              {{- if ((.Values.scaling).resources).cpu }}
-              cpu: {{ ((.Values.scaling).resources).cpu }}
-              {{- end }}
-              {{- if ((.Values.scaling).resources).memory }}
-              memory: {{ ((.Values.scaling).resources).memory }}Gi
-              {{- end }}
+              cpu: "{{ .Values.scaling.resources.cpu }}"
             {{- end }}
+
+          {{- if .Values.probes.enabled }}
+          readinessProbe:
+            httpGet:
+              path: {{ .Values.probes.readiness.path }}
+              port: http
+            initialDelaySeconds: {{ .Values.probes.readiness.initialDelaySeconds }}
+            periodSeconds: {{ .Values.probes.readiness.periodSeconds }}
+            failureThreshold: {{ .Values.probes.readiness.failureThreshold }}
+
+          livenessProbe:
+            httpGet:
+              path: {{ .Values.probes.liveness.path }}
+              port: http
+            initialDelaySeconds: {{ .Values.probes.liveness.initialDelaySeconds }}
+            periodSeconds: {{ .Values.probes.liveness.periodSeconds }}
+
+          startupProbe:
+            httpGet:
+              path: {{ .Values.probes.startup.path }}
+              port: http
+            initialDelaySeconds: {{ .Values.probes.startup.initialDelaySeconds }}
+            periodSeconds: {{ .Values.probes.startup.periodSeconds }}
+            failureThreshold: {{ .Values.probes.startup.failureThreshold }}
           {{- end }}
