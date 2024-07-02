@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name }}-metabase
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Chart.Name }}-metabase
+  template:
+    metadata:
+      labels:
+        app: {{ .Chart.Name }}-metabase
+    spec:
+      containers:
+        - name: metabase
+          image: metabase/metabase:latest
+          ports:
+            - containerPort: 3000
+          volumeMounts:
+            - name: metabase-data
+              mountPath: /metabase-data
+      volumes:
+        - name: metabase-data
+          persistentVolumeClaim:
+            claimName: metabase-pvc
