@@ -1,0 +1,20 @@
+{
+  "properties": {
+    "imagePullSecrets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      }
+    }
+  },
+  "title": "Values",
+  "type": "object"
+}

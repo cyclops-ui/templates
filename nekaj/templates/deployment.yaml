@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: guzica-nekaj
+  labels:
+    helm.sh/chart: nekaj-0.1.0
+    app.kubernetes.io/name: nekaj
+    app.kubernetes.io/instance: guzica
+    app.kubernetes.io/managed-by: Helm
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: nekaj
+      app.kubernetes.io/instance: guzica
+  template:
+    metadata:
+      labels:
+        helm.sh/chart: nekaj-0.1.0
+        app.kubernetes.io/name: nekaj
+        app.kubernetes.io/instance: guzica
+        app.kubernetes.io/managed-by: Helm
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+              {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: guzica-nekaj
+      securityContext:
+        {}
+      containers:
+        - name: nekaj
+          securityContext:
+            {}
+          image: "nginx:latest"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          resources:
+            {}
