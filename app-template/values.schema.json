@@ -1,10 +1,5 @@
 {
   "properties": {
-    "name": {
-      "type": "string",
-      "title": "Name",
-      "description": "Application name"
-    },
     "general": {
       "type": "object",
       "title": "General",
@@ -95,11 +90,7 @@
       ]
     }
   },
-  "required": [
-    "name"
-  ],
   "order": [
-    "name",
     "general",
     "scaling",
     "networking"

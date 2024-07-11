@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.name }}
+  name: {{ .Release.Name }}
   labels:
-    app: {{ .Values.name }}
+    app: {{ .Release.Name }}
 spec:
   replicas: {{ (.Values.scaling).replicas | default 1 }}
   selector:
     matchLabels:
-      app: {{ .Values.name }}
+      app: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        app: {{ .Values.name }}
+        app: {{ .Release.Name }}
     spec:
       containers:
-        - name: {{ .Values.name }}
+        - name: {{ .Release.Name }}
           image: "{{ .Values.general.image }}:{{ .Values.general.version }}"
           {{- if ((.Values.networking).expose) }}
           ports:
