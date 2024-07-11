@@ -7,8 +7,8 @@ general:
     ENVIRONMENT: production
 
 scaling:
-  replicas: 3
+  replicas: 1
 
 networking:
   expose: true
-  port: 8080
+  port: 80

@@ -2,16 +2,16 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Values.name }}
+  name: {{ .Release.Name }}
   labels:
-    app: {{ .Values.name }}
+    app: {{ .Release.Name }}
 spec:
   type: ClusterIP
   ports:
     - port: {{ (.Values.networking).port }}
-      targetPort: http
+      targetPort: {{ (.Values.networking).port }}
       protocol: TCP
       name: http
   selector:
-    app: {{ .Values.name }}
+    app: {{ .Release.Name }}
   {{- end }}
