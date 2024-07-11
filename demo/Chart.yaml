@@ -1,3 +1,4 @@
 apiVersion: v1
 name: application
 version: 0.0.0
+icon: https://github.com/cyclops-ui/cyclops/blob/main/cyclops-ui/src/static/img/default-template-icon.png?raw=true
