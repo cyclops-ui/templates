@@ -9,7 +9,7 @@ spec:
   type: ClusterIP
   ports:
     - port: {{ (.Values.networking).port }}
-      targetPort: http
+      targetPort: {{ (.Values.networking).port }}
       protocol: TCP
       name: http
   selector:
