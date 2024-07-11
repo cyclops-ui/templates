@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-metabase
+spec:
+  replicas: {{ .Values.replicas | default 1 }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-metabase
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-metabase
+    spec:
+      containers:
+        - name: metabase
+          image: metabase/metabase:latest
+          ports:
+            - containerPort: 3000
+          volumeMounts:
+            - name: metabase-data
+              mountPath: /metabase-data
+      volumes:
+        - name: metabase-data
+          persistentVolumeClaim:
+            claimName: {{ .Release.Name }}-metabase-pvc

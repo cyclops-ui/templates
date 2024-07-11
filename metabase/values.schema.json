@@ -1,0 +1,62 @@
+{
+  "properties": {
+    "replicas": {
+      "description": "Number of metabase replicas",
+      "type": "integer"
+    },
+    "storageSize": {
+      "description": "Size of metabase storage",
+      "type": "string",
+      "enum": [
+        "1Gi",
+        "2Gi",
+        "4Gi"
+      ]
+    },
+    "database": {
+      "title": "Database",
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "title": "Type"
+        },
+        "dbname": {
+          "type": "string",
+          "title": "Name"
+        },
+        "port":  {
+          "type": "integer",
+          "title": "Port"
+        },
+        "user": {
+          "type": "string",
+          "title": "Username"
+        },
+        "pass": {
+          "type": "string",
+          "title": "Username"
+        },
+        "host": {
+          "type": "string",
+          "title": "Host"
+        }
+      },
+      "order": [
+        "type",
+        "dbname",
+        "port",
+        "user",
+        "pass",
+        "host"
+      ]
+    }
+  },
+  "order": [
+    "replicas",
+    "storageSize",
+    "database"
+  ],
+  "title": "Values",
+  "type": "object"
+}

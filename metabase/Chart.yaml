@@ -1,0 +1,4 @@
+apiVersion: v1
+name: metabase
+version: 0.0.0
+icon: https://www.metabase.com/images/logo.svg

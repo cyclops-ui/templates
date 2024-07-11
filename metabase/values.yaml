@@ -1,0 +1,10 @@
+replicas: 1
+storageSize: 1Gi
+
+database:
+  type: postgres
+  dbname: metabase
+  port: 5432
+  user: user
+  pass: pass
+  host: metabase-db
