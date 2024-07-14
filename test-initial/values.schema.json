@@ -83,7 +83,7 @@
           "type": "integer",
           "description": "Port to expose for your application"
         },
-        "networking nested": {
+        "networkingnested": {
           "type": "object",
           "title": "Networking",
           "properties": {
@@ -96,6 +96,26 @@
               "title": "Port",
               "type": "integer",
               "description": "Port to expose for your application"
+            },
+            "josjedannested": {
+              "type": "object",
+              "title": "Networking",
+              "properties": {
+                "expose": {
+                  "title": "Expose",
+                  "type": "boolean",
+                  "description": "Create a Service for your application"
+                },
+                "port": {
+                  "title": "Port",
+                  "type": "integer",
+                  "description": "Port to expose for your application"
+                }
+              },
+              "order": [
+                "expose",
+                "port"
+              ]
             }
           },
           "order": [
