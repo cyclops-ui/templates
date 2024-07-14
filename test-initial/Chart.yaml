@@ -1,0 +1,9 @@
+apiVersion: v2
+name: app-template
+description: Demo chart with more properties to chose from
+
+type: application
+
+version: 0.1.0
+
+icon: https://github.com/cyclops-ui/cyclops/blob/main/cyclops-ui/src/static/img/default-template-icon.png?raw=true
