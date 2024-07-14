@@ -1,9 +1,5 @@
 {
   "properties": {
-    "name": {
-      "description": "Application name",
-      "type": "string"
-    },
     "replicas": {
       "description": "Number of replicas",
       "type": "integer"
@@ -22,16 +18,12 @@
     }
   },
   "order": [
-    "name",
     "replicas",
-    "script",
-    "json",
     "image",
     "version",
     "service"
   ],
   "required": [
-    "name",
     "replicas",
     "image",
     "version"
