@@ -11,6 +11,10 @@
     "version": {
       "description": "Container image version",
       "type": "string"
+    },
+    "posao": {
+      "description": "Expose your application",
+      "type": "boolean"
     }
   },
   "order": ["name", "image", "version"],
