@@ -30,7 +30,7 @@ spec:
         args: 
         - minio server /data --console-address :${{ .Values.service.consolePort }}
         ports:
-        - containerPort: {{ .Values.service.port }}
+        - containerPort: {{ .Values.service.apiPort }}
           name: api
           protocol: TCP
         - containerPort: {{ .Values.service.consolePort }}
