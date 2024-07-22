@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-minio-service
+spec:
+  selector:
+    app: minio
+  ports:
+  - protocol: TCP
+    port: 80  # Adjust port if needed (external access)
+    targetPort: 9000
+  type: {{ .Values.service.type | default "ClusterIP" }}  # Adjust type for external access
