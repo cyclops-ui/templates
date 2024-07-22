@@ -22,8 +22,13 @@ spec:
         - -c
         args: 
         - minio server /data --console-address :9090
-        ports:
-        - containerPort: 9000
+ports:
+- containerPort: 9000
+  name: api
+  protocol: TCP
+- containerPort: 9090
+  name: console
+  protocol: TCP
         volumeMounts:
         - name: minio-data
           mountPath: /data
