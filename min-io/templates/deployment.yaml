@@ -35,13 +35,13 @@ ports:
         env:
           - name: MINIO_ROOT_USER
             valueFrom:
-              configMapKeyRef:
-                name: {{ .Release.Name }}-minio-config
+              secretKeyRef:
+                name: {{ .Release.Name }}-minio-secret
                 key: MINIO_ROOT_USER
           - name: MINIO_ROOT_PASSWORD
             valueFrom:
-              configMapKeyRef:
-                name: {{ .Release.Name }}-minio-config
+              secretKeyRef:
+                name: {{ .Release.Name }}-minio-secret
                 key: MINIO_ROOT_PASSWORD
       volumes:
       - name: minio-data

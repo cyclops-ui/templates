@@ -8,5 +8,5 @@ spec:
   ports:
   - protocol: TCP
     port: 80  # Adjust port if needed (external access)
-    targetPort: 9000
+    targetPort: {{ .Values.service.port | default 9000 }}
   type: {{ .Values.service.type | default "ClusterIP" }}  # Adjust type for external access
