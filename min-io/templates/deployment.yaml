@@ -28,7 +28,7 @@ spec:
         - /bin/bash
         - -c
         args: 
-        - minio server /data --console-address :${{ .Values.service.consolePort }}
+        - minio server /data --console-address :{{ .Values.service.consolePort }}
         ports:
         - containerPort: {{ .Values.service.apiPort }}
           name: api
