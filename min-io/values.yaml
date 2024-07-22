@@ -17,8 +17,8 @@ storage:
 
 service:
   # Change port if needed (default: 9000 for MinIO API)
-  port: 9000
-
+  apiPort: 9000
+  consolePort: 9090
 
 # Enable service for external access (optional)
 # type: LoadBalancer  # or NodePort

@@ -34,8 +34,12 @@
             "title": "Service",
             "type": "object",
             "properties": {
-                "port": {
-                    "description": "Port on which the MinIO service is exposed (default: 9000)",
+                "apiPort": {
+                    "description": "Port on which the MinIO API service is exposed (default: 9000)",
+                    "type": "integer"
+                },
+                "consolePort": {
+                    "description": "Port on which the MinIO service is exposed (default: 9090)",
                     "type": "integer"
                 },
                 "type": {
