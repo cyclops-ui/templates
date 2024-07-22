@@ -1,178 +1,162 @@
 {
+  "title": "Values",
+  "type": "object",
   "properties": {
     "name": {
-      "type": "string",
-      "title": "Name",
-      "description": "Application name"
+      "description": "Application name",
+      "type": "string"
     },
     "namespace": {
-      "type": "string",
-      "title": "Namespace",
-      "description": "Namespace for Application"
+      "description": "Kubernetes namespace",
+      "type": "string"
     },
     "general": {
+      "description": "General configuration",
       "type": "object",
-      "title": "General",
       "properties": {
         "image": {
-          "title": "App image",
-          "type": "string",
-          "description": "Application image"
+          "description": "Container image",
+          "type": "string"
         },
         "version": {
-          "title": "Image version",
-          "type": "string",
-          "description": "Image tag you want to deploy"
+          "description": "Container image version",
+          "type": "string"
         },
         "environment": {
-          "title": "Environment variables",
+          "description": "Environment variables",
           "type": "object",
-          "description": "Set environment variables"
+          "additionalProperties": {
+            "type": "string"
+          }
         }
       },
       "required": [
         "image",
         "version"
-      ],
-      "order": [
-        "image",
-        "version",
-        "environment"
       ]
     },
     "scaling": {
+      "description": "Scaling configuration",
       "type": "object",
-      "title": "Scaling",
       "properties": {
         "replicas": {
-          "title": "Replicas",
-          "type": "integer",
-          "description": "Number of instances you want to deploy",
-          "minimum": 0
+          "description": "Number of replicas",
+          "type": "integer"
         },
         "resources": {
+          "description": "Resource limits and requests",
           "type": "object",
-          "title": "Resources",
           "properties": {
             "cpu": {
-              "title": "CPUs",
-              "type": "integer",
-              "description": "Number of CPUs your applications needs"
+              "description": "CPU resource request",
+              "type": "string"
             },
             "memory": {
-              "title": "Memory",
-              "description": "Measured in Gi",
-              "type": "integer"
+              "description": "Memory resource limit",
+              "type": "string"
             }
           },
-          "order": [
-            "cpu",
-            "memory"
-          ]
+          "additionalProperties": false
         }
       },
       "required": [
         "replicas"
-      ],
-      "order": [
-        "replicas",
-        "resources"
       ]
     },
     "probes": {
+      "description": "Probe configuration",
       "type": "object",
-      "title": "Probes",
-      "description": "Configuration for container probes",
       "properties": {
         "enabled": {
-          "title": "Enabled",
-          "type": "boolean",
-          "default": true,
-          "description": "Toggle to enable or disable all probes"
+          "description": "Enable probes",
+          "type": "boolean"
         },
         "startup": {
-          "title": "Startup Probe",
+          "description": "Startup probe configuration",
           "type": "object",
-          "description": "Configuration for the startup probe",
           "properties": {
             "path": {
-              "title": "Path for probe",
-              "type": "string",
-              "description": "The endpoint to probe for startup readiness"
+              "description": "HTTP path for probe",
+              "type": "string"
             },
             "initialDelaySeconds": {
-              "title": "Initial Delay Seconds",
-              "type": "integer",
-              "description": "The number of seconds to wait before performing the first probe"
+              "description": "Initial delay for probe",
+              "type": "integer"
             },
             "periodSeconds": {
-              "title": "Period Seconds",
-              "type": "integer",
-              "description": "The number of seconds between each probe"
+              "description": "Period for probe",
+              "type": "integer"
             },
             "failureThreshold": {
-              "title": "Failure Threshold",
-              "type": "integer",
-              "description": "The number of consecutive failures required to consider the probe as failed"
+              "description": "Failure threshold for probe",
+              "type": "integer"
             }
-          }
+          },
+          "required": [
+            "path",
+            "initialDelaySeconds",
+            "periodSeconds",
+            "failureThreshold"
+          ]
         },
         "liveness": {
-          "title": "Liveness Probe",
+          "description": "Liveness probe configuration",
           "type": "object",
-          "description": "Configuration for the liveness probe",
           "properties": {
             "path": {
-              "title": "Path for probe",
-              "type": "string",
-              "description": "The endpoint to probe for liveness"
+              "description": "HTTP path for probe",
+              "type": "string"
             },
             "initialDelaySeconds": {
-              "title": "Initial Delay Seconds",
-              "type": "integer",
-              "description": "The number of seconds to wait before performing the first probe"
+              "description": "Initial delay for probe",
+              "type": "integer"
             },
             "periodSeconds": {
-              "title": "Period Seconds",
-              "type": "integer",
-              "description": "The number of seconds between each probe"
+              "description": "Period for probe",
+              "type": "integer"
             },
             "failureThreshold": {
-              "title": "Failure Threshold",
-              "type": "integer",
-              "description": "The number of consecutive failures required to consider the probe as failed"
+              "description": "Failure threshold for probe",
+              "type": "integer"
             }
-          }
+          },
+          "required": [
+            "path",
+            "initialDelaySeconds",
+            "periodSeconds",
+            "failureThreshold"
+          ]
         },
         "readiness": {
-          "title": "Readiness Probe",
+          "description": "Readiness probe configuration",
           "type": "object",
-          "description": "Configuration for the readiness probe",
           "properties": {
             "path": {
-              "title": "Path for probe",
-              "type": "string",
-              "description": "The endpoint to probe for readiness"
+              "description": "HTTP path for probe",
+              "type": "string"
             },
             "initialDelaySeconds": {
-              "title": "Initial Delay Seconds",
-              "type": "integer",
-              "description": "The number of seconds to wait before performing the first probe"
+              "description": "Initial delay for probe",
+              "type": "integer"
             },
             "periodSeconds": {
-              "title": "Period Seconds",
-              "type": "integer",
-              "description": "The number of seconds between each probe"
+              "description": "Period for probe",
+              "type": "integer"
             },
             "failureThreshold": {
-              "title": "Failure Threshold",
-              "type": "integer",
-              "description": "The number of consecutive failures required to consider the probe as failed"
+              "description": "Failure threshold for probe",
+              "type": "integer"
             }
-          }
+          },
+          "required": [
+            "path",
+            "initialDelaySeconds",
+            "periodSeconds",
+            "failureThreshold"
+          ]
         }
       },
-      "order": [
+      "required": [
         "enabled",
         "startup",
         "liveness",
@@ -180,29 +164,24 @@
       ]
     },
     "networking": {
+      "description": "Networking configuration",
       "type": "object",
-      "title": "Networking",
       "properties": {
         "expose": {
-          "title": "Expose",
-          "type": "boolean",
-          "description": "Create a Service for your application"
+          "description": "Expose container port",
+          "type": "boolean"
         },
         "port": {
-          "title": "Port",
-          "type": "integer",
-          "description": "Port to expose for your application"
+          "description": "Container port",
+          "type": "integer"
         }
       },
-      "order": [
+      "required": [
         "expose",
         "port"
       ]
     }
   },
-  "required": [
-    "name"
-  ],
   "order": [
     "name",
     "namespace",
@@ -211,6 +190,12 @@
     "probes",
     "networking"
   ],
-  "title": "Values",
-  "type": "object"
+  "required": [
+    "name",
+    "namespace",
+    "general",
+    "scaling",
+    "probes",
+    "networking"
+  ]
 }

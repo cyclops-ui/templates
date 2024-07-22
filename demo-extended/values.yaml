@@ -5,13 +5,11 @@ general:
   version: 1.14.2
   environment:
     ENVIRONMENT: production
-
 scaling:
   replicas: 3
   resources:
     cpu: 1
     memory: 512
-
 probes:
   enabled: true
   startup:
@@ -29,7 +27,6 @@ probes:
     initialDelaySeconds: 5
     periodSeconds: 10
     failureThreshold: 3
-
 networking:
   expose: true
   port: 8080

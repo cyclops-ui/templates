@@ -18,23 +18,18 @@ spec:
       containers:
         - name: {{ .Values.name }}
           image: "{{ .Values.general.image }}:{{ .Values.general.version }}"
-          
           {{- if .Values.networking.expose }}
           ports:
             - name: http
               containerPort: {{ .Values.networking.port }}
               protocol: TCP
           {{- end }}
-          
           env:
-          {{- if ((.Values.general).environment) }}
-          {{- range $key, $value := (.Values.general).environment }}
+          {{- range $key, $value := .Values.general.environment }}
             - name: {{ $key }}
               value: {{ $value | quote }}
           {{- end }}
-          {{- end }}
           {{- if or ((.Values.scaling).resources).memory ((.Values.scaling).resources).cpu }}
-
           resources:
             {{- if .Values.scaling.resources.memory }}
             limits:
@@ -44,28 +39,29 @@ spec:
             requests:
               cpu: "{{ .Values.scaling.resources.cpu }}"
             {{- end }}
-
+          {{- end }}
           {{- if .Values.probes.enabled }}
+          {{- with .Values.probes }}
           readinessProbe:
             httpGet:
-              path: {{ .Values.probes.readiness.path }}
+              path: {{ .readiness.path }}
               port: http
-            initialDelaySeconds: {{ .Values.probes.readiness.initialDelaySeconds }}
-            periodSeconds: {{ .Values.probes.readiness.periodSeconds }}
-            failureThreshold: {{ .Values.probes.readiness.failureThreshold }}
-
+            initialDelaySeconds: {{ .readiness.initialDelaySeconds }}
+            periodSeconds: {{ .readiness.periodSeconds }}
+            failureThreshold: {{ .readiness.failureThreshold }}
           livenessProbe:
             httpGet:
-              path: {{ .Values.probes.liveness.path }}
+              path: {{ .liveness.path }}
               port: http
-            initialDelaySeconds: {{ .Values.probes.liveness.initialDelaySeconds }}
-            periodSeconds: {{ .Values.probes.liveness.periodSeconds }}
-
+            initialDelaySeconds: {{ .liveness.initialDelaySeconds }}
+            periodSeconds: {{ .liveness.periodSeconds }}
+            failureThreshold: {{ .liveness.failureThreshold }}
           startupProbe:
             httpGet:
-              path: {{ .Values.probes.startup.path }}
+              path: {{ .startup.path }}
               port: http
-            initialDelaySeconds: {{ .Values.probes.startup.initialDelaySeconds }}
-            periodSeconds: {{ .Values.probes.startup.periodSeconds }}
-            failureThreshold: {{ .Values.probes.startup.failureThreshold }}
+            initialDelaySeconds: {{ .startup.initialDelaySeconds }}
+            periodSeconds: {{ .startup.periodSeconds }}
+            failureThreshold: {{ .startup.failureThreshold }}
+          {{- end }}
           {{- end }}
