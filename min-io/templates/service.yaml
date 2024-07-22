@@ -7,9 +7,9 @@ spec:
     app: minio
   ports:
   - protocol: TCP
-    port: 8080  # Adjust port if needed (external access)
-    targetPort: {{ .Values.service.apiPort | default 9000 }}
+    port: 80  # External access port
+    targetPort: {{ .Values.service.apiPort | default 9000 }}  # API port
   - protocol: TCP
-    port: 80  # Adjust port if needed (external access)
-    targetPort: {{ .Values.service.consolePort | default 9090 }}
+    port: 9090  # Console access port
+    targetPort:  {{ .Values.service.consolePort | default 9090 }}
   type: {{ .Values.service.type | default "ClusterIP" }}  # Adjust type for external access
