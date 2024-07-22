@@ -17,6 +17,13 @@ spec:
       containers:
       - name: minio
         image: quay.io/minio/minio:latest  # Adjust image tag if needed
+        resources:
+          requests:
+            cpu: {{ .Values.resources.requests.cpu }}
+            memory: {{ .Values.resources.requests.memory }}
+          limits:
+            cpu: {{ .Values.resources.limits.cpu }}
+            memory: {{ .Values.resources.limits.memory }}
         command:
         - /bin/bash
         - -c
@@ -29,13 +36,6 @@ spec:
         - containerPort: 9090
           name: console
           protocol: TCP
-      resources:
-        requests:
-          cpu: {{ .Values.resources.requests.cpu }}
-          memory: {{ .Values.resources.requests.memory }}
-        limits:
-          cpu: {{ .Values.resources.limits.cpu }}
-          memory: {{ .Values.resources.limits.memory }}
         volumeMounts:
         - name: minio-data
           mountPath: /data
