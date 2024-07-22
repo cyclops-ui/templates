@@ -29,6 +29,13 @@ spec:
         - containerPort: 9090
           name: console
           protocol: TCP
+      resources:
+        requests:
+          cpu: {{ .Values.resources.requests.cpu }}
+          memory: {{ .Values.resources.requests.memory }}
+        limits:
+          cpu: {{ .Values.resources.limits.cpu }}
+          memory: {{ .Values.resources.limits.memory }}
         volumeMounts:
         - name: minio-data
           mountPath: /data
@@ -47,10 +54,3 @@ spec:
       - name: minio-data
         persistentVolumeClaim:
           claimName: {{ .Release.Name }}-minio-pvc
-      resources:
-        requests:
-          cpu: {{ .Values.resources.requests.cpu }}
-          memory: {{ .Values.resources.requests.memory }}
-        limits:
-          cpu: {{ .Values.resources.limits.cpu }}
-          memory: {{ .Values.resources.limits.memory }}
