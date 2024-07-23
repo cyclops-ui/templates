@@ -28,12 +28,12 @@ spec:
         - /bin/bash
         - -c
         args: 
-        - minio server /data --console-address :{{ .Values.service.consolePort }}
+        - minio server /data --console-address :{{ .Values.service.consoleTargetPort }}
         ports:
-        - containerPort: {{ .Values.service.apiPort }}
+        - containerPort: {{ .Values.service.apiTargetPort }}
           name: api
           protocol: TCP
-        - containerPort: {{ .Values.service.consolePort }}
+        - containerPort: {{ .Values.service.consoleTargetPort }}
           name: console
           protocol: TCP
         volumeMounts:
