@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-minio-service
+spec:
+  selector:
+    app: minio
+  ports:
+  - name: api-port
+    protocol: TCP
+    port: {{ .Values.service.apiPort | default 9000 }}  # External access port
+    targetPort: {{ .Values.service.apiPort | default 9000 }}  # API port
+  - name: console-port
+    protocol: TCP
+    port: {{ .Values.service.consolePort | default 9090 }}  # Console access port
+    targetPort: {{ .Values.service.consolePort | default 9090 }}
+  type: {{ .Values.service.type | default "ClusterIP" }}  # Adjust type for external access

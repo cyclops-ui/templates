@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-minio
+spec:
+  replicas: {{ .Values.replicas | default 1 }}
+  selector:
+    matchLabels:
+      app: minio
+  template:
+    metadata:
+      labels:
+        app: minio
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/secret.yaml") . | sha256sum }}
+    spec:
+      containers:
+      - name: minio
+        image: quay.io/minio/minio:latest  # Adjust image tag if needed
+        resources:
+          requests:
+            cpu: {{ .Values.resources.requests.cpu }}
+            memory: {{ .Values.resources.requests.memory }}
+          limits:
+            cpu: {{ .Values.resources.limits.cpu }}
+            memory: {{ .Values.resources.limits.memory }}
+        command:
+        - /bin/bash
+        - -c
+        args: 
+        - minio server /data --console-address :{{ .Values.service.consolePort }}
+        ports:
+        - containerPort: {{ .Values.service.apiPort }}
+          name: api
+          protocol: TCP
+        - containerPort: {{ .Values.service.consolePort }}
+          name: console
+          protocol: TCP
+        volumeMounts:
+        - name: minio-data
+          mountPath: /data
+        env:
+          - name: MINIO_ROOT_USER
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}-minio-secret
+                key: MINIO_ROOT_USER
+          - name: MINIO_ROOT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}-minio-secret
+                key: MINIO_ROOT_PASSWORD
+      volumes:
+      - name: minio-data
+        persistentVolumeClaim:
+          claimName: {{ .Release.Name }}-minio-pvc

@@ -1,0 +1,107 @@
+{
+    "properties": {
+        "username": {
+            "description": "User for MinIO (store in Kubernetes Secret)",
+            "type": "string"
+        },
+        "password": {
+            "description": "Pass key for MinIO (store in Kubernetes Secret)",
+            "type": "string"
+        },
+        "replicas": {
+            "description": "Number of MinIO server pods to deploy",
+            "type": "integer"
+        },
+        "storage": {
+            "title": "Storage",
+            "type": "object",
+            "properties": {
+                "size": {
+                    "description": "Size of storage allocated to each MinIO pod",
+                    "type": "string",
+                    "enum": [
+                        "1Gi",
+                        "2Gi",
+                        "4Gi"
+                    ]
+                }
+            },
+            "required": [
+                "size"
+            ]
+        },
+        "service": {
+            "title": "Service",
+            "type": "object",
+            "properties": {
+                "apiPort": {
+                    "description": "Port on which the MinIO API service is exposed (default: 9000)",
+                    "type": "integer"
+                },
+                "consolePort": {
+                    "description": "Port on which the MinIO service is exposed (default: 9090)",
+                    "type": "integer"
+                },
+                "type": {
+                    "description": "Service type (default: ClusterIP)",
+                    "type": "string",
+                    "enum": [
+                        "ClusterIP",
+                        "LoadBalancer",
+                        "NodePort"
+                    ]
+                }
+            }
+        },
+        "resources": {
+            "title": "Resources",
+            "type": "object",
+            "properties": {
+                "requests": {
+                    "title": "Resource Requests",
+                    "type": "object",
+                    "properties": {
+                        "cpu": {
+                            "description": "Minimum CPU resources requested by MinIO",
+                            "type": "string"
+                        },
+                        "memory": {
+                            "description": "Minimum memory resources requested by MinIO",
+                            "type": "string"
+                        }
+                    }
+                },
+                "limits": {
+                    "title": "Resource Limits",
+                    "type": "object",
+                    "properties": {
+                        "cpu": {
+                            "description": "Maximum CPU resources allocated to MinIO",
+                            "type": "string"
+                        },
+                        "memory": {
+                            "description": "Maximum memory resources allocated to MinIO",
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "order": [
+        "username",
+        "password",
+        "service",
+        "replicas",
+        "storage"
+    ],
+    "required": [
+        "username",
+        "password",
+        "replicas",
+        "storage",
+        "service"
+    ],
+    "title": "Values",
+    "type": "object"
+}

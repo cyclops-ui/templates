@@ -1,0 +1,40 @@
+# Deployment configuration
+
+replicas: 1
+
+# Credentials (**Do not store sensitive information in plain text.** Use Kubernetes Secrets instead)
+username: minioadmin
+password: minioadmin
+
+# Storage configuration
+storage:
+  # Adjust size based on your needs
+  size: 1Gi
+  # Choose a storage class if needed (refer to your Kubernetes documentation)
+# storageClass: ""
+
+# Service configuration
+
+service:
+  # Change port if needed (default: 9000 for MinIO API)
+  apiPort: 9000
+  consolePort: 9090
+
+# Enable service for external access (optional)
+# type: LoadBalancer  # or NodePort
+
+# Resources configuration
+
+resources:
+  # Adjust resource requests and limits based on your MinIO usage
+  requests:
+    cpu: 100m
+    memory: 256Mi
+  limits:
+    cpu: 1000m
+    memory: 2Gi
+
+
+# Additional configuration (refer to MinIO documentation for available options)
+
+extraArgs: []
