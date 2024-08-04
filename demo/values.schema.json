@@ -15,7 +15,8 @@
     },
     "service": {
       "description": "Expose your application",
-      "type": "boolean"
+      "type": "boolean",
+      "immutable": true
     }
   },
   "order": ["replicas", "image", "version", "service"],
