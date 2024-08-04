@@ -7,7 +7,7 @@
     "image": {
       "description": "Container Image",
       "type": "string",
-      "immutable": trueg
+      "immutable": true
     },
     "version": {
       "description": "Container image version",
@@ -18,17 +18,8 @@
       "type": "boolean"
     }
   },
-  "order": [
-    "replicas",
-    "image",
-    "version",
-    "service"
-  ],
-  "required": [
-    "replicas",
-    "image",
-    "version"
-  ],
+  "order": ["replicas", "image", "version", "service"],
+  "required": ["replicas", "image", "version"],
   "title": "Values",
   "type": "object"
 }
