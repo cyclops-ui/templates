@@ -6,7 +6,8 @@
     },
     "image": {
       "description": "Container Image",
-      "type": "string"
+      "type": "string",
+      "immutable": trueg
     },
     "version": {
       "description": "Container image version",
