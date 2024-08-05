@@ -1,6 +1,6 @@
 # default configuration for dragonfly
 
-
+# no of dragonfly replicas to deploy
 replicaCount: 1
 
 image:
@@ -8,7 +8,7 @@ image:
   
   
 
-# default resource requirements, you can change it according to your needs
+# default resource requirements, you can change it according to your needs.
 resources: 
   requests:
     cpu:  100m
@@ -16,11 +16,39 @@ resources:
   
   limits:
     cpu: 1000m
-    memory: 500Mi
+    memory: 512Mi
 
 
 
 service:
-  type: ClusterIP
   
+  type: ClusterIP
+  # Load balancer static ip to use when service type is set to LoadBalancer
+  loadBalancerIP: ""
+  # Dragonfly default service port
+  port: 6379
+  
+  metrics:
+  # name for the metrics port
+    portName: metrics
+  # serviceType for the metrics service
+    serviceType: ClusterIP
+  
+  
+
+storage:
+  # you can set this to true for production use cases,if you want dragonfly to persist data.
+  enabled: false
+
+  storageClassName: ""
+  #  Volume size to request for the PVC,default is 128Mb
+  requests: 128Mi
+  
+
+
+# extra  arguments to pass to dragonfly binary
+extraArgs: []
+
+  
+
     
