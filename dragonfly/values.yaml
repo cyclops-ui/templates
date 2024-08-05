@@ -11,11 +11,15 @@ image:
 # default resource requirements, you can change it according to your needs.
 resources: 
   requests:
+    # min cpu millisecs
     cpu:  100m
+    # min memory for dragonfly deployment
     memory: 128Mi
   
   limits:
+    #max cpu millisecs
     cpu: 1000m
+    # max memory limit for dragonfly deployment 
     memory: 512Mi
 
 
@@ -47,8 +51,22 @@ storage:
 
 
 # extra  arguments to pass to dragonfly binary
-extraArgs: []
+extraArgs: 
+  # 
+  - --dbfilename=dump.rdb
+  - --snapshot_cron=* * * * * 
 
   
 
-    
+securityContexts:
+  capabilities:
+    drop:
+      - ALL
+  # sets file system permission as read-only for dragonfly container
+  readOnlyRootFilesystem: true
+  # sets the dragon container to run as non-root 
+  runAsNonRoot: true
+  # 
+  runAsUser: 1000
+  
+
