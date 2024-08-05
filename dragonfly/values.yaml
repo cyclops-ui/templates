@@ -17,7 +17,7 @@ resources:
     memory: 128Mi
   
   limits:
-    #max cpu millisecs
+    #max cpu millisecs for dragonfly deployment
     cpu: 1000m
     # max memory limit for dragonfly deployment 
     memory: 512Mi
@@ -45,15 +45,16 @@ storage:
   enabled: false
 
   storageClassName: ""
-  #  Volume size to request for the PVC,default is 128Mb
+  #  Volume size to request for the PVC,default set to 128Mb
   requests: 128Mi
   
 
 
 # extra  arguments to pass to dragonfly binary
 extraArgs: 
-  # 
+  # database dump file for backups
   - --dbfilename=dump.rdb
+  # takes snapshots 
   - --snapshot_cron=* * * * * 
 
   
@@ -66,7 +67,31 @@ securityContexts:
   readOnlyRootFilesystem: true
   # sets the dragon container to run as non-root 
   runAsNonRoot: true
-  # 
+  # run dragonfly container with user-Id as 1000
   runAsUser: 1000
   
+
+
+# the below fields serviceMonitor and promtheiumsRule requires you have promtheus operator running in your cluster
+
+#serviceMonitor:
+  # -- If true, a ServiceMonitor CRD is created for a prometheus operator
+  #enabled: false
+  # -- namespace in which to deploy the ServiceMonitor CR. defaults to the application namespace
+  #namespace: ""
+  # -- additional labels to apply to the metrics
+  #labels: {}
+  # -- additional annotations to apply to the metrics
+  #annotations: {}
+  # -- scrape interval
+  #interval: 10s
+  # -- scrape timeout
+  #scrapeTimeout: 10s
+
+#prometheusRule:
+  # -- Deploy a PrometheusRule
+  #enabled: false
+  # -- PrometheusRule.Spec
+  # https://awesome-prometheus-alerts.grep.to/rules
+  #spec: []
 
