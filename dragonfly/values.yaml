@@ -1,0 +1,26 @@
+# default configuration for dragonfly
+
+
+replicaCount: 1
+
+image:
+  repository: docker.dragonflydb.io/dragonflydb/dragonfly
+  
+  
+
+# default resource requirements, you can change it according to your needs
+resources: 
+  requests:
+    cpu:  100m
+    memory: 128Mi
+  
+  limits:
+    cpu: 1000m
+    memory: 500Mi
+
+
+
+service:
+  type: ClusterIP
+  
+    
