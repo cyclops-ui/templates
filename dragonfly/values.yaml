@@ -52,7 +52,7 @@ serviceAccount:
 
 storage:
   # you can set this to true for production use cases,if you want dragonfly to persist data.
-  enabled: false
+  enabled: false 
 
   storageClassName: ""
   #  Volume size to request for the PVC,default set to 128Mb
