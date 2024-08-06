@@ -64,7 +64,7 @@ storage:
 extraArgs: 
   # database dump file for backups
   - --dbfilename=dump.rdb
-  # takes snapshots 
+  # takes snapshots at every minute
   - --snapshot_cron=* * * * * 
 
   
