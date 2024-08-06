@@ -5,6 +5,7 @@ replicaCount: 1
 
 image:
   repository: docker.dragonflydb.io/dragonflydb/dragonfly
+  tag: "latest"
   
   
 
