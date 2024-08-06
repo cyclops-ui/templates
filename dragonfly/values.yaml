@@ -67,7 +67,10 @@ extraArgs:
   # takes snapshots at every minute
   - --snapshot_cron=* * * * * 
 
-  
+
+podSecurityContext:
+  fsGroup: 2000
+
 
 securityContexts:
   capabilities:
