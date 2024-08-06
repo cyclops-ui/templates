@@ -5,8 +5,7 @@ replicaCount: 1
 
 image:
   repository: docker.dragonflydb.io/dragonflydb/dragonfly
-  tag: "latest"
-  
+  tag: ""
   
 
 # default resource requirements, you can change it according to your needs.

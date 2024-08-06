@@ -2,4 +2,4 @@ apiVersion: v2
 name: dragonfly
 description: "a modern superfast in-memory datastore, fully compatible with Redis and Memcached APIs"
 
-version: 0.0.0
+version: v1.20.1
