@@ -1,0 +1,29 @@
+{
+
+    "properties": {
+        "replicaCount":{
+            "description": "number of replicas of dragonflyDb",
+            "type":"integer"
+        },
+        "storage":{
+
+            "description": "enables persistent storage",
+            "type":"boolean"
+        },
+        "serviceMonitor":{
+            "description": "enables service monitor ,requires kube-promtheus installed in your cluster",
+            "type":"boolean"
+            
+        }
+        
+        
+        
+
+      
+
+
+        
+    }
+
+
+}

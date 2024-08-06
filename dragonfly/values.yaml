@@ -38,7 +38,17 @@ service:
   # serviceType for the metrics service
     serviceType: ClusterIP
   
-  
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+
 
 storage:
   # you can set this to true for production use cases,if you want dragonfly to persist data.
@@ -72,26 +82,68 @@ securityContexts:
   
 
 
-# the below fields serviceMonitor and promtheiumsRule requires you have promtheus operator running in your cluster
+# the below fields serviceMonitor and promtheiumsRule requires you have prometheus operator running in your cluster.
 
-#serviceMonitor:
-  # -- If true, a ServiceMonitor CRD is created for a prometheus operator
-  #enabled: false
-  # -- namespace in which to deploy the ServiceMonitor CR. defaults to the application namespace
-  #namespace: ""
-  # -- additional labels to apply to the metrics
-  #labels: {}
-  # -- additional annotations to apply to the metrics
-  #annotations: {}
-  # -- scrape interval
-  #interval: 10s
-  # -- scrape timeout
-  #scrapeTimeout: 10s
+serviceMonitor:
+  # If true, a ServiceMonitor CRD is created for a prometheus operator
+  enabled: false
+  # namespace in which to deploy the ServiceMonitor CR. defaults to the application namespace
+  namespace: ""
+  # additional labels to apply to the metrics
+  labels: {}
+  # additional annotations to apply to the metrics
+  annotations: {}
+  # scrape interval
+  interval: 10s
+  # scrape timeout
+  scrapeTimeout: 10s
 
-#prometheusRule:
-  # -- Deploy a PrometheusRule
-  #enabled: false
-  # -- PrometheusRule.Spec
+prometheusRule:
+  # Deploy a PrometheusRule
+  enabled: false
+  # PrometheusRule.Spec
   # https://awesome-prometheus-alerts.grep.to/rules
-  #spec: []
+  spec: []
 
+
+tls:
+  # -enable TLS
+  enabled: false
+  # use cert-manager to automatically create the certificate
+  createCerts: false
+  # duration or ttl of the validity of the created certificate
+  duration: 87600h0m0s
+  issuer:
+    # - cert-manager issuer kind. Usually Issuer or ClusterIssuer
+    kind: ClusterIssuer
+    # -name of the referenced issuer
+    name: selfsigned
+    # - group of the referenced issuer
+    # if you are using an external issuer, change this to that issuer group.
+    group: cert-manager.io
+  # - use TLS certificates from existing secret
+  existing_secret: ""
+  # - TLS certificate
+  cert: ""
+  # cert: |
+  #   -----BEGIN CERTIFICATE-----
+  #   MIIDazCCAlOgAwIBAgIUfV3ygaaVW3+yzK5Dq6Aw6TsZ494wDQYJKoZIhvcNAQEL
+  #   ...
+  #   BQAwRTELMAkGA1UEBhMCQVUxEzARBgNVBAgMClNvbWUtU3RhdGUxITAfBgNVBAoM
+  #   zJAL4hNw4Tr6E52fqdmX
+  #   -----END CERTIFICATE-----
+  # -- TLS private key
+  key: ""
+
+
+
+
+passwordFromSecret:
+  enable: false
+  existingSecret:
+    name: ""
+    key: ""
+
+
+
+# for more fields check dragon fly helm chart
