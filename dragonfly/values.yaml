@@ -61,12 +61,8 @@ storage:
 
 
 # extra  arguments to pass to dragonfly binary
-extraArgs: 
-  # database dump file for backups
-  - --dbfilename=dump.rdb
-  # takes snapshots at every minute
-  - --snapshot_cron=* * * * * 
-
+extraArgs: []
+  
 
 podSecurityContext:
   fsGroup: 2000
