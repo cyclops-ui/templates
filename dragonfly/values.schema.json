@@ -1,5 +1,4 @@
 {
-
     "properties": {
         "replicaCount":{
             "description": "number of replicas of dragonflyDb",
