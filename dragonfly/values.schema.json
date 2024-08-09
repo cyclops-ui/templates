@@ -24,7 +24,18 @@
         },
         "serviceMonitor":{
             "description": "enables service monitor ,requires kube-promtheus installed in your cluster",
-            "type":"boolean"
+            "type":"object",
+            "properties": {
+                "enabled":{
+                    "type":"boolean"
+                },
+                "namespace":{
+                    "description": "namespace to deploy in,default is application namespace",
+                    "type":"string"
+                }
+                
+            
+            }
             
         },
         "resources":{
