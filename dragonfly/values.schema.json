@@ -6,21 +6,18 @@
             "type":"integer"
         },
         "storage":{
-             
             "description": "storage for dragonflydb,default is 128Mi",
             "type":"object",
             "properties": {
                 "enabled":{
                     "description": "enables storage if set to true ,default is false",
                     "type":"boolean"
-                
                 },
                 "requests":{
                     "description":"requests storage,default 128Mi",
                     "type":"string"
             }
             }
-        
         },
         "serviceMonitor":{
             "description": "enables service monitor ,requires kube-promtheus installed in your cluster",
@@ -33,45 +30,32 @@
                     "description": "namespace to deploy in,default is application namespace",
                     "type":"string"
                 }
-                
-            
-            }
-            
+            }           
         },
         "resources":{
- 
             "description": "allocate cpu and ram for dragonfly",
             "title": "resources",
             "type":"object",
             "properties": {
-
                 "requests":{
-
                     "title": "Request resoures",
                     "type":"object",
                     "properties": {
-                        
-
                         "cpu":{
-
                             "description":"request to allocates  cpu resource,default is 100m",
                             "type":"string"
-                        
                     },
                         "memory":{
-
                             "description":"requests memory for dragonfly, default 128Mi(Megabyte)",
                             "type":"string"
                     }
                     }
                 },
                 "limits":{
-
                     "title":"resource limits",
                     "description": "sets upper limits for resources",
                     "type":"object",
                     "properties": {
-                        
                         "cpu":{
                             "description":"cpu resource limit,deafult is 1000m",
                             "type":"string"
@@ -81,23 +65,15 @@
                             "type":"string"
                         }
                     }
-                    
-                    
                 }
-                
             }
-
         }
-        
-        
     },
     "order":[
-
         "replicaCount",
         "storage",
         "resources",
         "serviceMonitor"
-        
     ],
     "required": [
         "replicaCount",
@@ -105,7 +81,4 @@
         "resources",
         "serviceMonitor"
     ]
-    
-
-
 }
