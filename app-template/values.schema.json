@@ -81,6 +81,11 @@
         "type": {
           "title": "Service Type",
           "type": "string",
+          "enum": [
+            "ClusterIP",
+            "NodePort",
+            "LoadBalancer"
+          ],
           "description": "Specify the type of Service to create."
         },
         "port": {
