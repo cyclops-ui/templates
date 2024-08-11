@@ -12,3 +12,4 @@ scaling:
 networking:
   expose: true
   port: 80
+  type: ClusterIP

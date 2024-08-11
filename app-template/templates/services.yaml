@@ -6,7 +6,7 @@ metadata:
   labels:
     app: {{ .Release.Name }}
 spec:
-  type: ClusterIP
+  type: {{ .Values.networking.type | default "ClusterIP" }}
   ports:
     - port: {{ (.Values.networking).port }}
       targetPort: {{ (.Values.networking).port }}

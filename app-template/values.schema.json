@@ -78,6 +78,11 @@
           "type": "boolean",
           "description": "Create a Service for your application"
         },
+        "type": {
+          "title": "Service Type",
+          "type": "string",
+          "description": "Specify the type of Service to create."
+        },
         "port": {
           "title": "Port",
           "type": "integer",
@@ -86,6 +91,7 @@
       },
       "order": [
         "expose",
+        "type",
         "port"
       ]
     }
