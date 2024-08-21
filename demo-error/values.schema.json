@@ -1,0 +1,33 @@
+{
+  "properties": {
+    "replicas": {
+      "description": "Number of replicas",
+      "type": "integer"
+    },
+    "image": {
+      "description": "Container Image",
+      "type": "string"
+    },
+    "version": {
+      "description": "Container image version",
+      "type": "string"
+    },
+    "service": {
+      "description": "Expose your application",
+      "type": "boolean"
+    }
+  },
+  "order": [
+    "replicas",
+    "image",
+    "version",
+    "service"
+  ],
+  "required": [
+    "replicas",
+    "image",
+    "version"
+  ],
+  "title": "Values",
+  "type": "object"
+}

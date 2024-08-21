@@ -1,0 +1,17 @@
+{{- if .Values.service }}
+apiVersion: v1
+kind: ServiceError
+metadata:
+  name: {{ .Release.Name }}
+  labels:
+    app: {{ .Release.Name }}
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+      name: http
+  selector:
+    app: {{ .Release.Name }}
+{{- end }}
