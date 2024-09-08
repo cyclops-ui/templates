@@ -18,7 +18,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Release.Name }}
+  name: {{ .Release.Name }}-ns-release
   namespace: {{ .Release.Namespace }}
   labels:
     app: {{ .Release.Name }}
