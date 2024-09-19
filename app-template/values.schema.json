@@ -7,12 +7,14 @@
         "image": {
           "title": "App image",
           "type": "string",
-          "description": "Application image"
+          "description": "Application image",
+          "immutable": true
         },
         "version": {
           "title": "Image version",
           "type": "string",
-          "description": "Image tag you want to deploy"
+          "description": "Image tag you want to deploy",
+          "immutable": true
         },
         "environment": {
           "title": "Environment variables",
@@ -38,7 +40,7 @@
           "title": "Replicas",
           "type": "integer",
           "description": "Number of instances you want to deploy",
-          "minimum": 0
+          "minimum": 3
         },
         "resources": {
           "type": "object",
@@ -76,7 +78,8 @@
         "expose": {
           "title": "Expose",
           "type": "boolean",
-          "description": "Create a Service for your application"
+          "description": "Create a Service for your application",
+          "immutable": true
         },
         "type": {
           "title": "Service Type",
@@ -86,12 +89,14 @@
             "NodePort",
             "LoadBalancer"
           ],
-          "description": "Specify the type of Service to create."
+          "description": "Specify the type of Service to create.",
+          "immutable": true
         },
         "port": {
           "title": "Port",
           "type": "integer",
-          "description": "Port to expose for your application"
+          "description": "Port to expose for your application",
+          "immutable": true
         }
       },
       "order": [

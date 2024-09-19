@@ -7,7 +7,7 @@ general:
     ENVIRONMENT: production
 
 scaling:
-  replicas: 1
+  replicas: 3
 
 networking:
   expose: true
