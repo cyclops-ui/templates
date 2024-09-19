@@ -1,3 +1,4 @@
 apiVersion: v1
 name: redis
 version: 0.0.0
+icon: https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Redis_logo.svg/640px-Redis_logo.svg.png
