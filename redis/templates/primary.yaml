@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.name }}-redis
+  name: {{ .Release.Name }}-redis
 spec:
   replicas: 1
   selector:
     matchLabels:
-      instance: {{ .Values.name }}
+      instance: {{ .Release.Name }}
       app: redis
       role: primary
   template:
     metadata:
       labels:
-        instance: {{ .Values.name }}
+        instance: {{ .Release.Name }}
         app: redis
         role: primary
     spec:
@@ -29,10 +29,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Values.name }}-redis
+  name: {{ .Release.Name }}-redis
 spec:
   selector:
-    instance: {{ .Values.name }}
+    instance: {{ .Release.Name }}
     app: redis
     role: primary
   ports:

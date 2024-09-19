@@ -2,18 +2,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.name }}-redis-replica
+  name: {{ .Release.Name }}-redis-replica
 spec:
   replicas: {{ (.Values.replication).replicas }}
   selector:
     matchLabels:
-      instance: {{ .Values.name }}
+      instance: {{ .Release.Name }}
       app: redis
       role: replica
   template:
     metadata:
       labels:
-        instance: {{ .Values.name }}
+        instance: {{ .Release.Name }}
         app: redis
         role: replica
     spec:
@@ -21,9 +21,9 @@ spec:
         - name: redis
           image: "redis:{{- .Values.version }}"
           {{- if and (eq ((.Values.authentication).require) true) (gt (len ((.Values.authentication).password)) 0) }}
-          command: ["redis-server", "--requirepass", "{{ .Values.authentication.password }}", "--slaveof", "{{ .Values.name }}-redis", "6379"]
+          command: ["redis-server", "--requirepass", "{{ .Values.authentication.password }}", "--slaveof", "{{ .Release.Name }}-redis", "6379"]
           {{ else }}
-          command: ["redis-server", "--slaveof", "{{ .Values.name }}-redis", "6379"]
+          command: ["redis-server", "--slaveof", "{{ .Release.Name }}-redis", "6379"]
           {{ end -}}
           ports:
             - containerPort: 6379
@@ -32,10 +32,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Values.name }}-redis-replica
+  name: {{ .Release.Name }}-redis-replica
 spec:
   selector:
-    instance: {{ .Values.name }}
+    instance: {{ .Release.Name }}
     app: redis
     role: replica
   ports:
