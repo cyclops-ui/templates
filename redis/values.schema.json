@@ -1,10 +1,5 @@
 {
   "properties": {
-    "name": {
-      "title": "Name",
-      "description": "Database name",
-      "type": "string"
-    },
     "version": {
       "title": "Specify Redis version",
       "description": "Container image version",
@@ -58,7 +53,6 @@
     }
   },
   "order": [
-    "name",
     "version",
     "authentication",
     "replication"
