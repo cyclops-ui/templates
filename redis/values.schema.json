@@ -58,7 +58,6 @@
     "replication"
   ],
   "required": [
-    "name",
     "version"
   ],
   "title": "Values",
