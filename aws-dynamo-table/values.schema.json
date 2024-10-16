@@ -46,7 +46,7 @@
             "type": "string",
             "enum": [
               "HASH",
-              "RANGE",
+              "RANGE"
             ]
           }
         },
@@ -77,7 +77,7 @@
       ],
       "title": "Provisioned Throughput",
       "type": "object"
-    },
+    }
   },
   "required": [
     "name",
