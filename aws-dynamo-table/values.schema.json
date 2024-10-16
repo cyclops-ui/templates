@@ -26,7 +26,6 @@
         "type": "object"
       },
       "title": "Attribute definitions",
-      "description": "Define all attributes in your dynamo table",
       "type": "array"
     },
     "keySchema": {
@@ -52,7 +51,6 @@
         "type": "object"
       },
       "title": "Key schema",
-      "description": "Define all attributes in your dynamo table",
       "type": "array"
     },
     "provisionedThroughput": {
