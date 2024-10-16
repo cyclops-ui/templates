@@ -43,7 +43,7 @@
           "type": "object"
         }
       },
-      "title": "tagging",
+      "title": "Tags",
       "type": "object"
     },
     "website": {
@@ -62,12 +62,12 @@
     }
   },
   "required": [
+    "publicAccessBlock"
+  ],
+  "order": [
     "publicAccessBlock",
     "website",
     "tagging"
-  ],
-  "order": [
-    "publicAccessBlock"
   ],
   "type": "object"
 }
