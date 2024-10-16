@@ -1,0 +1,73 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "properties": {
+    "publicAccessBlock": {
+      "properties": {
+        "blockPublicACLs": {
+          "title": "Block Public ACLs",
+          "type": "boolean"
+        },
+        "blockPublicPolicy": {
+          "title": "Block Public Policy",
+          "type": "boolean"
+        },
+        "ignorePublicACLs": {
+          "title": "Ignore Public ACLs",
+          "type": "boolean"
+        },
+        "restrictPublicBuckets": {
+          "title": "Restrict Public Buckets",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "blockPublicACLs",
+        "blockPublicPolicy",
+        "ignorePublicACLs",
+        "restrictPublicBuckets"
+      ],
+      "order": [
+        "blockPublicACLs",
+        "blockPublicPolicy",
+        "ignorePublicACLs",
+        "restrictPublicBuckets"
+      ],
+      "title": "Public access",
+      "type": "object"
+    },
+    "tagging": {
+      "properties": {
+        "tags": {
+          "title": "Tags",
+          "type": "object"
+        }
+      },
+      "title": "tagging",
+      "type": "object"
+    },
+    "website": {
+      "properties": {
+        "errorDocument": {
+          "title": "Error document",
+          "type": "string"
+        },
+        "indexDocument": {
+          "title": "Index Document",
+          "type": "string"
+        }
+      },
+      "title": "Website",
+      "type": "object"
+    }
+  },
+  "required": [
+    "publicAccessBlock",
+    "website",
+    "tagging"
+  ],
+  "order": [
+    "publicAccessBlock"
+  ],
+  "type": "object"
+}

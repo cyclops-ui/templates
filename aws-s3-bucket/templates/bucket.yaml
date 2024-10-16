@@ -1,0 +1,31 @@
+apiVersion: s3.services.k8s.aws/v1alpha1
+kind: Bucket
+metadata:
+  name: {{ .Release.Name | quote }}
+  namespace: {{ .Release.Namespace | quote }}
+spec:
+  name: {{ .Release.Name | quote }}
+  publicAccessBlock:
+    blockPublicACLs: {{ .Values.publicAccessBlock.blockPublicACLs}}
+    blockPublicPolicy: {{ .Values.publicAccessBlock.blockPublicPolicy}}
+    ignorePublicACLs: {{ .Values.publicAccessBlock.ignorePublicACLs}}
+    restrictPublicBuckets: {{ .Values.publicAccessBlock.restrictPublicBuckets}}
+  {{ if .Values.website }}
+  website:
+    {{ if .Values.website.errorDocument }}
+    errorDocument:
+      key: {{ .Values.website.errorDocument }}
+    {{- end }}
+    {{ if .Values.website.indexDocument }}
+    indexDocument:
+      suffix: {{ .Values.website.indexDocument }}
+    {{- end }}
+  {{- end }}
+  {{- if (.Values.tagging).tags }}
+  tagging:
+    tagSet:
+      {{- range $key, $value := .Values.tagging.tags }}
+      - key: {{ $key }}
+        value: {{ $value }}
+      {{- end }}
+  {{- end }}

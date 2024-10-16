@@ -1,0 +1,5 @@
+publicAccessBlock:
+  blockPublicACLs: true
+  blockPublicPolicy: true
+  ignorePublicACLs: true
+  restrictPublicBuckets: true
