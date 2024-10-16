@@ -1,0 +1,89 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "properties": {
+    "name": {
+      "title": "Name",
+      "description": "Name of your Dynamo table",
+      "type": "string"
+    },
+    "attributeDefinitions": {
+      "items": {
+        "properties": {
+          "attributeName": {
+            "title": "Attribute name",
+            "type": "string"
+          },
+          "attributeType": {
+            "title": "Attribute type",
+            "type": "string",
+            "enum": [
+              "string",
+              "number",
+              "boolean"
+            ]
+          }
+        },
+        "required": [
+          "attributeName",
+          "attributeType"
+        ],
+        "type": "object"
+      },
+      "title": "Attribute definitions",
+      "description": "Define all attributes in your dynamo table",
+      "type": "array"
+    },
+    "keySchema": {
+      "items": {
+        "properties": {
+          "attributeName": {
+            "title": "Attribute name",
+            "type": "string"
+          },
+          "keyType": {
+            "title": "Key type",
+            "type": "string",
+            "enum": [
+              "HASH",
+              "RANGE",
+            ]
+          }
+        },
+        "required": [
+          "attributeName",
+          "keyType"
+        ],
+        "type": "object"
+      },
+      "title": "Key schema",
+      "description": "Define all attributes in your dynamo table",
+      "type": "array"
+    },
+    "provisionedThroughput": {
+      "properties": {
+        "readCapacityUnits": {
+          "title": "Read Capacity Units",
+          "type": "integer"
+        },
+        "writeCapacityUnits": {
+          "title": "Write Capacity Units",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "readCapacityUnits",
+        "writeCapacityUnits"
+      ],
+      "title": "Provisioned Throughput",
+      "type": "object"
+    },
+  },
+  "required": [
+    "name",
+    "attributeDefinitions",
+    "keySchema",
+    "provisionedThroughput"
+  ],
+  "type": "object"
+}

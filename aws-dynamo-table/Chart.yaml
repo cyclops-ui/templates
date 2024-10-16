@@ -1,0 +1,4 @@
+apiVersion: v1
+name: aws-dynamo-table
+version: 0.0.0
+icon: https://icon.icepanel.io/AWS/svg/Database/DynamoDB.svg

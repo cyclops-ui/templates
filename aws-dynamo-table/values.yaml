@@ -1,0 +1,9 @@
+attributeDefinitions:
+  - attributeName: ""
+    attributeType: ""
+keySchema:
+  - attributeName: ""
+    keyType: HASH
+provisionedThroughput:
+  readCapacityUnits: 5
+  writeCapacityUnits: 5
