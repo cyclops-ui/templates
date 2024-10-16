@@ -15,8 +15,8 @@ spec:
     {{- end }}
   tableName: {{ .Release.Name | quote }}
   keySchema:
-    {{- if .Values.attributeDefinitions }}
-    {{- range .Values.attributeDefinitions }}
+    {{- if .Values.keySchema }}
+    {{- range .Values.keySchema }}
     - attributeName: {{ .attributeName | quote }}
       keyType: {{ .keyType | quote }}
     {{- end }}
