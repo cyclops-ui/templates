@@ -29,3 +29,18 @@ spec:
         value: {{ $value }}
       {{- end }}
   {{- end }}
+---
+apiVersion: services.k8s.aws/v1alpha1
+kind: AdoptedResource
+metadata:
+  name: adopt-{{ .Release.Name }}
+  namespace: {{ .Release.Namespace | quote }}
+spec:
+  aws:
+    nameOrID: {{ .Release.Name | quote }}
+  kubernetes:
+    group: s3.services.k8s.aws
+    kind: Bucket
+    metadata:
+      name: {{ .Release.Name | quote }}
+      namespace: {{ .Release.Namespace | quote }}
