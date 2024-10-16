@@ -1,7 +1,8 @@
 apiVersion: dynamodb.services.k8s.aws/v1alpha1
 kind: Table
 metadata:
-  name: {{ .Release.name | quote }}
+  name: {{ .Release.Name | quote }}
+  namespace: {{ .Release.Namespace | quote }}
 spec:
   attributeDefinitions:
     {{- if .Values.attributeDefinitions }}
@@ -12,7 +13,7 @@ spec:
     {{- else }}
     {{- fail "attributeDefinitions cannot be empty" }}
     {{- end }}
-  tableName: {{ .Release.name | quote }}
+  tableName: {{ .Release.Name | quote }}
   keySchema:
     {{- if .Values.attributeDefinitions }}
     {{- range .Values.attributeDefinitions }}
