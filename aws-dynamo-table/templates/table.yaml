@@ -1,18 +1,18 @@
 apiVersion: dynamodb.services.k8s.aws/v1alpha1
 kind: Table
 metadata:
-  name: {{ .Values.name | quote }}
+  name: {{ .Release.name | quote }}
 spec:
   attributeDefinitions:
     {{- if .Values.attributeDefinitions }}
     {{- range .Values.attributeDefinitions }}
     - attributeName: {{ .attributeName | quote }}
-      attributeType: {{- if eq .attributeType "string" }}"S"{{- else if eq .attributeType "boolean" }}"B"{{- else if eq .attributeType "number" }}"N"{{- end }}
+      attributeType: {{ if eq .attributeType "string" }}"S"{{ else if eq .attributeType "boolean" }}"B"{{ else if eq .attributeType "number" }}"N"{{ end }}
     {{- end }}
     {{- else }}
     {{- fail "attributeDefinitions cannot be empty" }}
     {{- end }}
-  tableName: {{ .Values.name | quote }}
+  tableName: {{ .Release.name | quote }}
   keySchema:
     {{- if .Values.attributeDefinitions }}
     {{- range .Values.attributeDefinitions }}
