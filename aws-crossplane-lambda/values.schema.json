@@ -16,6 +16,11 @@
         "us-east-2"
       ]
     },
+    "path": {
+      "title": "Path",
+      "description": "Path of your lambda function",
+      "type": "string"
+    },
     "deploymentName": {
       "title": "REST API deployment name",
       "description": "Name of the stage of your REST API",
@@ -28,6 +33,7 @@
   "order": [
     "region",
     "bucketName",
+    "path",
     "deploymentName"
   ],
   "type": "object"

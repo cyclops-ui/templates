@@ -1,2 +1,3 @@
 region: us-east-1
 deploymentName: prod
+path: my-app
