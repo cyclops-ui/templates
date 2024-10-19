@@ -1,0 +1,141 @@
+apiVersion: s3.aws.upbound.io/v1beta1
+kind: Bucket
+metadata:
+  name: {{ .Values.bucketName }}
+spec:
+  forProvider:
+    region: {{ .Values.region }}
+  providerConfigRef:
+    name: default
+---
+apiVersion: s3.aws.upbound.io/v1beta1
+kind: BucketObject
+metadata:
+  name: {{ .Values.bucketName }}-object
+spec:
+  forProvider:
+    region: {{ .Values.region }}
+    bucketRef:
+      name: {{ .Values.bucketName }}
+    key: "ja-sam-zip.zip"
+    contentBase64: "UEsDBBQAAAAIABVxU1k5gG+mvwAAAC4BAAAIABwAaW5kZXgucHlVVAkAA0mhE2d3vxNndXgLAAEE9QEAAAQUAAAAXU/LigJBDLzPV0Q8jIKu4tGrtz2soHuXzCRqS7/oZMRB/Hene2EV65BnVZEYF0NSuEjwVUV8BIuuITyc0ZPlNOEre51BG7zyTafrCgaMYcfaJQ8I3/vtD4Tmwq0CmTQk2xdO+mPcS5NRi6J2sgnE9RpWy+XstWoC9cMwX/FFnYsyeekKwbEInrKw9uwQrkYYWmMZXA4ohHwc1f+ix/TN/cxInGQQf7hu8lde5799LNYYozUtqgl+kW958yvV4wlQSwECHgMUAAAACAAVcVNZOYBvpr8AAAAuAQAACAAYAAAAAAABAAAApIEAAAAAaW5kZXgucHlVVAUAA0mhE2d1eAsAAQT1AQAABBQAAABQSwUGAAAAAAEAAQBOAAAAAQEAAAAA"
+    contentType: "application/zip"
+  providerConfigRef:
+    name: default
+---
+apiVersion: lambda.aws.upbound.io/v1beta2
+kind: Function
+metadata:
+  name: {{ .Release.Name }}-lambda
+spec:
+  forProvider:
+    architectures: ["x86_64"]
+    handler: index.lambda_handler
+    packageType: Zip
+    region: {{ .Values.region }}
+    runtime: python3.9
+    s3BucketRef:
+      name: {{ .Values.bucketName }}
+    s3Key: ja-sam-zip.zip
+    timeout: 60
+    role: arn:aws:iam::724772068021:role/service-role/GetStartedLambdaBasicExecutionRole
+---
+apiVersion: lambda.aws.upbound.io/v1beta1
+kind: Permission
+metadata:
+  name: {{ .Release.Name }}-lambda-permission
+spec:
+  forProvider:
+    action: lambda:InvokeFunction
+    functionNameRef:
+      name: {{ .Release.Name }}-lambda
+    principal: apigateway.amazonaws.com
+    region: {{ .Values.region }}
+    statementId: AllowExecutionFromAPIGateway
+---
+apiVersion: apigateway.aws.upbound.io/v1beta1
+kind: RestAPI
+metadata:
+  name: {{ .Release.Name }}-rest-api
+spec:
+  forProvider:
+    name: {{ .Release.Name }}-rest-api
+    region: {{ .Values.region }}
+    endpointConfiguration:
+      - types:
+          - REGIONAL
+---
+apiVersion: apigateway.aws.upbound.io/v1beta1
+kind: Resource
+metadata:
+  name: {{ .Release.Name }}-api-resource
+spec:
+  forProvider:
+    region: {{ .Values.region }}
+    parentIdRef:
+      name: {{ .Release.Name }}-rest-api
+    restApiIdRef:
+      name: {{ .Release.Name }}-rest-api
+    pathPart: {{ .Values.path }}
+---
+apiVersion: apigateway.aws.upbound.io/v1beta1
+kind: Method
+metadata:
+  name: {{ .Release.Name }}-rest-api-method
+spec:
+  forProvider:
+    authorization: NONE
+    httpMethod: GET
+    region: {{ .Values.region }}
+    resourceIdRef:
+      name: {{ .Release.Name }}-api-resource
+    restApiIdRef:
+      name: {{ .Release.Name }}-rest-api
+---
+apiVersion: apigateway.aws.upbound.io/v1beta1
+kind: MethodResponse
+metadata:
+  name: {{ .Release.Name }}-rest-api-method-response-ok
+spec:
+  forProvider:
+    httpMethodRef:
+      name: {{ .Release.Name }}-rest-api-method
+    region: {{ .Values.region }}
+    resourceIdRef:
+      name: {{ .Release.Name }}-api-resource
+    restApiIdRef:
+      name: {{ .Release.Name }}-rest-api
+    statusCode: "200"
+---
+apiVersion: apigateway.aws.upbound.io/v1beta1
+kind: Integration
+metadata:
+  name: {{ .Release.Name }}-rest-api-integration
+spec:
+  forProvider:
+    restApiIdRef:
+      name: {{ .Release.Name }}-rest-api
+    uriRef:
+      name: {{ .Release.Name }}-lambda
+    resourceIdRef:
+      name: {{ .Release.Name }}-api-resource
+    region: {{ .Values.region }}
+    type: "AWS_PROXY"
+    httpMethod: "GET"
+    httpMethodRef:
+      name: {{ .Release.Name }}-rest-api-method
+    integrationHttpMethod: "POST"
+    timeoutMilliseconds: 29000
+  providerConfigRef:
+    name: default
+---
+apiVersion: apigateway.aws.upbound.io/v1beta1
+kind: Deployment
+metadata:
+  name: {{ .Values.deploymentName }}
+spec:
+  forProvider:
+    region: {{ .Values.region }}
+    restApiIdRef:
+      name: {{ .Release.Name }}-rest-api
+    stageName: {{ .Values.deploymentName }}

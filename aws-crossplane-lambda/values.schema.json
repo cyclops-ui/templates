@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "properties": {
+    "bucketName": {
+      "title": "S3 bucket name",
+      "description": "Name of the bucket to store application files",
+      "type": "string"
+    },
+    "region": {
+      "title": "AWS region",
+      "description": "Choose AWS region to deploy to",
+      "type": "string",
+      "enum": [
+        "us-east-1",
+        "us-east-2"
+      ]
+    },
+    "deploymentName": {
+      "title": "REST API deployment name",
+      "description": "Name of the stage of your REST API",
+      "type": "string"
+    }
+  },
+  "required": [
+    "region"
+  ],
+  "order": [
+    "region",
+    "bucketName",
+    "deploymentName"
+  ],
+  "type": "object"
+}
