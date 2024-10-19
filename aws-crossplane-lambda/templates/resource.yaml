@@ -53,7 +53,7 @@ spec:
     region: {{ .Values.region }}
     statementId: AllowExecutionFromAPIGateway
 ---
-apiVersion: apigateway.aws.upbound.io/v1beta1
+apiVersion: apigateway.aws.upbound.io/v1beta2
 kind: RestAPI
 metadata:
   name: {{ .Release.Name }}-rest-api
