@@ -107,7 +107,7 @@ spec:
       name: {{ .Release.Name }}-rest-api
     statusCode: "200"
 ---
-apiVersion: apigateway.aws.upbound.io/v1beta1
+apiVersion: apigateway.aws.upbound.io/v1beta2
 kind: Integration
 metadata:
   name: {{ .Release.Name }}-rest-api-integration
