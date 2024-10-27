@@ -1,11 +1,10 @@
 apiVersion: s3.services.k8s.aws/v1alpha1
 kind: Bucket
 metadata:
-  name: {{ .Release.Name | quote }}
+  name: {{ .Values.bucketNameOverride | default .Release.Name | quote }}
   namespace: {{ .Release.Namespace | quote }}
 spec:
   name: {{ .Values.bucketNameOverride | default .Release.Name | quote }}
-  acl: ""
   publicAccessBlock:
     blockPublicACLs: {{ .Values.publicAccessBlock.blockPublicACLs}}
     blockPublicPolicy: {{ .Values.publicAccessBlock.blockPublicPolicy}}
