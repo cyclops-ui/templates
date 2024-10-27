@@ -22,6 +22,7 @@ spec:
     rules:
       - expiration:
           days: 3
+        filter: { }
         id: expire
         status: Enabled
   {{- else if eq .Values.bucketType "production" }}
