@@ -14,7 +14,7 @@
         "website"
       ],
       "title": "Bucket use case",
-      "description": "Select use case for your bucket: testing - expires objects after 3 days\nproduction - retains 3 current versions after 30 days\nwebsite - configures static hosting pointing to index.html",
+      "description": "testing expires objects after 3 days; production retains 3 current versions after 30 days; website configures static hosting",
       "type": "string"
     },
     "publicAccessBlock": {
