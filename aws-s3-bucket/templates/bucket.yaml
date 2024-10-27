@@ -4,43 +4,37 @@ metadata:
   name: {{ .Release.Name | quote }}
   namespace: {{ .Release.Namespace | quote }}
 spec:
-  name: {{ .Release.Name | quote }}
+  name: {{ .Values.bucketNameOverride | default .Release.Name | quote }}
+  acl: ""
   publicAccessBlock:
     blockPublicACLs: {{ .Values.publicAccessBlock.blockPublicACLs}}
     blockPublicPolicy: {{ .Values.publicAccessBlock.blockPublicPolicy}}
     ignorePublicACLs: {{ .Values.publicAccessBlock.ignorePublicACLs}}
     restrictPublicBuckets: {{ .Values.publicAccessBlock.restrictPublicBuckets}}
-  {{ if .Values.website }}
+  {{- if eq .Values.bucketType "website" }}
   website:
-    {{ if .Values.website.errorDocument }}
     errorDocument:
-      key: {{ .Values.website.errorDocument }}
-    {{- end }}
-    {{ if .Values.website.indexDocument }}
+      key: index.html
     indexDocument:
-      suffix: {{ .Values.website.indexDocument }}
-    {{- end }}
+      suffix: 404.html
   {{- end }}
-  {{- if (.Values.tagging).tags }}
+  {{- if eq .Values.bucketType "testing" }}
+  lifecycle:
+    rules:
+      - expiration:
+          days: 3
+        id: expire
+  {{- else if eq .Values.bucketType "production" }}
+  lifecycle:
+    rules:
+      - id: expire
+        noncurrentVersionExpiration:
+          newerNoncurrentVersions: 3
+          noncurrentDays: 30
+  {{- end }}
   tagging:
     tagSet:
-      {{- range $key, $value := .Values.tagging.tags }}
-      - key: {{ $key }}
-        value: {{ $value }}
-      {{- end }}
-  {{- end }}
----
-apiVersion: services.k8s.aws/v1alpha1
-kind: AdoptedResource
-metadata:
-  name: adopt-{{ .Release.Name }}
-  namespace: {{ .Release.Namespace | quote }}
-spec:
-  aws:
-    nameOrID: {{ .Release.Name | quote }}
-  kubernetes:
-    group: s3.services.k8s.aws
-    kind: Bucket
-    metadata:
-      name: {{ .Release.Name | quote }}
-      namespace: {{ .Release.Namespace | quote }}
+      - key: "bucket-type"
+        value: {{ .Values.bucketType }}
+      - key: "bucket-owner"
+        value: {{ .Release.Name }}

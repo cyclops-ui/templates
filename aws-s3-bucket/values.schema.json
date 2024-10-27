@@ -2,6 +2,21 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "additionalProperties": false,
   "properties": {
+    "bucketNameOverride": {
+      "title": "Bucket name override",
+      "description": "By default, the bucket will be called after the Module. If this field is provided, it will override the bucket name",
+      "type": "string"
+    },
+    "bucketType": {
+      "enum": [
+        "testing",
+        "production",
+        "website"
+      ],
+      "title": "Bucket use case",
+      "description": "Select use case for your bucket: testing - expires objects after 3 days\nproduction - retains 3 current versions after 30 days\nwebsite - configures static hosting pointing to index.html",
+      "type": "string"
+    },
     "publicAccessBlock": {
       "properties": {
         "blockPublicACLs": {
@@ -39,39 +54,15 @@
       ],
       "title": "Public access",
       "type": "object"
-    },
-    "tagging": {
-      "properties": {
-        "tags": {
-          "title": "Tags",
-          "type": "object"
-        }
-      },
-      "title": "Tags",
-      "type": "object"
-    },
-    "website": {
-      "properties": {
-        "errorDocument": {
-          "title": "Error document",
-          "type": "string"
-        },
-        "indexDocument": {
-          "title": "Index Document",
-          "type": "string"
-        }
-      },
-      "title": "Website",
-      "type": "object"
     }
   },
   "required": [
     "publicAccessBlock"
   ],
   "order": [
-    "publicAccessBlock",
-    "website",
-    "tagging"
+    "bucketNameOverride",
+    "bucketType",
+    "publicAccessBlock"
   ],
   "type": "object"
 }
