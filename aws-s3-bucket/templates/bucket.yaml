@@ -23,6 +23,7 @@ spec:
       - expiration:
           days: 3
         id: expire
+        status: Enabled
   {{- else if eq .Values.bucketType "production" }}
   lifecycle:
     rules:
@@ -30,6 +31,7 @@ spec:
         noncurrentVersionExpiration:
           newerNoncurrentVersions: 3
           noncurrentDays: 30
+        status: Enabled
   {{- end }}
   tagging:
     tagSet:
