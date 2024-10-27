@@ -1,0 +1,111 @@
+{
+  "properties": {
+    "general": {
+      "type": "object",
+      "title": "General",
+      "properties": {
+        "image": {
+          "title": "App image",
+          "type": "string",
+          "description": "Application image"
+        },
+        "version": {
+          "title": "Image version",
+          "type": "string",
+          "description": "Image tag you want to deploy"
+        },
+        "environment": {
+          "title": "Environment variables",
+          "type": "object",
+          "description": "Set environment variables"
+        }
+      },
+      "required": [
+        "image",
+        "version"
+      ],
+      "order": [
+        "image",
+        "version",
+        "environment"
+      ]
+    },
+    "scaling": {
+      "type": "object",
+      "title": "Scaling",
+      "properties": {
+        "replicas": {
+          "title": "Replicas",
+          "type": "integer",
+          "description": "Number of instances you want to deploy",
+          "minimum": 0
+        },
+        "resources": {
+          "type": "object",
+          "title": "Resources",
+          "properties": {
+            "cpu": {
+              "title": "CPUs",
+              "type": "integer",
+              "description": "Number of CPUs your applications needs"
+            },
+            "memory": {
+              "title": "Memory",
+              "description": "Measured in Gi",
+              "type": "integer"
+            }
+          },
+          "order": [
+            "cpu",
+            "memory"
+          ]
+        }
+      },
+      "required": [
+        "replicas"
+      ],
+      "order": [
+        "replicas",
+        "resources"
+      ]
+    },
+    "networking": {
+      "type": "object",
+      "title": "Networking",
+      "properties": {
+        "expose": {
+          "title": "Expose",
+          "type": "boolean",
+          "description": "Create a Service for your application"
+        },
+        "type": {
+          "title": "Service Type",
+          "type": "string",
+          "enum": [
+            "ClusterIP",
+            "NodePort",
+            "LoadBalancer"
+          ],
+          "description": "Specify the type of Service to create."
+        },
+        "port": {
+          "title": "Port",
+          "type": "integer",
+          "description": "Port to expose for your application"
+        }
+      },
+      "order": [
+        "expose",
+        "type",
+        "port"
+      ]
+    }
+  },
+  "order": [
+    "general",
+    "scaling",
+    "networking"
+  ],
+  "title": "Values",
+  "type": "object"
+}

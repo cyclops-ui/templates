@@ -1,0 +1,6 @@
+dependencies:
+- name: aws-s3-bucket
+  repository: oci://registry-1.docker.io/cyclopsui
+  version: 0.1.0
+digest: sha256:84b95d5722973f5c292900505c89d557739243a40686d43a9c71027993a01a4e
+generated: "2024-10-27T15:34:45.054317+01:00"
