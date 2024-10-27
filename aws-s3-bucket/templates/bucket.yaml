@@ -28,10 +28,11 @@ spec:
   {{- else if eq .Values.bucketType "production" }}
   lifecycle:
     rules:
-      - id: expire
+      - id: expire-prod
         noncurrentVersionExpiration:
           newerNoncurrentVersions: 3
           noncurrentDays: 30
+        filter: { }
         status: Enabled
   {{- end }}
   tagging:
