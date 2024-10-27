@@ -17,7 +17,8 @@
           "type": "boolean"
         },
         "restrictPublicBuckets": {
-          "title": "Restrict Public Buckets",
+          "title": "Block public and cross-account access to buckets and objects through any public bucket or access point policies",
+          "description": "S3 will ignore public and cross-account access for buckets or access points with policies that grant public access to buckets and objects.",
           "type": "boolean"
         }
       },
