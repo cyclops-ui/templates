@@ -1,4 +1,4 @@
 apiVersion: v1
 name: aws-s3-bucket
-version: 0.2.0
+version: 0.3.0
 icon: https://icon.icepanel.io/AWS/svg/Storage/Simple-Storage-Service.svg
