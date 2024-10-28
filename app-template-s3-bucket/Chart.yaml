@@ -1,8 +1,8 @@
 apiVersion: v2
-name: app-template
+name: app-template-s3-bucket
 description: Demo chart with more properties to chose from
 type: application
-version: 0.1.0
+version: 0.2.0
 icon: https://github.com/cyclops-ui/cyclops/blob/main/cyclops-ui/src/static/img/default-template-icon.png?raw=true
 dependencies:
   - name: aws-s3-bucket
