@@ -13,9 +13,9 @@ spec:
   {{- if eq .Values.bucketType "website" }}
   website:
     errorDocument:
-      key: index.html
+      key: 404.html
     indexDocument:
-      suffix: 404.html
+      suffix: index.html
   {{- end }}
   {{- if eq .Values.bucketType "testing" }}
   lifecycle:
