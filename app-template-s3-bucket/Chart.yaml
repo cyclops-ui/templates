@@ -7,4 +7,4 @@ icon: https://github.com/cyclops-ui/cyclops/blob/main/cyclops-ui/src/static/img/
 dependencies:
   - name: aws-s3-bucket
     repository: oci://registry-1.docker.io/cyclopsui
-    version: 0.2.0
+    version: 0.3.0
