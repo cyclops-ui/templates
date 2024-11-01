@@ -2,11 +2,6 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "additionalProperties": false,
   "properties": {
-    "numNodes": {
-      "title": "Number of nodes",
-      "description": "Number of nodes in your mysql cluster",
-      "type": "integer"
-    },
     "region": {
       "title": "Region",
       "description": "Region to deploy your MySQL cluster",
@@ -15,7 +10,8 @@
         "fra1",
         "nyc1",
         "syd1"
-      ]
+      ],
+      "immutable": true
     },
     "size": {
       "title": "Instance size",
@@ -25,16 +21,15 @@
         "small",
         "medium",
         "large"
-      ]
+      ],
+      "immutable": true
     }
   },
   "required": [
-    "numNodes",
     "size",
     "region"
   ],
   "order": [
-    "numNodes",
     "size",
     "region"
   ],

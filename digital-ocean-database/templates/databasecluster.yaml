@@ -7,6 +7,6 @@ spec:
   engine: mysql
   name: {{ .Release.Name }}
   version: '8'
-  numNodes: {{ .Values.numNodes }}
+  numNodes: 1
   region: {{ .Values.region }}
   size: {{ if eq .Values.size "small" }}db-s-1vcpu-1gb{{ else if eq .Values.size "medium" }}db-s-2vcpu-4gb{{ else if eq .Values.size "large" }}db-s-4vcpu-8gb{{ end }}
