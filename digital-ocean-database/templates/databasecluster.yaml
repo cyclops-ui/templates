@@ -8,5 +8,5 @@ spec:
   name: {{ .Release.Name }}
   version: '8'
   numNodes: {{ .Values.numNodes }}
-  size: {{- if eq .Values.size "small" }}db-s-1vcpu-1gb{{- else if eq .Values.size "medium" }}db-s-2vcpu-2gb{{- else if eq .Values.size "large" }}db-s-4vcpu-4gb{{ end }}
   region: {{ .Values.region }}
+  size: {{ if eq .Values.size "small" }}db-s-1vcpu-1gb{{ else if eq .Values.size "medium" }}db-s-2vcpu-2gb{{ else if eq .Values.size "large" }}db-s-4vcpu-4gb{{ end }}

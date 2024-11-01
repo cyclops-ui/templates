@@ -10,4 +10,4 @@ spec:
     kind: DatabaseCluster
     name: {{ .Release.Name }}-mysql
   username: {{ .Values.username }}-user
-  {{ end }}
+{{ end }}
