@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}
+  labels:
+    app: {{ .Release.Name }}
+spec:
+  replicas: {{ (.Values.scaling).replicas | default 1 }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: {{ .Release.Name }}
+          image: "{{ .Values.general.image }}:{{ .Values.general.version }}"
+          {{- if ((.Values.networking).expose) }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.networking.port | default 80 }}
+              protocol: TCP
+          {{- end }}
+          env:
+          {{- if ((.Values.general).environment) }}
+          {{- range $key, $value := (.Values.general).environment }}
+            - name: {{ $key }}
+              value: {{ $value | quote }}
+          {{- end }}
+          {{- end }}
+          {{- if or (.Values.mysql).instance (.Values.mysql).database  }}
+            - name: MYSQL_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ .Values.mysql.instance }}-private-connection
+                  key: host
+            - name: MYSQL_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ .Values.mysql.instance }}-private-connection
+                  key: port
+            - name: MYSQL_DATABASE
+              value: {{ .Values.mysql.database }}
+            - name: MYSQL_USER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.mysql.instance }}-default-credentials
+                  key: username
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.mysql.instance }}-default-credentials
+                  key: password
+          {{- end }}
+          {{- if or ((.Values.scaling).resources).memory ((.Values.scaling).resources).cpu }}
+          resources:
+            {{- if ((.Values.scaling).resources).memory }}
+            limits:
+              memory: {{ ((.Values.scaling).resources).memory }}Gi
+            {{- end }}
+            {{- if or ((.Values.scaling).resources).memory ((.Values.scaling).resources).cpu }}
+            requests:
+              {{- if ((.Values.scaling).resources).cpu }}
+              cpu: {{ ((.Values.scaling).resources).cpu }}
+              {{- end }}
+              {{- if ((.Values.scaling).resources).memory }}
+              memory: {{ ((.Values.scaling).resources).memory }}Gi
+              {{- end }}
+            {{- end }}
+          {{- end }}

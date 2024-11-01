@@ -1,0 +1,15 @@
+name: my-app
+
+general:
+  image: nginx
+  version: 1.14.2
+  environment:
+    ENVIRONMENT: production
+
+scaling:
+  replicas: 1
+
+networking:
+  expose: true
+  port: 80
+  type: ClusterIP
