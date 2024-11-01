@@ -26,11 +26,6 @@
         "medium",
         "large"
       ]
-    },
-    "username": {
-      "title": "Database user",
-      "description": "If populated, it creates a new database user and its credentials",
-      "type": "string"
     }
   },
   "required": [
@@ -41,8 +36,7 @@
   "order": [
     "numNodes",
     "size",
-    "region",
-    "username"
+    "region"
   ],
   "type": "object"
 }
