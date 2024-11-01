@@ -34,24 +34,24 @@ spec:
             - name: MYSQL_HOST
               valueFrom:
                 configMapKeyRef:
-                  name: {{ .Values.mysql.instance }}-private-connection
+                  name: {{ .Values.mysql.instance }}-mysql-private-connection
                   key: host
             - name: MYSQL_PORT
               valueFrom:
                 configMapKeyRef:
-                  name: {{ .Values.mysql.instance }}-private-connection
+                  name: {{ .Values.mysql.instance }}-mysql-private-connection
                   key: port
             - name: MYSQL_DATABASE
               value: {{ .Values.mysql.database }}
             - name: MYSQL_USER
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.mysql.instance }}-default-credentials
+                  name: {{ .Values.mysql.instance }}-mysql-default-credentials
                   key: username
             - name: MYSQL_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.mysql.instance }}-default-credentials
+                  name: {{ .Values.mysql.instance }}-mysql-default-credentials
                   key: password
           {{- end }}
           {{- if or ((.Values.scaling).resources).memory ((.Values.scaling).resources).cpu }}
