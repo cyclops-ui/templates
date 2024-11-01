@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "properties": {
+    "numNodes": {
+      "title": "Number of nodes",
+      "description": "Number of nodes in your mysql cluster",
+      "type": "integer"
+    },
+    "region": {
+      "title": "Region",
+      "description": "Region to deploy your MySQL cluster",
+      "type": "string",
+      "enum": [
+        "fra1",
+        "nyc1",
+        "syd1"
+      ]
+    },
+    "size": {
+      "title": "Instance size",
+      "description": "CPU and memory requirements",
+      "type": "string",
+      "enum": [
+        "small",
+        "medium",
+        "large"
+      ]
+    },
+    "username": {
+      "title": "Database user",
+      "description": "If populated, it creates a new database user and its credentials",
+      "type": "string"
+    }
+  },
+  "required": [
+    "numNodes",
+    "size",
+    "region"
+  ],
+  "order": [
+    "numNodes",
+    "size",
+    "region",
+    "username"
+  ],
+  "type": "object"
+}

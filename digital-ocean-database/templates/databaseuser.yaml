@@ -1,0 +1,13 @@
+{{ if .Values.username }}
+apiVersion: databases.digitalocean.com/v1alpha1
+kind: DatabaseUser
+metadata:
+  name: {{ .Release.Name }}-{{ .Values.username }}-user
+  namespace: {{ .Release.Namespace }}
+spec:
+  databaseCluster:
+    apiGroup: databases.digitalocean.com
+    kind: DatabaseCluster
+    name: {{ .Release.Name }}-mysql
+  username: {{ .Values.username }}-user
+  {{ end }}
