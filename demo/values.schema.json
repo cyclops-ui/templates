@@ -15,6 +15,24 @@
     "service": {
       "description": "Expose your application",
       "type": "boolean"
+    },
+    "strings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "ints": {
+      "type": "integer",
+      "items": {
+        "type": "string"
+      }
+    },
+    "number": {
+      "type": "number",
+      "items": {
+        "type": "string"
+      }
     }
   },
   "order": [
