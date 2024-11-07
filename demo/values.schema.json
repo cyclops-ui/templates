@@ -23,15 +23,21 @@
       }
     },
     "ints": {
-      "type": "integer",
+      "type": "array",
       "items": {
-        "type": "string"
+        "type": "integer"
       }
     },
     "number": {
-      "type": "number",
+      "type": "array",
       "items": {
-        "type": "string"
+        "type": "number"
+      }
+    },
+    "bools": {
+      "type": "array",
+      "items": {
+        "type": "boolean"
       }
     }
   },
