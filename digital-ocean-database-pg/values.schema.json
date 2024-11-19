@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "properties": {
+    "region": {
+      "title": "Region",
+      "description": "Region to deploy your PostgreSQL cluster",
+      "type": "string",
+      "enum": [
+        "fra1",
+        "nyc1",
+        "syd1"
+      ],
+      "immutable": true
+    },
+    "size": {
+      "title": "Instance size",
+      "description": "CPU and memory requirements",
+      "type": "string",
+      "enum": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "immutable": true
+    }
+  },
+  "required": [
+    "size",
+    "region"
+  ],
+  "order": [
+    "size",
+    "region"
+  ],
+  "type": "object"
+}

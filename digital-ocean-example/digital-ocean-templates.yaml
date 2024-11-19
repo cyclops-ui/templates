@@ -23,3 +23,16 @@ spec:
   repo: https://github.com/cyclops-ui/templates
   sourceType: git
   version: digital-ocean-resources
+---
+apiVersion: cyclops-ui.com/v1alpha1
+kind: TemplateStore
+metadata:
+  annotations:
+    cyclops-ui.com/icon: https://wiki.postgresql.org/images/3/30/PostgreSQL_logo.3colors.120x120.png
+  name: digital-ocean-postgresql
+  namespace: cyclops
+spec:
+  path: digital-ocean-database-pg
+  repo: https://github.com/cyclops-ui/templates
+  sourceType: git
+  version: digital-ocean-resources

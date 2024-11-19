@@ -1,0 +1,12 @@
+apiVersion: databases.digitalocean.com/v1alpha1
+kind: DatabaseCluster
+metadata:
+  name: {{ .Release.Name }}-pg
+  namespace: {{ .Release.Namespace }}
+spec:
+  engine: pg
+  name: {{ .Release.Name }}
+  version: '15'
+  numNodes: 1
+  region: {{ .Values.region }}
+  size: {{ if eq .Values.size "small" }}db-s-1vcpu-1gb{{ else if eq .Values.size "medium" }}db-s-2vcpu-4gb{{ else if eq .Values.size "large" }}db-s-4vcpu-8gb{{ end }}

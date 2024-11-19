@@ -1,0 +1,4 @@
+apiVersion: v1
+name: digital-ocean-managed-postgresql
+version: 0.0.0
+icon: https://wiki.postgresql.org/images/3/30/PostgreSQL_logo.3colors.120x120.png
