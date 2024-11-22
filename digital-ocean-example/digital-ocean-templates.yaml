@@ -7,9 +7,9 @@ metadata:
   namespace: cyclops
 spec:
   path: app-template-digital-ocean
-  repo: https://github.com/cyclops-ui/templates
+  repo: https://github.com/petar-cvit/cyclops-demo
   sourceType: git
-  version: digital-ocean-resources
+  version: fusepress-demo
 ---
 apiVersion: cyclops-ui.com/v1alpha1
 kind: TemplateStore
@@ -19,10 +19,10 @@ metadata:
   name: digital-ocean-mysql
   namespace: cyclops
 spec:
-  path: digital-ocean-database
-  repo: https://github.com/cyclops-ui/templates
+  path: digital-ocean-database-mysql
+  repo: https://github.com/petar-cvit/cyclops-demo
   sourceType: git
-  version: digital-ocean-resources
+  version: fusepress-demo
 ---
 apiVersion: cyclops-ui.com/v1alpha1
 kind: TemplateStore
@@ -33,6 +33,19 @@ metadata:
   namespace: cyclops
 spec:
   path: digital-ocean-database-pg
-  repo: https://github.com/cyclops-ui/templates
+  repo: https://github.com/petar-cvit/cyclops-demo
   sourceType: git
-  version: digital-ocean-resources
+  version: fusepress-demo
+---
+apiVersion: cyclops-ui.com/v1alpha1
+kind: TemplateStore
+metadata:
+  annotations:
+    cyclops-ui.com/icon: https://avatars.githubusercontent.com/u/1529926?s=200&v=4
+  name: digital-ocean-redis
+  namespace: cyclops
+spec:
+  path: digital-ocean-database-redis
+  repo: https://github.com/petar-cvit/cyclops-demo
+  sourceType: git
+  version: fusepress-demo
