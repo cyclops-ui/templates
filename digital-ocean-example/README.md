@@ -45,7 +45,7 @@ pool-e404vn0zb-gqcfk   Ready    <none>   8m58s   v1.31.1
 You can now install Cyclops with the following command:
 
 ```bash
-kubectl apply -f https://raw.githubusercontent.com/cyclops-ui/cyclops/v0.15.2/install/cyclops-install.yaml && kubectl apply -f https://raw.githubusercontent.com/cyclops-ui/templates/refs/heads/digital-ocean-resources/digital-ocean-example/digital-ocean-templates.yaml
+kubectl apply -f https://raw.githubusercontent.com/cyclops-ui/cyclops/v0.15.2/install/cyclops-install.yaml && kubectl apply -f https://raw.githubusercontent.com/cyclops-ui/templates/refs/heads/digital-ocean-managed-dbs/digital-ocean-example/digital-ocean-templates.yaml
 ```
 
 You check if cyclops pods are ready:
@@ -73,6 +73,8 @@ In your Cyclops, go to add Module and select the `digital-ocean-mysql` template:
 <img width="1512" alt="Screenshot 2024-11-07 at 14 40 22" src="https://github.com/user-attachments/assets/e07cb7f0-48db-4143-9e19-217bf372f53e">
 
 Select the size and the region you want to deploy to and hit `Deploy`.
+
+> ⚠️ Make sure that the environment you are deploying your application in is the same as the environment of the database you are connecting to
 
 You can select any region regardless of where your cluster is running.
 
