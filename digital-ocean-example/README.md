@@ -26,7 +26,7 @@ Once your cluster is up and running, you can download the kubeconfig file by cli
 
 <img width="618" alt="Screenshot 2024-11-07 at 14 34 18" src="https://github.com/user-attachments/assets/933e929c-a3f3-4ebf-9836-705c0d7cf7c7">
 
-After you downloaded the kubeconfig file, you can configure your `kubectl` to access your DO cluster by setting the environment variable `KUBECONFIG` to point to your kubeconfig file:
+After you download the kubeconfig file, you can configure your `kubectl` to access your DO cluster by setting the environment variable `KUBECONFIG` to point to your kubeconfig file:
 
 ```bash
 export KUBECONFIG=~/Downloads/<name of your cluster>-kubeconfig.yaml
@@ -72,7 +72,7 @@ In your Cyclops, go to add Module and select the `digital-ocean-mysql` template:
 
 <img width="1512" alt="Screenshot 2024-11-22 at 16 40 37" src="https://github.com/user-attachments/assets/6534f55f-10ac-47f9-9590-a40a7184d406">
 
-Select the environment, size and the region you want to deploy to and hit `Deploy`.
+Select the environment, size and region you want to deploy to and hit `Deploy`.
 
 > ⚠️ Make sure that the environment you are deploying your application in is the same as the environment of the database you are connecting to
 
@@ -92,11 +92,11 @@ In Cyclops, go to `Add module` and select the `app-template-digital-ocean` templ
 
 <img width="1512" alt="Screenshot 2024-11-22 at 16 43 40" src="https://github.com/user-attachments/assets/c9836b59-afc9-4318-93ac-d2c1d149269b">
 
-Here, you can change the docker image you will deploy and configure environment variables, but also you can configure your MySQL connection.
+Here, you can change the docker image you will deploy and configure environment variables, but you can also configure your MySQL connection.
 
 <img width="1512" alt="Screenshot 2024-11-22 at 16 42 46" src="https://github.com/user-attachments/assets/cdf3e259-841a-4306-ae9a-403fd06edc4f">
 
-Under `Instance name`, input the name of the instance you just deployed, and under `MySQL database`, the name of the database you will use (defaultdb comes with each new instance). All of the other credentials (like instance host, user, and password) are injected, and you don’t have to worry about them.
+Under `Instance name`, input the name of the database module you just deployed, and under `Database name`, the name of the database you will use (defaultdb comes with each new instance). All of the other credentials (like instance host, user, and password) are injected, and you don’t have to worry about them.
 
 <img width="1512" alt="Screenshot 2024-11-07 at 14 51 37" src="https://github.com/user-attachments/assets/f357c0cc-5dcf-4992-a168-35f764af3e44">
 
