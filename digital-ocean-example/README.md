@@ -70,7 +70,7 @@ Cyclops is now available on http://localhost:3000/
 
 In your Cyclops, go to add Module and select the `digital-ocean-mysql` template:
 
-<img width="1512" alt="Screenshot 2024-11-07 at 14 40 22" src="https://github.com/user-attachments/assets/e07cb7f0-48db-4143-9e19-217bf372f53e">
+<img width="1512" alt="Screenshot 2024-11-22 at 16 40 37" src="https://github.com/user-attachments/assets/6534f55f-10ac-47f9-9590-a40a7184d406">
 
 Select the size and the region you want to deploy to and hit `Deploy`.
 
@@ -90,11 +90,11 @@ Once your MySQL is up and running, you can deploy the application and easily con
 
 In Cyclops, go to `Add module` and select the `app-template-digital-ocean` template.
 
-<img width="1512" alt="Screenshot 2024-11-07 at 14 46 58" src="https://github.com/user-attachments/assets/1496845f-476c-4fcf-a449-efba67126e03">
+<img width="1512" alt="Screenshot 2024-11-22 at 16 43 40" src="https://github.com/user-attachments/assets/c9836b59-afc9-4318-93ac-d2c1d149269b">
 
 Here, you can change the docker image you will deploy and configure environment variables, but also you can configure your MySQL connection.
 
-<img width="1512" alt="Screenshot 2024-11-07 at 14 49 19" src="https://github.com/user-attachments/assets/0c07b4f4-385d-44da-9dc7-229a18a142de">
+<img width="1512" alt="Screenshot 2024-11-22 at 16 42 46" src="https://github.com/user-attachments/assets/cdf3e259-841a-4306-ae9a-403fd06edc4f">
 
 Under `Instance name`, input the name of the instance you just deployed, and under `MySQL database`, the name of the database you will use (defaultdb comes with each new instance). All of the other credentials (like instance host, user, and password) are injected, and you don’t have to worry about them.
 
