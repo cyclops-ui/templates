@@ -9,11 +9,6 @@
           "type": "string",
           "description": "Application image"
         },
-        "version": {
-          "title": "Image version",
-          "type": "string",
-          "description": "Image tag you want to deploy"
-        },
         "environment": {
           "title": "Environment variables",
           "type": "object",
@@ -21,12 +16,10 @@
         }
       },
       "required": [
-        "image",
-        "version"
+        "image"
       ],
       "order": [
         "image",
-        "version",
         "environment"
       ]
     },

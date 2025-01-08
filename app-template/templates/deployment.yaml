@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: {{ .Release.Name }}
-          image: "{{ .Values.general.image }}:{{ .Values.general.version }}"
+          image: "{{ .Values.general.image }}"
           {{- if ((.Values.networking).expose) }}
           ports:
             - name: http
