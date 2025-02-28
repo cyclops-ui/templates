@@ -75,18 +75,13 @@
       "properties": {
         "expose": {
           "title": "Expose",
-          "type": "boolean",
-          "description": "Create a Service for your application"
-        },
-        "type": {
-          "title": "Service Type",
           "type": "string",
           "enum": [
-            "ClusterIP",
-            "NodePort",
-            "LoadBalancer"
+            "none",
+            "internal",
+            "external"
           ],
-          "description": "Specify the type of Service to create."
+          "description": "Specify access to the app: \"none\" (not exposed), \"internal\" (inside cluster only), or \"external\" (reachable from outside)."
         },
         "port": {
           "title": "Port",

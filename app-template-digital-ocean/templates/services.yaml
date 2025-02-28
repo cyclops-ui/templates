@@ -1,4 +1,4 @@
-{{- if ((.Values.networking).expose) }}
+{{- if ne ((.Values.networking).expose) "none" }}
 apiVersion: v1
 kind: Service
 metadata:
@@ -6,7 +6,7 @@ metadata:
   labels:
     app: {{ .Release.Name }}
 spec:
-  type: {{ .Values.networking.type | default "ClusterIP" }}
+  type: {{ if eq .Values.networking.expose "external" }}LoadBalancer{{ else }}ClusterIP{{ end }}
   ports:
     - port: {{ (.Values.networking).port }}
       targetPort: {{ (.Values.networking).port }}
@@ -14,4 +14,4 @@ spec:
       name: http
   selector:
     app: {{ .Release.Name }}
-  {{- end }}
+{{- end }}
