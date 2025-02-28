@@ -9,6 +9,9 @@
       "enum": [
         "fra1",
         "nyc1",
+        "lon1",
+        "sgp1",
+        "blr1",
         "syd1"
       ],
       "immutable": true
