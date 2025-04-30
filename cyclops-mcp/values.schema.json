@@ -29,5 +29,10 @@
     "replicas",
     "version"
   ],
+  "order": [
+    "replicas",
+    "version",
+    "scope"
+  ],
   "type": "object"
 }
