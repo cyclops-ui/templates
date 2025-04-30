@@ -15,7 +15,7 @@
         "watchNamespace": {
           "title": "Watch Namespace",
           "description": "Cluster namespace where your Modules are stored - defaults to cyclops namespace",
-          "type": "null"
+          "type": "string"
         }
       },
       "order": [
