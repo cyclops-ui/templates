@@ -1,0 +1,6 @@
+apiVersion: v2
+name: dragonfly
+description: "a modern superfast in-memory datastore, fully compatible with Redis and Memcached APIs"
+
+version: v1.20.1
+appVersion: "v1.20.1"

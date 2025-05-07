@@ -1,0 +1,148 @@
+# default configuration for dragonfly
+
+# no of dragonfly replicas to deploy
+replicaCount: 1
+
+image:
+  repository: docker.dragonflydb.io/dragonflydb/dragonfly
+  tag: ""
+  
+
+# default resource requirements, you can change it according to your needs.
+resources: 
+  requests:
+    # min cpu millisecs
+    cpu:  100m
+    # min memory for dragonfly deployment
+    memory: 128Mi
+  
+  limits:
+    #max cpu millisecs for dragonfly deployment
+    cpu: 1000m
+    # max memory limit for dragonfly deployment 
+    memory: 512Mi
+
+
+
+service:
+  
+  type: ClusterIP
+  # Load balancer static ip to use when service type is set to LoadBalancer
+  loadBalancerIP: ""
+  # Dragonfly default service port
+  port: 6379
+  
+  metrics:
+  # name for the metrics port
+    portName: metrics
+  # serviceType for the metrics service
+    serviceType: ClusterIP
+  
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+
+
+storage:
+  # you can set this to true for production use cases,if you want dragonfly to persist data.
+  enabled: false 
+
+  storageClassName: ""
+  #  Volume size to request for the PVC,default set to 128Mb
+  requests: 128Mi
+  
+
+
+# extra  arguments to pass to dragonfly binary
+extraArgs: []
+  
+
+podSecurityContext:
+  fsGroup: 2000
+
+
+securityContexts:
+  capabilities:
+    drop:
+      - ALL
+  # sets file system permission as read-only for dragonfly container
+  readOnlyRootFilesystem: true
+  # sets the dragon container to run as non-root 
+  runAsNonRoot: true
+  # run dragonfly container with user-Id as 1000
+  runAsUser: 1000
+  
+
+
+# the below fields serviceMonitor and promtheiumsRule requires you have prometheus operator running in your cluster.
+
+serviceMonitor:
+  # If true, a ServiceMonitor CRD is created for a prometheus operator
+  enabled: false
+  # namespace in which to deploy the ServiceMonitor CR. defaults to the application namespace
+  namespace: ""
+  # additional labels to apply to the metrics
+  labels: {}
+  # additional annotations to apply to the metrics
+  annotations: {}
+  # scrape interval
+  interval: 10s
+  # scrape timeout
+  scrapeTimeout: 10s
+
+prometheusRule:
+  # Deploy a PrometheusRule
+  enabled: false
+  # PrometheusRule.Spec
+  # https://awesome-prometheus-alerts.grep.to/rules
+  spec: []
+
+
+tls:
+  # -enable TLS
+  enabled: false
+  # use cert-manager to automatically create the certificate
+  createCerts: false
+  # duration or ttl of the validity of the created certificate
+  duration: 87600h0m0s
+  issuer:
+    # - cert-manager issuer kind. Usually Issuer or ClusterIssuer
+    kind: ClusterIssuer
+    # -name of the referenced issuer
+    name: selfsigned
+    # - group of the referenced issuer
+    # if you are using an external issuer, change this to that issuer group.
+    group: cert-manager.io
+  # - use TLS certificates from existing secret
+  existing_secret: ""
+  # - TLS certificate
+  cert: ""
+  # cert: |
+  #   -----BEGIN CERTIFICATE-----
+  #   MIIDazCCAlOgAwIBAgIUfV3ygaaVW3+yzK5Dq6Aw6TsZ494wDQYJKoZIhvcNAQEL
+  #   ...
+  #   BQAwRTELMAkGA1UEBhMCQVUxEzARBgNVBAgMClNvbWUtU3RhdGUxITAfBgNVBAoM
+  #   zJAL4hNw4Tr6E52fqdmX
+  #   -----END CERTIFICATE-----
+  # -- TLS private key
+  key: ""
+
+
+
+
+passwordFromSecret:
+  enable: false
+  existingSecret:
+    name: ""
+    key: ""
+
+
+
+# for more fields check dragon fly helm chart
