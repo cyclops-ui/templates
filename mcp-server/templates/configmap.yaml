@@ -7,6 +7,11 @@ metadata:
     app.kubernetes.io/name: {{ .Release.Name }}-{{ .Values.service }}-mcp
     app.kubernetes.io/part-of: {{ .Values.service }}
 data:
-  {{- range index .Values.providers .Values.provider "env" }}
+  {{- range index .Values.providers .Values.service "env" }}
   {{ .name }}: {{ .value | quote }}
+  {{- end }}
+
+  {{- range $key, $value := .Values.environment }}
+  - name: {{ $key }}
+    value: {{ $value | quote }}
   {{- end }}

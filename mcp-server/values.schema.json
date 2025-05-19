@@ -25,15 +25,17 @@
       "type": "object",
       "properties": {
         "secretRef": {
-          "title": "Existing secret reference",
+          "title": "Reference existing secret",
           "type": "object",
           "properties": {
             "name": {
               "title": "Name",
+              "type": "string",
               "description": "Name of an existing Kubernetes secret"
             },
             "namespace": {
               "title": "Namespace",
+              "type": "string",
               "description": "Namespace of an existing Kubernetes secret"
             }
           }
