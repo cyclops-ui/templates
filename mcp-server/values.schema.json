@@ -80,44 +80,6 @@
         "replicas",
         "resources"
       ]
-    },
-    "permissions": {
-      "type": "object",
-      "title": "Permissions",
-      "properties": {
-        "enabled": {
-          "title": "Enable permission",
-          "type": "boolean",
-          "description": "If true, the MCP deployment respects the permissions defined below - if not, no permissions are granted"
-        },
-        "verbs": {
-          "type": "array",
-          "title": "Verbs",
-          "items": {
-            "type": "string"
-          }
-        },
-        "apiGroups": {
-          "type": "array",
-          "title": "API groups",
-          "items": {
-            "type": "string"
-          }
-        },
-        "resources": {
-          "type": "array",
-          "title": "Resources",
-          "items": {
-            "type": "string"
-          }
-        }
-      },
-      "order": [
-        "enabled",
-        "actions",
-        "apiGroups",
-        "resources"
-      ]
     }
   },
   "required": [
@@ -130,7 +92,6 @@
     "environment",
     "secrets",
     "scaling",
-    "permissions"
   ],
   "type": "object"
 }
