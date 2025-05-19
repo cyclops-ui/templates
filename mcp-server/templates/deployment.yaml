@@ -1,10 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}-{{ .Values.service }}-mcp
+  name: {{ .Release.Name }}
   labels:
     app.kubernetes.io/component: mcp
-    app.kubernetes.io/name: {{ .Release.Name }}-{{ .Values.service }}-mcp
+    app.kubernetes.io/name: {{ .Release.Name }}
     app.kubernetes.io/part-of: {{ .Values.service }}
 spec:
   replicas: {{ .Values.scaling.replicas | default 1 }}
@@ -20,7 +20,7 @@ spec:
         app.kubernetes.io/name: {{ .Release.Name }}-{{ .Values.service }}-mcp
         app.kubernetes.io/part-of: {{ .Values.service }}
     spec:
-      serviceAccountName: {{ .Release.Name }}-{{ .Values.service }}-mcp
+      serviceAccountName: {{ .Release.Name }}
       containers:
         - name: {{ .Release.Name }}-{{ .Values.service }}-mcp
           image: {{ index .Values.providers .Values.service "image" }}
@@ -30,10 +30,10 @@ spec:
               protocol: TCP
           envFrom:
             - configMapRef:
-                name: {{ .Release.Name }}-{{ .Values.service }}-mcp-env-config
+                name: {{ .Release.Name }}
             {{ if ((.Values.secrets).secretRef).name }}
             - secretRef:
                 name: {{ .Values.secrets.secretRef.name }}
             {{- end }}
             - secretRef:
-                name: {{ .Release.Name }}-{{ .Values.service }}-mcp-env-secret
+                name: {{ .Release.Name }}

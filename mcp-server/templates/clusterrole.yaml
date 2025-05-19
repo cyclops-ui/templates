@@ -3,9 +3,9 @@ kind: ClusterRole
 metadata:
   labels:
     app.kubernetes.io/component: mcp
-    app.kubernetes.io/name: {{ .Release.Name }}-{{ .Values.service }}-mcp
+    app.kubernetes.io/name: {{ .Release.Name }}
     app.kubernetes.io/part-of: {{ .Values.service }}
-  name: {{ .Release.Name }}-{{ .Values.service }}-mcp
+  name: {{ .Release.Name }}
 rules:
   - apiGroups:
       - '*'

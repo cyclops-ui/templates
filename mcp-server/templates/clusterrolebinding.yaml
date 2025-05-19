@@ -3,9 +3,9 @@ kind: ClusterRoleBinding
 metadata:
   labels:
     app.kubernetes.io/component: mcp
-    app.kubernetes.io/name: {{ .Release.Name }}-{{ .Values.service }}-mcp
+    app.kubernetes.io/name: {{ .Release.Name }}
     app.kubernetes.io/part-of: {{ .Values.service }}
-  name: {{ .Release.Name }}-{{ .Values.service }}-mcp
+  name: {{ .Release.Name }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
