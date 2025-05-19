@@ -12,6 +12,5 @@ data:
   {{- end }}
 
   {{- range $key, $value := .Values.environment }}
-  - name: {{ $key }}
-    value: {{ $value | quote }}
+  {{ $key }}: {{ $value | quote }}
   {{- end }}
