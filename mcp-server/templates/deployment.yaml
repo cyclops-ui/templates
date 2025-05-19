@@ -36,4 +36,4 @@ spec:
                 name: {{ .Values.secrets.secretRef.name }}
             {{- end }}
             - secretRef:
-                name: {{ .Release.Name }}-{{ .Values.service }}-mcp-env-secrets
+                name: {{ .Release.Name }}-{{ .Values.service }}-mcp-env-secret
