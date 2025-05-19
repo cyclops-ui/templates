@@ -91,7 +91,7 @@
     "port",
     "environment",
     "secrets",
-    "scaling",
+    "scaling"
   ],
   "type": "object"
 }
