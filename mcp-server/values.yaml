@@ -9,7 +9,7 @@ providers:
   grafana:
     image: "mcp/grafana"
   github:
-    image: "mcp/github-mcp-server"
+    image: "mcp/github"
   redis:
     image: "mcp/redis"
     env:
