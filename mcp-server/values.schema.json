@@ -90,7 +90,7 @@
           "type": "boolean",
           "description": "If true, the MCP deployment respects the permissions defined below - if not, no permissions are granted"
         },
-        "actions": {
+        "verbs": {
           "type": "array",
           "title": "Verbs",
           "items": {
