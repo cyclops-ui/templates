@@ -1,0 +1,33 @@
+service: redis
+
+scaling:
+  replicas: 1
+
+port: 8000
+
+providers:
+  grafana:
+    image: "mcp/grafana"
+    env:
+      - name: CLOUD
+        value: "aws"
+      - name: REGION
+        value: "us-west-1"
+  github:
+    image: "mcp/github-mcp-server"
+    secrets:
+      - name: GITHUB_PERSONAL_ACCESS_TOKEN
+        value: ""
+  redis:
+    image: "mcp/redis"
+    env:
+      - name: REDIS_HOST
+        value: "127.0.0.1"
+      - name: REDIS_PORT
+        value: "6379"
+      - name: REDIS_USERNAME
+        value: "default"
+      - name: REDIS_PWD
+        value: ""
+      - name: MCP_TRANSPORT
+        value: "sse"

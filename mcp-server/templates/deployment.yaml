@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-{{ .Values.service }}-mcp
+  labels:
+    app.kubernetes.io/component: mcp
+    app.kubernetes.io/name: {{ .Release.Name }}-{{ .Values.service }}-mcp
+    app.kubernetes.io/part-of: {{ .Values.service }}
+spec:
+  replicas: {{ .Values.scaling.replicas | default 1 }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: mcp
+      app.kubernetes.io/name: {{ .Release.Name }}-{{ .Values.service }}-mcp
+      app.kubernetes.io/part-of: {{ .Values.service }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/component: mcp
+        app.kubernetes.io/name: {{ .Release.Name }}-{{ .Values.service }}-mcp
+        app.kubernetes.io/part-of: {{ .Values.service }}
+    spec:
+      serviceAccountName: {{ .Release.Name }}-{{ .Values.service }}-mcp
+      containers:
+        - name: {{ .Release.Name }}-{{ .Values.service }}-mcp
+          image: {{ index .Values.providers .Values.service "image" }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.port }}
+              protocol: TCP
+          envFrom:
+            - configMapRef:
+                name: {{ .Release.Name }}-env-config
+            - secretRef:
+                name: {{ .Release.Name }}-env-config

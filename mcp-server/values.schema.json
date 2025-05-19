@@ -1,0 +1,98 @@
+{
+  "properties": {
+    "service": {
+      "title": "Service",
+      "description": "Provider of the MCP server - what service is your MCP for",
+      "type": "string",
+      "enum": [
+        "redis",
+        "grafana",
+        "github"
+      ]
+    },
+    "environment": {
+      "title": "Environment variables",
+      "type": "object",
+      "description": "Set environment variables"
+    },
+    "port": {
+      "title": "Expose on port",
+      "type": "integer",
+      "description": "Port to expose the MCP server on"
+    },
+    "secrets": {
+      "title": "Secrets",
+      "type": "object",
+      "properties": {
+        "secretRef": {
+          "title": "Existing secret reference",
+          "type": "object",
+          "properties": {
+            "name": {
+              "title": "Name",
+              "description": "Name of an existing Kubernetes secret"
+            },
+            "namespace": {
+              "title": "Namespace",
+              "description": "Namespace of an existing Kubernetes secret"
+            }
+          }
+        },
+        "variables": {
+          "title": "Variables",
+          "type": "object",
+          "description": "Inline secret variables"
+        }
+      }
+    },
+    "scaling": {
+      "type": "object",
+      "title": "Scaling",
+      "properties": {
+        "replicas": {
+          "title": "Replicas",
+          "type": "integer",
+          "description": "Number of instances you want to deploy",
+          "minimum": 0
+        },
+        "resources": {
+          "type": "object",
+          "title": "Resources",
+          "properties": {
+            "cpu": {
+              "title": "CPUs",
+              "type": "integer",
+              "description": "Number of CPUs your applications needs"
+            },
+            "memory": {
+              "title": "Memory",
+              "description": "Measured in Gi",
+              "type": "integer"
+            }
+          },
+          "order": [
+            "cpu",
+            "memory"
+          ]
+        }
+      },
+      "required": [
+        "replicas"
+      ],
+      "order": [
+        "replicas",
+        "resources"
+      ]
+    }
+  },
+  "required": [
+    "replicas",
+    "version"
+  ],
+  "order": [
+    "replicas",
+    "version",
+    "scope"
+  ],
+  "type": "object"
+}

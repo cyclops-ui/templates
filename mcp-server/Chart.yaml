@@ -1,0 +1,9 @@
+apiVersion: v2
+name: mcp-server-template
+description: MCP (Model Context Protocol) server template
+type: application
+version: "0.0.0"
+keywords:
+  - Devops
+  - MCP
+  - AI agent
