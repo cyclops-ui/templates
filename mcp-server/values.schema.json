@@ -32,7 +32,7 @@
               "title": "Name",
               "type": "string",
               "description": "Name of an existing Kubernetes secret"
-            }g
+            }
           }
         },
         "variables": {
