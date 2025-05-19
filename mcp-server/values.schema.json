@@ -10,15 +10,15 @@
         "github"
       ]
     },
-    "environment": {
-      "title": "Environment variables",
-      "type": "object",
-      "description": "Set environment variables"
-    },
     "port": {
       "title": "Expose on port",
       "type": "integer",
       "description": "Port to expose the MCP server on"
+    },
+    "environment": {
+      "title": "Environment variables",
+      "type": "object",
+      "description": "Set environment variables"
     },
     "secrets": {
       "title": "Secrets",
@@ -86,13 +86,15 @@
     }
   },
   "required": [
-    "replicas",
-    "version"
+    "service",
+    "port"
   ],
   "order": [
-    "replicas",
-    "version",
-    "scope"
+    "service",
+    "port",
+    "environment",
+    "secrets",
+    "scaling"
   ],
   "type": "object"
 }
