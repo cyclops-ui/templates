@@ -3,6 +3,9 @@ service: redis
 scaling:
   replicas: 1
 
+permissions:
+  enabled: false
+
 port: 8000
 
 providers:
