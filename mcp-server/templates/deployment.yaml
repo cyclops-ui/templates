@@ -20,6 +20,7 @@ spec:
         app.kubernetes.io/name: {{ .Release.Name }}
         app.kubernetes.io/part-of: {{ .Values.service }}
     spec:
+      serviceAccountName: {{ .Release.Name }}
       containers:
         - name: {{ .Release.Name }}-{{ .Values.service }}-mcp
           image: {{- if eq .Values.service "custom" }}{{ required "customImage.image is required when service is 'custom'" .Values.customImage.image }}{{- if .Values.customImage.tag }}:{{ .Values.customImage.tag }}{{- end }}{{- else }}{{ index .Values.providers .Values.service "image" }}{{- end }}

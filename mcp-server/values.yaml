@@ -5,6 +5,13 @@ scaling:
 
 permissions:
   enabled: false
+  # rules:
+  #   - verbs: ["get", "list"]
+  #     apiGroups: [""]
+  #     resources: ["pods"]
+  #   - verbs: ["create"]
+  #     apiGroups: ["apps"]
+  #     resources: ["deployments"]
 
 port: 8000
 

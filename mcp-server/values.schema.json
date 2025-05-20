@@ -82,6 +82,43 @@
         "resources"
       ]
     },
+    "permissions": {
+      "type": "object",
+      "title": "Permissions",
+      "properties": {
+        "enabled": {
+          "title": "Enable permission",
+          "type": "boolean",
+          "description": "If true, the MCP deployment respects the permissions defined below - if not, no permissions are granted"
+        },
+        "rules": {
+          "type": "array",
+          "title": "Rules",
+          "items": {
+            "type": "object",
+            "properties": {
+              "verbs": {
+                "type": "array",
+                "title": "Verbs",
+                "items": { "type": "string" }
+              },
+              "apiGroups": {
+                "type": "array",
+                "title": "API groups",
+                "items": { "type": "string" }
+              },
+              "resources": {
+                "type": "array",
+                "title": "Resources",
+                "items": { "type": "string" }
+              }
+            },
+            "required": ["verbs", "apiGroups", "resources"]
+          }
+        }
+      },
+      "order": ["enabled", "rules"]
+    },
     "customImage": {
       "title": "Custom Docker image override",
       "type": "object",
@@ -110,6 +147,7 @@
     "environment",
     "secrets",
     "scaling",
+    "permissions",
     "customImage"
   ],
   "type": "object"
