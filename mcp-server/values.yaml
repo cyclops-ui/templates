@@ -13,11 +13,11 @@ providers:
     image: "mcp/grafana"
   mongo-db:
     image: "mcp/mongodb"
+  postgres:
+    image: "mcp/postgres"
   redis:
     image: "mcp/redis"
     env:
-      - name: REDIS_HOST
-        value: "127.0.0.1"
       - name: REDIS_PORT
         value: "6379"
       - name: REDIS_USERNAME
