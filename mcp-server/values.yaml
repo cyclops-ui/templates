@@ -11,8 +11,8 @@ port: 8000
 providers:
   grafana:
     image: "mcp/grafana"
-  github:
-    image: "mcp/github"
+  pulumi:
+    image: "mcp/pulumi"
   redis:
     image: "mcp/redis"
     env:

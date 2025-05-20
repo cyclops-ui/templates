@@ -6,8 +6,8 @@
       "type": "string",
       "enum": [
         "redis",
+        "pulumi",
         "grafana",
-        "github"
       ]
     },
     "port": {
