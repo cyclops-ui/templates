@@ -1,4 +1,4 @@
-service: redis
+service: pulumi
 
 scaling:
   replicas: 1

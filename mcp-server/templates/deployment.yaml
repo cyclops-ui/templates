@@ -23,6 +23,10 @@ spec:
       containers:
         - name: {{ .Release.Name }}-{{ .Values.service }}-mcp
           image: {{ index .Values.providers .Values.service "image" }}
+          {{- $cmd := include "provider.command" . | trim }}
+          {{- if $cmd }}
+          command: {{ $cmd }}
+          {{- end }}
           ports:
             - name: http
               containerPort: {{ .Values.port }}
