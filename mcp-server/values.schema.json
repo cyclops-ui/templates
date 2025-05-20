@@ -7,7 +7,7 @@
       "enum": [
         "redis",
         "pulumi",
-        "grafana",
+        "grafana"
       ]
     },
     "port": {
