@@ -1,0 +1,97 @@
+{
+  "properties": {
+    "service": {
+      "title": "Service",
+      "description": "Provider of the MCP server - what service is your MCP for",
+      "type": "string",
+      "enum": [
+        "redis",
+        "grafana",
+        "github"
+      ]
+    },
+    "port": {
+      "title": "Expose on port",
+      "type": "integer",
+      "description": "Port to expose the MCP server on"
+    },
+    "environment": {
+      "title": "Environment variables",
+      "type": "object",
+      "description": "Set environment variables"
+    },
+    "secrets": {
+      "title": "Secrets",
+      "type": "object",
+      "properties": {
+        "secretRef": {
+          "title": "Reference existing secret",
+          "type": "object",
+          "properties": {
+            "name": {
+              "title": "Name",
+              "type": "string",
+              "description": "Name of an existing Kubernetes secret"
+            }
+          }
+        },
+        "variables": {
+          "title": "Variables",
+          "type": "object",
+          "description": "Inline secret variables"
+        }
+      }
+    },
+    "scaling": {
+      "type": "object",
+      "title": "Scaling",
+      "properties": {
+        "replicas": {
+          "title": "Replicas",
+          "type": "integer",
+          "description": "Number of instances you want to deploy",
+          "minimum": 0
+        },
+        "resources": {
+          "type": "object",
+          "title": "Resources",
+          "properties": {
+            "cpu": {
+              "title": "CPUs",
+              "type": "integer",
+              "description": "Number of CPUs your applications needs"
+            },
+            "memory": {
+              "title": "Memory",
+              "description": "Measured in Gi",
+              "type": "integer"
+            }
+          },
+          "order": [
+            "cpu",
+            "memory"
+          ]
+        }
+      },
+      "required": [
+        "replicas"
+      ],
+      "order": [
+        "replicas",
+        "resources"
+      ]
+    }
+  },
+  "required": [
+    "service",
+    "port"
+  ],
+  "order": [
+    "service",
+    "port",
+    "environment",
+    "secrets",
+    "scaling"
+  ],
+  "type": "object"
+}

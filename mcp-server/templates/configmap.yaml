@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}
+  labels:
+    app.kubernetes.io/component: mcp
+    app.kubernetes.io/name: {{ .Release.Name }}
+    app.kubernetes.io/part-of: {{ .Values.service }}
+data:
+  {{- range index .Values.providers .Values.service "env" }}
+  {{ .name }}: {{ .value | quote }}
+  {{- end }}
+
+  {{- range $key, $value := .Values.environment }}
+  {{ $key }}: {{ $value | quote }}
+  {{- end }}
