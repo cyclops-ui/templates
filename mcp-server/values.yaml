@@ -1,4 +1,4 @@
-service: pulumi
+service: redis
 
 scaling:
   replicas: 1
@@ -11,8 +11,8 @@ port: 8000
 providers:
   grafana:
     image: "mcp/grafana"
-  pulumi:
-    image: "mcp/pulumi"
+  mongo-db:
+    image: "mcp/mongodb"
   redis:
     image: "mcp/redis"
     env:
