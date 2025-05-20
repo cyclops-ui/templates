@@ -7,8 +7,10 @@ metadata:
     app.kubernetes.io/name: {{ .Release.Name }}
     app.kubernetes.io/part-of: {{ .Values.service }}
 data:
+  {{- if (and (hasKey .Values.providers .Values.service) (index .Values.providers .Values.service "env")) }}
   {{- range index .Values.providers .Values.service "env" }}
   {{ .name }}: {{ .value | quote }}
+  {{- end }}
   {{- end }}
 
   {{- range $key, $value := .Values.environment }}
