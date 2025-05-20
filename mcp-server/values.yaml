@@ -11,8 +11,8 @@ port: 8000
 providers:
   grafana:
     image: "mcp/grafana"
-  slack:
-    image: "mcp/slack"
+  wikipedia:
+    image: "mcp/wikipedia"
   redis:
     image: "mcp/redis"
     env:
