@@ -6,8 +6,7 @@
       "type": "string",
       "enum": [
         "redis",
-        "postgres",
-        "mongo-db",
+        "slack",
         "grafana"
       ]
     },

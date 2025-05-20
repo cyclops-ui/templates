@@ -11,10 +11,8 @@ port: 8000
 providers:
   grafana:
     image: "mcp/grafana"
-  mongo-db:
-    image: "mcp/mongodb"
-  postgres:
-    image: "mcp/postgres"
+  slack:
+    image: "mcp/slack"
   redis:
     image: "mcp/redis"
     env:
