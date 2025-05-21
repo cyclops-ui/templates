@@ -19,7 +19,7 @@ providers:
   grafana:
     image: "mcp/grafana"
   wikipedia:
-    image: "mcp/wikipedia"
+    image: "mcp/wikipedia-mcp"
   redis:
     image: "mcp/redis"
     env:
