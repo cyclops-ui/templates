@@ -1,0 +1,5 @@
+{{- define "provider.command" -}}
+{{- if eq .Values.service "pulumi" }}
+  [ "node", "dist/index.js", "sse", "--port", "{{ .Values.port }}" ]
+{{- end }}
+{{- end }}

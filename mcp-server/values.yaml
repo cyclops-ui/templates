@@ -5,19 +5,24 @@ scaling:
 
 permissions:
   enabled: false
+  # rules:
+  #   - verbs: ["get", "list"]
+  #     apiGroups: [""]
+  #     resources: ["pods"]
+  #   - verbs: ["create"]
+  #     apiGroups: ["apps"]
+  #     resources: ["deployments"]
 
 port: 8000
 
 providers:
   grafana:
     image: "mcp/grafana"
-  github:
-    image: "mcp/github"
+  wikipedia:
+    image: "mcp/wikipedia-mcp"
   redis:
     image: "mcp/redis"
     env:
-      - name: REDIS_HOST
-        value: "127.0.0.1"
       - name: REDIS_PORT
         value: "6379"
       - name: REDIS_USERNAME

@@ -1,0 +1,25 @@
+{{ if .Values.permissions.enabled }}
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/component: mcp
+    app.kubernetes.io/name: {{ .Release.Name }}
+    app.kubernetes.io/part-of: {{ .Values.service }}
+  name: {{ .Release.Name }}
+rules:
+{{- range .Values.permissions.rules }}
+  - apiGroups:
+      {{- range .apiGroups }}
+      - {{ . }}
+      {{- end }}
+    resources:
+      {{- range .resources }}
+      - {{ . }}
+      {{- end }}
+    verbs:
+      {{- range .verbs }}
+      - {{ . }}
+      {{- end }}
+{{- end }}
+{{ end }}
