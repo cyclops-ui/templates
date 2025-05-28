@@ -27,6 +27,8 @@ spec:
         toolhive: "true"
         toolhive-name: {{ .Release.Name }}
     spec:
+      serviceAccount: {{ .Release.Name }}
+      serviceAccountName: {{ .Release.Name }}
       containers:
         - args:
             - run
