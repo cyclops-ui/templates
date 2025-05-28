@@ -1,0 +1,8 @@
+apiVersion: v2
+name: toolhive
+
+type: application
+
+version: 0.1.0
+
+icon: https://raw.githubusercontent.com/stacklok/toolhive/refs/heads/main/docs/images/toolhive.png
