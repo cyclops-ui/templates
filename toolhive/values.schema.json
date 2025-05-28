@@ -1,0 +1,168 @@
+{
+  "properties": {
+    "image": {
+      "title": "Image",
+      "description": "Docker image of your MCP server",
+      "type": "string"
+    },
+    "podTemplateSpec": {
+      "properties": {
+        "spec": {
+          "properties": {
+            "containers": {
+              "items": {
+                "properties": {
+                  "name": {
+                    "title": "Name",
+                    "description": "Container name",
+                    "type": "string"
+                  },
+                  "resources": {
+                    "properties": {
+                      "limits": {
+                        "properties": {
+                          "cpu": {
+                            "title": "cpu",
+                            "type": "string"
+                          },
+                          "memory": {
+                            "title": "memory",
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "cpu",
+                          "memory"
+                        ],
+                        "title": "limits",
+                        "type": "object"
+                      },
+                      "requests": {
+                        "properties": {
+                          "cpu": {
+                            "title": "cpu",
+                            "type": "string"
+                          },
+                          "memory": {
+                            "title": "memory",
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "cpu",
+                          "memory"
+                        ],
+                        "title": "requests",
+                        "type": "object"
+                      }
+                    },
+                    "required": [
+                      "limits",
+                      "requests"
+                    ],
+                    "title": "resources",
+                    "type": "object"
+                  }
+                },
+                "required": [
+                  "name"
+                ],
+                "order": [
+                  "name",
+                  "resources"
+                ],
+                "type": "object"
+              },
+              "title": "Containers",
+              "type": "array"
+            }
+          },
+          "required": [
+            "containers"
+          ],
+          "title": "spec",
+          "type": "object"
+        }
+      },
+      "required": [
+        "spec"
+      ],
+      "title": "podTemplateSpec",
+      "type": "object"
+    },
+    "port": {
+      "title": "Port",
+      "description": "Port to expose the MCP on",
+      "type": "integer"
+    },
+    "resources": {
+      "properties": {
+        "limits": {
+          "properties": {
+            "cpu": {
+              "title": "cpu",
+              "type": "string"
+            },
+            "memory": {
+              "title": "memory",
+              "type": "string"
+            }
+          },
+          "required": [
+            "cpu",
+            "memory"
+          ],
+          "title": "limits",
+          "type": "object"
+        },
+        "requests": {
+          "properties": {
+            "cpu": {
+              "title": "cpu",
+              "type": "string"
+            },
+            "memory": {
+              "title": "memory",
+              "type": "string"
+            }
+          },
+          "required": [
+            "cpu",
+            "memory"
+          ],
+          "title": "requests",
+          "type": "object"
+        }
+      },
+      "required": [
+        "limits",
+        "requests"
+      ],
+      "title": "resources",
+      "type": "object"
+    },
+    "transport": {
+      "title": "Transport",
+      "description": "Set the transport for your MCP server",
+      "enum": [
+        "stdio",
+        "sse"
+      ],
+      "type": "string"
+    }
+  },
+  "order": [
+    "image",
+    "permissionProfile",
+    "podTemplateSpec",
+    "port",
+    "resources",
+    "transport"
+  ],
+  "required": [
+    "image",
+    "port",
+    "transport"
+  ],
+  "type": "object"
+}

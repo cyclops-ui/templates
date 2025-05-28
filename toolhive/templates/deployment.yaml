@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: mcpserver
+      app.kubernetes.io/instance: {{ .Release.Name }}
+      app.kubernetes.io/name: mcpserver
+      toolhive: "true"
+      toolhive-name: {{ .Release.Name }}
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: mcpserver
+        app.kubernetes.io/instance: {{ .Release.Name }}
+        app.kubernetes.io/name: mcpserver
+        toolhive: "true"
+        toolhive-name: {{ .Release.Name }}
+    spec:
+      containers:
+        - args:
+            - run
+            - --foreground=true
+            - --port={{ .Values.port }}
+            - --name={{ .Release.Name }}
+            - --transport={{ .Values.transport }}
+            - --host=0.0.0.0
+            - --k8s-pod-patch={"metadata":{"creationTimestamp":null},"spec":{"containers":[{"name":"mcp","resources":{"limits":{"cpu":"500m","memory":"512Mi"},"requests":{"cpu":"100m","memory":"128Mi"}},"securityContext":{"capabilities":{"drop":["ALL"]},"runAsUser":0,"runAsGroup":0,"runAsNonRoot":false,"allowPrivilegeEscalation":false}}],"securityContext":{"runAsUser":0,"runAsGroup":0,"runAsNonRoot":false,"seccompProfile":{"type":"RuntimeDefault"}}}}
+            - --permission-profile=network
+            - {{ .Values.image }}
+          image: ghcr.io/stacklok/toolhive:latest
+          imagePullPolicy: Always
+          name: toolhive
+          ports:
+            - containerPort: {{ .Values.port }}
+              name: http
+              protocol: TCP
+          resources:
+            limits:
+              cpu: {{ .Values.resources.limits.cpu }}
+              memory: {{ .Values.resources.limits.memory }}
+            requests:
+              cpu: {{ .Values.resources.requests.cpu }}
+              memory: {{ .Values.resources.requests.cpu }}
